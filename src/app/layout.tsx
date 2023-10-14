@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Navbar from '../components/Navbar'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,12 +13,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='fr'>
-      <body className={inter.className}>
-        <nav></nav>
-        <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-          {children}
-        </main>
+    <html lang='fr' className='scroll-smooth'>
+      <body>
+        <header className='relative bg-white'>
+          <Navbar />
+          <h1 className='text-center text-primary-dark pt-80'>Hello Next.js</h1>
+        </header>
+        <main className='text-center'>{children}</main>
         <footer></footer>
       </body>
     </html>

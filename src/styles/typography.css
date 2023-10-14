@@ -1,0 +1,194 @@
+/* headers, navi, utils */
+.__heading-1 {
+  font-family: Georgia, ui-serif, Cambria, 'Times New Roman', Times, serif;
+  font-size: 2.125rem;
+  font-weight: 400;
+  letter-spacing: -0.1%;
+}
+
+.__heading-2 {
+  font-family: Georgia, ui-serif, Cambria, 'Times New Roman', Times, serif;
+  font-size: 2.75rem;
+  font-weight: 400;
+  letter-spacing: -0.1%;
+}
+
+.__heading-3 {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.__heading-4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.625rem;
+}
+
+.__heading-5 {
+  font-size: 1.375rem;
+  font-weight: 400;
+}
+
+.__heading-6 {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.625rem;
+}
+
+.__heading-6__link {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5625rem;
+}
+
+.__heading-6__link_light {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.5625rem;
+}
+
+.__nav-link {
+  font-family: Georgia, ui-serif, Cambria, 'Times New Roman', Times, serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  line-height: 2.8125rem;
+  letter-spacing: -0.1%;
+}
+
+.__lighthouse_score {
+  font-size: 1.625rem;
+  font-weight: 500;
+}
+
+/* main content */
+.__poppins_light_high {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.__poppins_extrali_high {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.__poppins_reg_middle {
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+
+.__poppins_light_middle {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.625rem;
+}
+
+.__poppins_extrali_middle {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.__poppins_med_low {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.__poppins_light_low {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.625rem;
+}
+
+.__poppins_light_extralow {
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.__poppins_thin_extralow {
+  font-size: 0.75rem;
+  font-weight: 100;
+}
+
+/* adaptive font size */
+@media (min-width: 992px) {
+  /* laptop headers, navi, utils */
+  .__heading-1 {
+    font-size: 3.125rem;
+  }
+
+  .__heading-2 {
+    font-size: 5.25rem;
+  }
+
+  .__heading-3 {
+    font-size: 1.875rem;
+  }
+
+  .__heading-4 {
+    font-size: 1.75rem;
+  }
+
+  .__heading-5 {
+    font-size: 1.625rem;
+  }
+
+  .__heading-6 {
+    line-height: 1.75rem;
+  }
+
+  .__heading-6__link {
+    font-size: 1rem;
+    line-height: 1.625rem;
+  }
+
+  .__heading-6__link_light {
+    font-size: 0.9375rem;
+    line-height: 1.625rem;
+  }
+
+  .__nav-link {
+    font-size: 2.5rem;
+    line-height: 3.4375rem;
+  }
+
+  /* .__lighthouse_score {
+    without changes
+  } */
+
+  /* laptop main content */
+  .__poppins_light_high {
+    font-size: 1.375rem;
+  }
+
+  .__poppins_extrali_high {
+    font-size: 1.375rem;
+  }
+
+  .__poppins_reg_middle {
+    font-size: 1.25rem;
+  }
+
+  .__poppins_light_middle {
+    font-size: 1.125rem;
+    line-height: 1.8125rem;
+  }
+
+  .__poppins_extrali_middle {
+    font-size: 1.125rem;
+  }
+
+  .__poppins_med_low {
+    font-size: 0.9375rem;
+  }
+
+  /* .__poppins_light_low {
+		without changes
+  } */
+
+  /* .__poppins_light_extralow {
+    without changes
+  } */
+
+  .__poppins_thin_extralow {
+    font-size: 0.875rem;
+  }
+}

@@ -7,6 +7,30 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
+    colors: {
+      // basic
+      transparent: 'transparent',
+      current: 'currentColor',
+      white: '#ffffff',
+      'primary-dark': {
+        translucent: 'rgba(47, 46, 46, 0.5)',
+        DEFAULT: '#2f2e2e'
+      },
+      'accent-orange': '#e6512d',
+      'subtle-blue': '#42446e',
+      'mid-gray': '#666666',
+      'highlight-gray': '#424242',
+      'pale-pink': '#ffc0cb',
+      // lighthouse circles
+      'low-result-bg': '#382324',
+      'low-result-main': '#ff353c',
+      'medium-result-bg': '#382f25',
+      'medium-result-main': '#ffab44',
+      'high-result-bg': '#1e3329',
+      'high-result-main': '#00cc6b',
+      'service-gray': '#b0b0b0',
+      'light-gray': '#e6e6e6'
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
