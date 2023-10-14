@@ -1,5 +1,4 @@
 'use client'
-
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -7,7 +6,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/images/logo.svg'
 import LogoWhite from '@/assets/images/logo-white.svg'
-import { time } from 'console'
 
 const navigation = [
   { name: 'Projects.', href: { pathname: '/', hash: 'projects' } },
@@ -71,7 +69,7 @@ export default function Navbar() {
       {({ open }) => (
         <>
           {open ? setIsMenuOpen(true) : setIsMenuOpen(false)}
-          <div className='container mx-auto flex max-w-7xl items-center justify-center'>
+          <div className='container mx-auto flex max-w-7xl items-center justify-center px-4'>
             <div className='absolute right-2 top-2 flex items-center sm:hidden'>
               {/* Mobile menu button*/}
               <Disclosure.Button className='relative z-50 inline-flex items-center justify-center rounded-md p-2 text-primary-dark hover:bg-primary-dark-translucent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
@@ -145,9 +143,9 @@ export default function Navbar() {
                 leave='transition-transform duration-300 ease-in-out'
                 leaveFrom='translate-x-0'
                 leaveTo='translate-x-full'
-                className='h-full w-full'
+                className='ml-auto h-full w-4/5'
               >
-                <div className='absolute inset-y-0 right-0 flex h-full w-4/5 min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
+                <div className='absolute inset-y-0 right-0 z-40 flex h-full w-4/5 min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
                   <div>
                     <Link href='/'>
                       <Disclosure.Button>

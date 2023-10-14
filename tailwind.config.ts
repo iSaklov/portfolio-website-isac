@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 const config: Config = {
   content: [
@@ -30,6 +31,10 @@ const config: Config = {
       'high-result-main': '#00cc6b',
       'service-gray': '#b0b0b0',
       'light-gray': '#e6e6e6'
+    },
+    fontFamily: {
+      sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+      serif: ['Georgia', ...defaultTheme.fontFamily.serif]
     },
     extend: {
       backgroundImage: {
