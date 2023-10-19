@@ -46,7 +46,7 @@ export default function Navbar() {
         const bottom = top + section.clientHeight
 
         if (window.scrollY >= top && window.scrollY < bottom) {
-          currentSectionValue = `#${section.id}`
+          currentSectionValue = section.id
         }
       })
 
@@ -104,13 +104,13 @@ export default function Navbar() {
                     key={name}
                     href={href}
                     className={classNames(
-                      `#${href.hash}` === currentSection
+                      href.hash === currentSection
                         ? 'bg-primary-dark text-white hover:cursor-default'
                         : 'text-primary-dark hover:text-accent-orange',
                       '__nav-link rounded-md px-3 py-0 lowercase'
                     )}
                     aria-current={
-                      `#${href.hash}` === currentSection ? 'page' : undefined
+                      href.hash === currentSection ? 'page' : undefined
                     }
                   >
                     {name}
@@ -163,15 +163,13 @@ export default function Navbar() {
                         key={name}
                         href={href}
                         className={classNames(
-                          `#${href.hash}` === currentSection
+                          href.hash === currentSection
                             ? 'bg-light-gray text-primary-dark'
                             : 'bg-transparent text-white',
                           '__nav-link rounded-md px-2 py-0'
                         )}
                         aria-current={
-                          `#${href.hash}` === currentSection
-                            ? 'page'
-                            : undefined
+                          href.hash === currentSection ? 'page' : undefined
                         }
                       >
                         <Disclosure.Button className='lowercase'>
