@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Header from '../components/layout/Header'
 import Main from '@/components/layout/Main'
 import TeckStackSection from '@/components/TeckStackSection'
+import AboutSection from '@/components/AboutSection'
 import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
@@ -22,11 +23,7 @@ export default function Home() {
           </h2>
         </section>
         <TeckStackSection />
-        <section id='about' className='min-h-screen w-screen bg-high-result-bg'>
-          <h2 className='pt-10 text-center font-serif text-3xl text-white'>
-            A propos.
-          </h2>
-        </section>
+        <AboutSection />
         <section id='contacts' className='min-h-screen w-screen bg-subtle-blue'>
           <h2 className='pt-10 text-center font-serif text-3xl text-white'>
             Contacts.
