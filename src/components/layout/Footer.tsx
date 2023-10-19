@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import BgImg from '../../assets/images/background/laura-ockel-qOx9KsvpqcM-unsplash.jpg'
+import BgImg from '@/assets/images/background/laura-ockel-qOx9KsvpqcM-unsplash.jpg'
 import Logo from '@/assets/images/logo.svg'
 
 export default function Footer() {

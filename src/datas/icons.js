@@ -1,0 +1,32 @@
+const icons = {
+  bootstrap: require('@/assets/images/icons/tech-stack/devicon_bootstrap.svg'),
+  git: require('@/assets/images/icons/tech-stack/devicon_git.svg'),
+  mongodb: require('@/assets/images/icons/tech-stack/devicon_mongodb-wordmark.svg'),
+  nextjs: require('@/assets/images/icons/tech-stack/devicon_nextjs-wordmark.svg'),
+  prisma: require('@/assets/images/icons/tech-stack/devicon_prisma.svg'),
+  react: require('@/assets/images/icons/tech-stack/devicon_react.svg'),
+  supabase: require('@/assets/images/icons/tech-stack/devicon_supabase.svg'),
+  tailwindcss: require('@/assets/images/icons/tech-stack/devicon_tailwindcss.svg'),
+  webpack: require('@/assets/images/icons/tech-stack/devicon_webpack.svg'),
+  apollo: require('@/assets/images/icons/tech-stack/file-icons_apollo.svg'),
+  gatsbyjs: require('@/assets/images/icons/tech-stack/grommet-icons_gatsbyjs.svg'),
+  airtable: require('@/assets/images/icons/tech-stack/logos_airtable.svg'),
+  auth0: require('@/assets/images/icons/tech-stack/logos_auth0-icon.svg'),
+  aws: require('@/assets/images/icons/tech-stack/logos_aws.svg'),
+  figma: require('@/assets/images/icons/tech-stack/logos_figma.svg'),
+  firebase: require('@/assets/images/icons/tech-stack/logos_firebase.svg'),
+  materialui: require('@/assets/images/icons/tech-stack/logos_material-ui.svg'),
+  nodejs: require('@/assets/images/icons/tech-stack/logos_nodejs-icon.svg'),
+  postgresql: require('@/assets/images/icons/tech-stack/logos_postgresql.svg'),
+  redux: require('@/assets/images/icons/tech-stack/logos_redux.svg'),
+  sass: require('@/assets/images/icons/tech-stack/logos_sass.svg'),
+  typescript: require('@/assets/images/icons/tech-stack/logos_typescript-icon.svg'),
+  github: require('@/assets/images/icons/tech-stack/mdi_github.svg'),
+  expressjs: require('@/assets/images/icons/tech-stack/skill-icons_expressjs-dark.svg'),
+  css: require('@/assets/images/icons/tech-stack/vscode-icons_file-type-css.svg'),
+  graphql: require('@/assets/images/icons/tech-stack/vscode-icons_file-type-graphql.svg'),
+  html: require('@/assets/images/icons/tech-stack/vscode-icons_file-type-html.svg'),
+  js: require('@/assets/images/icons/tech-stack/vscode-icons_file-type-js-official.svg')
+}
+
+export default icons
