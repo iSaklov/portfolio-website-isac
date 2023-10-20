@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
-import Header from '../components/layout/Header'
+import Header from '@/components/layout/Header'
 import Main from '@/components/layout/Main'
+import HeroSection from '@/components/HeroSection'
 import ProjectsSection from '@/components/ProjectsSection'
 import TeckStackSection from '@/components/TeckStackSection'
 import AboutSection from '@/components/AboutSection'
-import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Next.js'
@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header>
+        <HeroSection />
+      </Header>
       <Main>
         <ProjectsSection />
         <TeckStackSection />
@@ -24,7 +26,6 @@ export default function Home() {
           </h2>
         </section>
       </Main>
-      <Footer />
     </>
   )
 }
