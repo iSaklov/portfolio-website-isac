@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Header from '../components/layout/Header'
 import Main from '@/components/layout/Main'
+import ProjectsSection from '@/components/ProjectsSection'
 import TeckStackSection from '@/components/TeckStackSection'
 import AboutSection from '@/components/AboutSection'
 import Footer from '@/components/layout/Footer'
@@ -14,14 +15,7 @@ export default function Home() {
     <>
       <Header />
       <Main>
-        <section
-          id='projects'
-          className='min-h-screen w-screen bg-low-result-bg'
-        >
-          <h2 className='pt-10 text-center font-serif text-3xl text-white'>
-            Projects.
-          </h2>
-        </section>
+        <ProjectsSection />
         <TeckStackSection />
         <AboutSection />
         <section id='contacts' className='min-h-screen w-screen bg-subtle-blue'>
