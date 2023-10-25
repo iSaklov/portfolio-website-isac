@@ -1,22 +1,24 @@
 import { StaticImageData } from 'next/image'
 
 export interface Project {
-  id: number
+  id: string
   name: string
-  slug: string
+  cover: StaticImageData
   shortDescription: string
-  fullDescription: string | string[]
-  techStack: string[]
+  fullDescription: string
+  date: string
+  city: string
+  techStack: string
   links: {
     toDeploy: string
     toGithub: string
   }
   lighthouse: {
-    performances: number
-    accessibilité: number
-    bonnesPratiques: number
+    performance: number
+    accessibility: number
+    bestPractices: number
     SEO: number
-    progressiveWeb: number
+    progressiveWeb: boolean
   }
-  img: StaticImageData
+  images?: Array<StaticImageData>
 }

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Next.js'
 }
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Header>
