@@ -8,12 +8,14 @@ export default function Card({ project }: { project: Project }) {
   return (
     <div className='group w-full max-w-sm shadow-md hover:shadow-xl'>
       <Link key={project.id} href={`/projects/${project.slug}`}>
-        <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative -z-10 w-full overflow-hidden rounded-lg'>
+        <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative -z-10 w-full overflow-hidden rounded-t-lg'>
           <Image
-            src={project.img}
+            src={project.cover[0].url}
             alt={`Screenshot du projet ${project.name}`}
             placeholder='blur'
-            className='inline-block h-full w-full object-cover object-center group-hover:opacity-75'
+            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='
+            className='!static h-full w-full object-cover object-center group-hover:opacity-75'
+            fill
           />
         </div>
         <div className='pl-5 pr-5 pt-5'>

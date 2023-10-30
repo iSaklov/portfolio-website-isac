@@ -1,17 +1,18 @@
-// import { getItem } from '@/utils/get-item'
+import { getRecord } from '@/database/get-record'
 import { Suspense } from 'react'
 import ProjectHeader from '@/components/project/ProjectHeader'
 
-export default function ProjectPage({
+export default async function ProjectPage({
   params: { id }
 }: {
   params: { id: string }
 }) {
-  // const item = await getItem(id)
+  const item = await getRecord(id)
 
   return (
     <div className='min-h-screen pt-80'>
-      <h1>ID: {id}</h1>
+			<h1>ID: {id}</h1>
+			<p>{item.fields.name}</p>
       {/* <Suspense fallback={<Loading />}> */}
       <Suspense fallback={<p>Loading weather...</p>}>
         {/* <ProjectHeader /> */}

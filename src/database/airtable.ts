@@ -1,5 +1,8 @@
 const Airtable = require('airtable')
-import { ProjectRecord } from '@/interfaces/ProjectRecord'
+import { ProjectData } from '@/interfaces/ProjectData'
+import { Project } from '@/interfaces/Project'
+import { keysToCamelCase } from '@/utils/keys-to-camel-case'
+import { generateSlug } from '@/utils/generate-slug'
 
 // Authenticate
 Airtable.configure({
@@ -10,22 +13,48 @@ Airtable.configure({
 // Initialize a base
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
 
-// Reference a table
+// Reference a table"
 const table = base(process.env.AIRTABLE_TABLE_ID)
 
 // To get minified records array
-const minifyItems = (records: Array<ProjectRecord>) =>
+const minifyItems = (records: Array<ProjectData>): Array<Project> =>
   records.map((record) => getMinifiedItem(record))
 
 // to make record meaningful.
-const getMinifiedItem = (record: ProjectRecord) => {
-  if (!record.fields.progressiveWeb) {
-    record.fields.progressiveWeb = false
+const getMinifiedItem = (record: ProjectData): Project => {
+  const camelCaseFields = keysToCamelCase(record.fields)
+
+  // if (!record.fields.progressiveWeb) {
+  //   record.fields.progressiveWeb = false
+  // }
+
+  if (!camelCaseFields.progressiveWeb) {
+    camelCaseFields.progressiveWeb = false
   }
+
   return {
     id: record.id,
-    createdTime: record._rawJson.createdTime,
-    fields: record.fields
+		createdTime: record._rawJson.createdTime,
+		slug: generateSlug(camelCaseFields.name),
+    name: camelCaseFields.name,
+    cover: camelCaseFields.cover,
+    shortDescription: camelCaseFields.shortDescription,
+    techStack: camelCaseFields.techStack.split(', '),
+    fullDescription: camelCaseFields.fullDescription,
+    date: camelCaseFields.date,
+    city: camelCaseFields.city,
+    links: {
+      toDeploy: camelCaseFields.toDeploy,
+      toGithub: camelCaseFields.toGithub
+    },
+    lighthouse: {
+      performance: camelCaseFields.performance,
+      accessibility: camelCaseFields.accessibility,
+      bestPractices: camelCaseFields.bestPractices,
+      SEO: camelCaseFields.seo,
+      progressiveWeb: camelCaseFields.progressiveWeb
+    },
+    images: camelCaseFields.images
   }
 }
 

@@ -1,14 +1,18 @@
-import { StaticImageData } from 'next/image'
+// import { StaticImageData } from 'next/image'
+import { ImageMetadata } from "./ImageMetadata"
 
 export interface Project {
   id: string
+  createdTime: string
+  slug: string
   name: string
-  cover: StaticImageData
+  // cover: StaticImageData[]
+  cover: Array<ImageMetadata>
   shortDescription: string
+  techStack: Array<string>
   fullDescription: string
   date: string
   city: string
-  techStack: string
   links: {
     toDeploy: string
     toGithub: string
@@ -20,5 +24,6 @@ export interface Project {
     SEO: number
     progressiveWeb: boolean
   }
-  images?: Array<StaticImageData>
+  // images?: Array<StaticImageData>
+  images?: Array<ImageMetadata>
 }
