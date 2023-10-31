@@ -25,7 +25,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    console.log('isMenuOpen', isMenuOpen)
+    // console.log('isMenuOpen', isMenuOpen)
     if (isMenuOpen && document) {
       document.body.classList.add('overflow-hidden')
     } else if (document !== null) {
@@ -34,7 +34,7 @@ export default function Navbar() {
   }, [isMenuOpen])
 
   useEffect(() => {
-    console.log('currentSection', currentSection)
+    // console.log('currentSection', currentSection)
   }, [currentSection])
 
   const handleScroll = () => {

@@ -21,8 +21,8 @@ export interface Project {
     performance: number
     accessibility: number
     bestPractices: number
-    SEO: number
-    progressiveWeb: boolean
+    seo: number
+    pwa: boolean
   }
   // images?: Array<StaticImageData>
   images?: Array<ImageMetadata>

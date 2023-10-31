@@ -1,6 +1,5 @@
-import Section from './layout/Section'
 import { getItems } from '@/database/get-records'
-// import projects from '@/datas/projects'
+import Section from './layout/Section'
 import Card from './Card'
 
 export default async function ProjectsSection() {

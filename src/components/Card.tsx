@@ -7,13 +7,17 @@ import GithubIcon from '@/assets/images/icons/akar-icons_github-fill.svg'
 export default function Card({ project }: { project: Project }) {
   return (
     <div className='group w-full max-w-sm shadow-md hover:shadow-xl'>
-      <Link key={project.id} href={`/projects/${project.slug}`}>
+      <Link
+        key={project.id}
+        // href={`/projects/${encodeURIComponent(project.slug)}`}
+        href={`/projects/${project.id}`}
+      >
         <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative -z-10 w-full overflow-hidden rounded-t-lg'>
           <Image
             src={project.cover[0].url}
             alt={`Screenshot du projet ${project.name}`}
             placeholder='blur'
-            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='
+            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
             className='!static h-full w-full object-cover object-center group-hover:opacity-75'
             fill
           />

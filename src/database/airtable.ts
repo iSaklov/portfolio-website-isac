@@ -24,10 +24,6 @@ const minifyItems = (records: Array<ProjectData>): Array<Project> =>
 const getMinifiedItem = (record: ProjectData): Project => {
   const camelCaseFields = keysToCamelCase(record.fields)
 
-  // if (!record.fields.progressiveWeb) {
-  //   record.fields.progressiveWeb = false
-  // }
-
   if (!camelCaseFields.progressiveWeb) {
     camelCaseFields.progressiveWeb = false
   }
@@ -51,8 +47,8 @@ const getMinifiedItem = (record: ProjectData): Project => {
       performance: camelCaseFields.performance,
       accessibility: camelCaseFields.accessibility,
       bestPractices: camelCaseFields.bestPractices,
-      SEO: camelCaseFields.seo,
-      progressiveWeb: camelCaseFields.progressiveWeb
+      seo: camelCaseFields.seo,
+      pwa: camelCaseFields.progressiveWeb
     },
     images: camelCaseFields.images
   }
