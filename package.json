@@ -13,6 +13,8 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "airtable": "^0.12.2",
+    "flowbite": "^2.0.0",
+    "flowbite-react": "^0.6.4",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
