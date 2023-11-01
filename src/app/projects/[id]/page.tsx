@@ -29,8 +29,7 @@ export default async function ProjectPage({
           city={project.city}
           techStack={project.techStack}
         />
-        {/* <ProjectCarousel images={project.images} /> */}
-        <ProjectCarousel />
+        <ProjectCarousel images={project.images} />
         <ProjectLighthouse lighthouse={project.lighthouse} />
         <ProjectDescription description={project.fullDescription} />
         <ProjectLinks links={project.links} />

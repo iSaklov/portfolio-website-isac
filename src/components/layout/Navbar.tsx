@@ -66,7 +66,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <Disclosure as='nav' className='fixed w-full sm:bg-white'>
+    <Disclosure as='nav' className='fixed z-30 w-full sm:bg-white'>
       {({ open }) => (
         <>
           {open ? setIsMenuOpen(true) : setIsMenuOpen(false)}
