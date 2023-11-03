@@ -2,8 +2,13 @@
 
 import { Carousel } from 'flowbite-react'
 import Image from 'next/image'
+import { ImageMetadata } from '@/interfaces/ImageMetadata'
 
-export default function ProjectCarousel({ images }) {
+export default function ProjectCarousel({
+  images
+}: {
+  images: ImageMetadata[]
+}) {
   return (
     // <div className='mb-10 h-56 sm:h-64 xl:h-80 2xl:h-96'>
     <div className='z-10 mb-10 h-screen md:h-[640] xl:h-[800px]'>
