@@ -1,3 +1,4 @@
+import Markdown from 'react-markdown'
 import { Project } from '@/interfaces/Project'
 
 export default function ProjectDescription({
@@ -5,5 +6,9 @@ export default function ProjectDescription({
 }: {
   description: Project['fullDescription']
 }) {
-  return <div>{description}</div>
+  return (
+    <article className='prose'>
+      <Markdown>{description}</Markdown>
+    </article>
+  )
 }
