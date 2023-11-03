@@ -1,5 +1,5 @@
 // import { StaticImageData } from 'next/image'
-import { ImageMetadata } from "./ImageMetadata"
+import { ImageMetadata } from './ImageMetadata'
 
 export interface Project {
   id: string

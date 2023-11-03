@@ -30,8 +30,8 @@ const getMinifiedItem = (record: ProjectData): Project => {
 
   return {
     id: record.id,
-		createdTime: record._rawJson.createdTime,
-		slug: generateSlug(camelCaseFields.name),
+    createdTime: record._rawJson.createdTime,
+    slug: generateSlug(camelCaseFields.name),
     name: camelCaseFields.name,
     cover: camelCaseFields.cover,
     shortDescription: camelCaseFields.shortDescription,

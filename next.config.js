@@ -2,11 +2,10 @@
 const nextConfig = {
   experimental: {
     typedRoutes: true
-	},
-	images: {
+  },
+  images: {
     domains: ['v5.airtableusercontent.com']
   }
 }
 
 module.exports = nextConfig
-

@@ -7,15 +7,15 @@ export default function ProjectLighthouse({
   lighthouse: Project['lighthouse']
 }) {
   return (
-    <div>
-      <div className='flex items-center justify-center gap-x-4'>
-        <Indicator result={lighthouse.performance} />
-        <Indicator result={lighthouse.accessibility} />
-        <Indicator result={lighthouse.bestPractices} />
-        <Indicator result={lighthouse.seo} />
-        <Indicator result={lighthouse.pwa} />
+    <div className='mx-auto my-10'>
+      <div className='flex justify-center gap-x-8'>
+        {Object.entries(lighthouse).map(([key, value]) => {
+          return <Indicator key={key} keyName={key} value={value} />
+        })}
       </div>
-      <p>Généré par Lighthouse 10.4.0</p>
+      <span className='__poppins_light_low mt-5 block text-center'>
+        Généré par Lighthouse 10.4.0
+      </span>
     </div>
   )
 }

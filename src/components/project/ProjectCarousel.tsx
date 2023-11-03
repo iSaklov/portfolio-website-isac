@@ -13,7 +13,7 @@ export default function ProjectCarousel({ images }) {
             <Image
               // key={image.id}
               src={image.url}
-              alt='h'
+              alt=''
               placeholder='blur'
               blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
               fill
