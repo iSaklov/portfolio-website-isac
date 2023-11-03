@@ -19,6 +19,11 @@ export default async function ProjectPage({
 
   const project: Project = await getRecord(id)
 
+  if (!project.images) {
+    // Handling the case when 'images' is equal to undefined
+    project.images = []
+  }
+
   return (
     <div className='mx-auto min-h-screen px-4 pt-80'>
       {/* <Suspense fallback={<Loading />}> */}

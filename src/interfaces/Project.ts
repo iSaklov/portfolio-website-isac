@@ -1,4 +1,3 @@
-// import { StaticImageData } from 'next/image'
 import { ImageMetadata } from './ImageMetadata'
 
 export interface Project {
@@ -6,7 +5,6 @@ export interface Project {
   createdTime: string
   slug: string
   name: string
-  // cover: StaticImageData[]
   cover: Array<ImageMetadata>
   shortDescription: string
   techStack: Array<string>
@@ -24,6 +22,5 @@ export interface Project {
     seo: number
     pwa: boolean
   }
-  // images?: Array<StaticImageData>
   images?: Array<ImageMetadata>
 }
