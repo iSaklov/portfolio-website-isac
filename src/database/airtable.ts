@@ -40,8 +40,8 @@ const getMinifiedItem = (record: ProjectData): Project => {
     date: camelCaseFields.date,
     city: camelCaseFields.city,
     links: {
-      toDeploy: camelCaseFields.toDeploy,
-      toGithub: camelCaseFields.toGithub
+      toDeploy: camelCaseFields.linkToDeploy,
+      toGithub: camelCaseFields.linkToGithub
     },
     lighthouse: {
       performance: camelCaseFields.performance,

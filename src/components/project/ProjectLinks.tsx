@@ -7,7 +7,7 @@ export default function ProjectLinks({ links }: { links: Project['links'] }) {
   return (
     <div className='mt-10 flex justify-between'>
       <div>
-        <a href={links.toDeploy} className='flex items-center'>
+        <a href={links.toDeploy} target='_blank' className='flex items-center'>
           <Image
             src={LinkToDeployIcon}
             alt='lien vers le projet en ligne'
@@ -17,7 +17,7 @@ export default function ProjectLinks({ links }: { links: Project['links'] }) {
         </a>
       </div>
       <div>
-        <a href={links.toGithub} className='flex items-center'>
+        <a href={links.toGithub} target='_blank' className='flex items-center'>
           <Image
             src={LinkToGithubIcon}
             alt='lien vers le code du projet'
