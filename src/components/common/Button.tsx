@@ -4,8 +4,10 @@ interface TypeVariants {
 }
 
 const typeVariants: TypeVariants = {
-  primary: 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500',
-  secondary: 'bg-gray-400 hover:bg-gray-100 focus:ring-gray-500'
+  primary:
+    'bg-primary-dark hover:bg-service-gray target:bg-highlight-gray target:border-accent-orange target:border-2 disabled:bg-light-gray disabled:cursor-not-allowed disabled:text-mid-gray active:bg-accent-orange text-white',
+  secondary:
+    'text-primary-dark target:border-accent-orange target:border-2 disabled:cursor-not-allowed disabled:text-mid-gray hover:underline hover:underline-offset-8 active:decoration-accent-orange'
 }
 
 export default function Button({
@@ -16,10 +18,8 @@ export default function Button({
   children: React.ReactNode
 }) {
   return (
-    <button
-      className={`inline-flex items-center rounded-md border border-transparent ${typeVariants[type]}`}
-    >
-      {children}
+    <button className={`w-72 py-5 ${typeVariants[type]}`}>
+      <span className='__poppins_light_high'>{children}</span>
     </button>
   )
 }

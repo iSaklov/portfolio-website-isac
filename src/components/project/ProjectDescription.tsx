@@ -7,7 +7,7 @@ export default function ProjectDescription({
   description: Project['fullDescription']
 }) {
   return (
-    <article className='prose'>
+    <article className='prose max-w-none prose-p:text-justify'>
       <Markdown>{description}</Markdown>
     </article>
   )

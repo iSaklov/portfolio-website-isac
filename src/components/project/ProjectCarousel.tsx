@@ -2,13 +2,18 @@
 
 import { Carousel } from 'flowbite-react'
 import Image from 'next/image'
-import { ImageMetadata } from '@/interfaces/ImageMetadata'
+import { Project } from '@/interfaces/Project'
 
 export default function ProjectCarousel({
   images
 }: {
-  images: ImageMetadata[]
+  images: Project['images']
 }) {
+  if (!images || images.length === 0) {
+    // Handle the case when 'images' is undefined or empty
+    return null // or you can return a message like <p>No images available</p>
+  }
+
   return (
     // <div className='mb-10 h-56 sm:h-64 xl:h-80 2xl:h-96'>
     <div className='z-10 mb-10 h-screen md:h-[640] xl:h-[800px]'>
