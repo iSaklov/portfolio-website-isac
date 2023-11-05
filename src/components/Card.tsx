@@ -24,7 +24,7 @@ export default function Card({ project }: { project: Project }) {
         </div>
         <div className='pl-5 pr-5 pt-5'>
           <h4 className='__heading-4 mb-5'>{project.name}</h4>
-          <p className='__poppins_light_middle mb-5'>
+          <p className='__poppins_light_middle mb-5 line-clamp-5 text-justify'>
             {project.shortDescription}
           </p>
           <h6 className='mb-5 text-highlight-gray'>
@@ -47,16 +47,24 @@ export default function Card({ project }: { project: Project }) {
           target='_blanck'
           className='__heading-6 underline'
         >
-          <Image src={LinkIcon} alt='' className='mr-2 inline' /> Apercu en
-          direct
+          <Image
+            src={LinkIcon}
+            alt=''
+            className='mr-2 inline-block align-middle'
+          />{' '}
+          Apercu en direct
         </a>
         <a
           href={project.links.toGithub}
           target='_blanck'
           className='__heading-6 underline'
         >
-          <Image src={GithubIcon} alt='' className='mr-2 inline' /> Afficher le
-          code
+          <Image
+            src={GithubIcon}
+            alt=''
+            className='mr-2 inline-block align-middle'
+          />{' '}
+          Afficher le code
         </a>
       </div>
     </div>

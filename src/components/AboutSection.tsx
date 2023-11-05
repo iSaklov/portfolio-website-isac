@@ -9,7 +9,7 @@ export default function AboutSection() {
   const subtitle = 'Qui je suis et ce que je fais'
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
-      <div className='relative -z-10 mb-10 overflow-hidden rounded-bl-[80px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[40px]'>
+      <div className='relative -z-10 mb-10 overflow-hidden rounded-bl-[80px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[40px] md:w-1/2 md:float-right md:mb-0 lg:w-1/3'>
         <Image
           src={Profil}
           alt='Photos du développeur du site'
