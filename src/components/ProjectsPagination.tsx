@@ -1,42 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import type { CustomFlowbiteTheme } from 'flowbite-react'
-import { Flowbite } from 'flowbite-react'
+import { useState, useEffect, useCallback } from 'react'
 import { Pagination } from 'flowbite-react'
+import { Project } from '@/interfaces/Project'
 import Card from '@/components/Card'
 
-const customTheme: CustomFlowbiteTheme = {
-  base: '',
-  layout: {
-    table: {
-      base: 'text-sm text-gray-700 dark:text-gray-400',
-      span: 'font-semibold text-gray-900 dark:text-white'
-    }
-  },
-  pages: {
-    base: 'xs:mt-0 mt-2 inline-flex items-center -space-x-px',
-    showIcon: 'inline-flex',
-    previous: {
-      base: 'ml-0 rounded-l-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white',
-      icon: 'h-5 w-5'
-    },
-    next: {
-      base: 'rounded-r-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white',
-      icon: 'h-5 w-5'
-    },
-    selector: {
-      base: 'w-12 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white',
-      active:
-        'bg-cyan-50 text-cyan-600 hover:bg-cyan-100 hover:text-cyan-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white',
-      disabled: 'opacity-50 cursor-normal'
-    }
-  }
-}
-
-export default function ProjectsPagination({ projects }) {
+export default function ProjectsPagination({
+  projects: projects
+}: {
+  projects: Project[]
+}) {
   const [currentPage, setCurrentPage] = useState(1)
-  const [projectsPerPage, setProjectsPerPage] = useState(3)
+  const [projectsPerPage, setProjectsPerPage] = useState(getProjectsPerPage)
   const [totalPage, setTotalPage] = useState(
     Math.floor(projects.length / projectsPerPage)
   )
@@ -50,25 +25,48 @@ export default function ProjectsPagination({ projects }) {
     const indexOfLastProject = currentPage * projectsPerPage
     const indexOfFirstProject = indexOfLastProject - projectsPerPage
     setCurrentProjects(projects.slice(indexOfFirstProject, indexOfLastProject))
+    setTotalPage(Math.ceil(projects.length / projectsPerPage))
   }, [currentPage, projectsPerPage, projects])
+
+  function getProjectsPerPage() {
+    const screenWidth = window.innerWidth
+
+    if (screenWidth <= 639.8) {
+      return 1
+    } else if (screenWidth <= 1023.8) {
+      return 2
+    } else {
+      return 3
+    }
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setProjectsPerPage(getProjectsPerPage())
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <>
-      {currentProjects?.map((project) => (
-        <Card key={project.id} project={project} />
-      ))}
+      <div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8'>
+        {currentProjects?.map((project) => (
+          <Card key={project.id} project={project} />
+        ))}
+      </div>
       <div className='flex overflow-x-auto sm:justify-center'>
-        <Flowbite theme={{ theme: customTheme }}>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPage}
-            onPageChange={onPageChange}
-            // layout='navigation'
-            previousLabel='< Previous'
-            nextLabel='Next >'
-            // showIcons
-          />
-        </Flowbite>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPage}
+          onPageChange={onPageChange}
+          // layout='navigation'
+          previousLabel='< Previous'
+          nextLabel='Next >'
+          // showIcons
+        />
       </div>
     </>
   )
