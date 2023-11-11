@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Section from './layout/Section'
+import Section from '@/components/layout/Section'
 import icons from '@/datas/icons'
 
 export default function TeckStackSection() {

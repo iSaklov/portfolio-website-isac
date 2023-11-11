@@ -45,7 +45,9 @@ export default async function ProjectPage({
         href='/#projects'
         className='mt-20 flex items-center justify-center'
       >
-        <Button type='secondary'>{'< Retour aux Projets'}</Button>
+        <Button type='button' variant='secondary'>
+          {'< Retour aux Projets'}
+        </Button>
       </Link>
     </div>
   )

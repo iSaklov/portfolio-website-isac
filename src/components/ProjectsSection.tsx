@@ -1,5 +1,5 @@
 import { getRecords } from '@/database/get-records'
-import Section from './layout/Section'
+import Section from '@/components/layout/Section'
 import ProjectsPagination from '@/components/ProjectsPagination'
 import { Project } from '@/interfaces/Project'
 

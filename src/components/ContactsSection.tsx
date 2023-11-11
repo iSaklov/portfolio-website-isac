@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import Section from './layout/Section'
+import Section from '@/components/layout/Section'
+import Button from '@/components/common/Button'
 import LinkedinIcon from '@/assets/images/icons/ri_linkedin-line.svg'
 import GithubIcon from '@/assets/images/icons/akar-icons_github-fill.svg'
 import TelegramIcon from '@/assets/images/icons/iconoir_telegram.svg'
@@ -98,33 +99,24 @@ export default async function ContactsSection() {
                 target='_blank'
                 rel='noopener'
               >
-                <Image src={LinkedinIcon} alt='' className='inline-block' />
+                <Image src={LinkedinIcon} alt='' />
               </a>
               <a
                 href='https://github.com/iSaklov'
                 target='_blank'
                 rel='noopener'
               >
-                <Image src={GithubIcon} alt='' className='inline-block' />
+                <Image src={GithubIcon} alt='' />
               </a>
               <a href='https://t.me/iSaklov' target='_blank' rel='noopener'>
-                <Image src={TelegramIcon} alt='' className='inline-block' />
+                <Image src={TelegramIcon} alt='' />
               </a>
             </div>
           </div>
           <div>
-            <button
-              type='button'
-              className='text-sm font-semibold leading-6 text-gray-900'
-            >
-              Cancel
-            </button>
-            <button
-              type='submit'
-              className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-            >
-              Save
-            </button>
+            <Button type='submit' variant='primary'>
+              Envoyer
+            </Button>
           </div>
         </div>
       </form>
