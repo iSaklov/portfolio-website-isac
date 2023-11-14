@@ -40,11 +40,11 @@ export default async function ContactsSection() {
                     autoComplete='name'
                     placeholder='Jacques Cousteau'
                     required
-                    pattern='[A-Za-z\\s]{2,}'
+                    pattern='(?:[A-Za-z]{2,}\s*)+'
                     className='__poppins_thin_extralow peer block h-12 w-full border-0 py-1.5 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
                   />
                   <span className='__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible'>
-                    Please enter a valid name
+                    Veuillez saisir un nom valide
                   </span>
                 </div>
               </div>
@@ -67,7 +67,7 @@ export default async function ContactsSection() {
                     className='__poppins_thin_extralow peer block h-12 w-full border-0 py-1.5 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
                   />
                   <span className='__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible'>
-                    Please enter a valid email address
+                    Veuillez saisir une adresse e-mail valide
                   </span>
                 </div>
               </div>
@@ -75,36 +75,26 @@ export default async function ContactsSection() {
                 <label htmlFor='tel' className='__poppins_extrali_high block'>
                   Saisissez votre numéro de téléphone
                 </label>
-                <div className='__poppins_thin_extralow group/tel relative mt-2'>
-                  {/* <span
-                    className={`before:absolute before:pl-3 before:pt-px before:content-['+'] group-focus/tel:before:pt-3.5 sm:text-sm `}
-                  /> */}
-                  {/* <input
-                    id='tel'
-                    name='tel'
-                    type='tel'
-                    autoComplete='tel'
-                    placeholder='33602030405'
-                    pattern='[+][0-9]{11,}'
-                    className={`peer block h-12 w-full border-0 py-1.5 pl-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange`}
-                  /> */}
-
+                <div className='__poppins_thin_extralow relative mt-2'>
                   <input
                     id='tel'
                     name='tel'
                     type='tel'
                     autoComplete='tel'
                     placeholder='33602030405'
-                    pattern='[+][0-9]{11,}'
+                    pattern='[0-9]{11,}'
+                    // value={"this.value=this.value.replace(/[^0-9+]/g,'')"}
                     className={`peer block h-12 w-full border-0 py-1.5 pl-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange`}
                   />
                   <span
-                    className={`pl-3 before:absolute before:-translate-y-12 before:pt-px before:content-['+'] peer-[&:not(:placeholder-shown):not(:focus)]:before:-translate-y-10`}
+                    className={`absolute pl-3 before:absolute before:-translate-y-12 before:content-['+'] peer-[&:focus]:before:-translate-y-9 peer-[&:not(:placeholder-shown):not(:focus)]:before:-translate-y-9`}
                   />
                   <span
                     className={`__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible`}
                   >
-                    Please enter a phone number
+                    Veuillez saisir un numéro de téléphone au format
+                    international, par exemple en composant le code{' '}
+                    <span>+33</span>
                   </span>
                 </div>
               </div>
@@ -136,9 +126,9 @@ export default async function ContactsSection() {
             </div>
           </div>
         </div>
-        <div className='mt-6 flex items-center justify-between gap-x-6'>
-          <div className='flex items-center'>
-            <span className='__poppins_extrali_high mr-16 block'>
+        <div className='mt-6 flex flex-col items-center justify-between gap-y-5 md:flex-row md:gap-x-12 lg:gap-x-32'>
+          <div className='order-1 flex flex-col items-center justify-center gap-y-5 md:order-none md:flex-1 md:flex-row md:justify-between'>
+            <span className='__poppins_extrali_high block lg:mr-16'>
               info@monsite.fr
             </span>
             <div className='flex items-center gap-x-4'>
@@ -161,15 +151,13 @@ export default async function ContactsSection() {
               </a>
             </div>
           </div>
-          <div>
-            <Button
-              type='submit'
-              variant='primary'
-              className='group-invalid:pointer-events-none group-invalid:opacity-75'
-            >
-              Envoyer
-            </Button>
-          </div>
+          <Button
+            type='submit'
+            variant='primary'
+            className='group-invalid:pointer-events-none group-invalid:opacity-75'
+          >
+            Envoyer
+          </Button>
         </div>
       </form>
     </Section>

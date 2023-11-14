@@ -5,7 +5,6 @@ type Variants = {
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: keyof Variants
-  // type: 'submit' | 'button' | 'reset'
   children: React.ReactNode
 }
 
@@ -23,7 +22,10 @@ export default function Button({
   }
 
   return (
-    <button className={`w-72 py-5 ${styles[variant]} ${className}`} {...props}>
+    <button
+      className={`w-full max-w-[200px] py-5 md:max-w-[280px] ${styles[variant]} ${className}`}
+      {...props}
+    >
       <span className='__poppins_light_high'>{children}</span>
     </button>
   )
