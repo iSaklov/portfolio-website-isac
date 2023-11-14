@@ -24,7 +24,7 @@ const config: Config = {
       'subtle-blue': '#42446e',
       'mid-gray': '#666666',
       'highlight-gray': '#424242',
-      'pale-pink': '#ffc0cb',
+      'pale-pink': '#fdf2ee',
       // lighthouse circles
       'low-result-bg': '#382324',
       'low-result-main': '#ff353c',
