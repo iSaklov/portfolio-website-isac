@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Pagination } from 'flowbite-react'
 import { Project } from '@/interfaces/Project'
 import Card from '@/components/Card'
+import { getProjectsPerPage } from '@/utils/get-projects-per-page'
 
 export default function ProjectsPagination({
   projects: projects
@@ -11,10 +12,10 @@ export default function ProjectsPagination({
   projects: Project[]
 }) {
   const [currentPage, setCurrentPage] = useState(1)
-  const [projectsPerPage, setProjectsPerPage] = useState(getProjectsPerPage)
-  const [totalPage, setTotalPage] = useState(
-    Math.floor(projects.length / projectsPerPage)
+  const [projectsPerPage, setProjectsPerPage] = useState<number | undefined>(
+    undefined
   )
+  const [totalPage, setTotalPage] = useState<number>(0)
   const [currentProjects, setCurrentProjects] = useState(
     projects.slice(0, projectsPerPage)
   )
@@ -22,34 +23,28 @@ export default function ProjectsPagination({
   const onPageChange = (page: number) => setCurrentPage(page)
 
   useEffect(() => {
-    const indexOfLastProject = currentPage * projectsPerPage
-    const indexOfFirstProject = indexOfLastProject - projectsPerPage
-    setCurrentProjects(projects.slice(indexOfFirstProject, indexOfLastProject))
-    setTotalPage(Math.ceil(projects.length / projectsPerPage))
-  }, [currentPage, projectsPerPage, projects])
+    setProjectsPerPage(getProjectsPerPage(window.innerWidth))
+  }, [])
 
-  function getProjectsPerPage() {
-    const screenWidth = window.innerWidth
-
-    if (screenWidth <= 639.8) {
-      return 1
-    } else if (screenWidth <= 1023.8) {
-      return 2
-    } else {
-      return 3
+  useEffect(() => {
+    if (projectsPerPage) {
+      const indexOfLastProject = currentPage * projectsPerPage
+      const indexOfFirstProject = indexOfLastProject - projectsPerPage
+      setCurrentProjects(
+        projects.slice(indexOfFirstProject, indexOfLastProject)
+      )
+      setTotalPage(Math.ceil(projects.length / projectsPerPage))
     }
-  }
+  }, [currentPage, projectsPerPage, projects])
 
   useEffect(() => {
     const handleResize = () => {
-      setProjectsPerPage(getProjectsPerPage())
+      setProjectsPerPage(getProjectsPerPage(window.innerWidth))
     }
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize)
 
-      return () => window.removeEventListener('resize', handleResize)
-    }
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
