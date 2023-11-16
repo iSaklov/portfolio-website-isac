@@ -7,8 +7,8 @@ export default function ProjectLighthouse({
   lighthouse: Project['lighthouse']
 }) {
   return (
-    <div className='mx-auto my-10'>
-      <div className='flex justify-center gap-x-8'>
+    <div className='container mx-auto my-10 px-4 '>
+      <div className='flex flex-wrap justify-center gap-8'>
         {Object.entries(lighthouse).map(([key, value]) => {
           return <Indicator key={key} keyName={key} value={value} />
         })}

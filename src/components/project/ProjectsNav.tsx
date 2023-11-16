@@ -57,7 +57,8 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   }
 
   if (devise === 'md') {
-    const carouselItems = projects
+		const carouselItems = projects
+			//TODO
       // .filter((project) => project.id !== getIdFromPathname(pathname))
       .map(({ id, name, cover }, index) => {
         if (index % 2 === 0) {
@@ -84,10 +85,10 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                   className='h-full w-1/2 pl-2'
                 >
                   <Image
-                    src={nextProject.cover[0].thumbnails.large.url}
+                    src={nextProject.cover[1].thumbnails.large.url}
                     alt=''
-                    width={nextProject.cover[0].thumbnails.large.width}
-                    height={nextProject.cover[0].thumbnails.large.height}
+                    width={nextProject.cover[1].thumbnails.large.width}
+                    height={nextProject.cover[1].thumbnails.large.height}
                     className='h-full w-full object-cover'
                   />
                   <h6 className='absolute bottom-0 right-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
