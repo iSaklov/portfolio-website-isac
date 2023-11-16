@@ -22,7 +22,7 @@ export default async function ProjectPage({
   const project: Project = (await getRecord(id)) || []
 
   return (
-    <div className='container mx-auto min-h-screen max-w-2xl px-4 pb-20 pt-80 lg:max-w-4xl'>
+    <div className='container mx-auto min-h-screen max-w-2xl px-4 pb-10 pt-20 lg:max-w-4xl lg:pb-20 lg:pt-80'>
       {/* <Suspense fallback={<Loading />}> */}
       <Suspense fallback={<p>Loading project...</p>}>
         <ProjectHeader

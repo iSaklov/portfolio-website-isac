@@ -17,8 +17,8 @@ export default async function Layout({
 
   return (
     <>
-      <ProjectsNav projects={projects} />
       {children}
+      <ProjectsNav projects={projects} />
     </>
   )
 }

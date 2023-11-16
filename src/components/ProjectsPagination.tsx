@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Pagination } from 'flowbite-react'
 import { Project } from '@/interfaces/Project'
 import Card from '@/components/Card'
-import { getProjectsPerPage } from '@/utils/get-projects-per-page'
+import { getScreenSizeLabel } from '@/utils/get-screen-size-label'
 
 export default function ProjectsPagination({
   projects: projects
@@ -15,12 +15,26 @@ export default function ProjectsPagination({
   const [projectsPerPage, setProjectsPerPage] = useState<number | undefined>(
     undefined
   )
-  const [totalPage, setTotalPage] = useState<number>(0)
+  const [totalPage, setTotalPage] = useState<number>(1)
   const [currentProjects, setCurrentProjects] = useState(
     projects.slice(0, projectsPerPage)
   )
 
   const onPageChange = (page: number) => setCurrentPage(page)
+
+  const getProjectsPerPage = (width: number) => {
+    const screenSize = getScreenSizeLabel(width)
+    switch (screenSize) {
+      case 'sm':
+        return 1
+      case 'md':
+        return 2
+      case 'lg':
+        return 3
+      default:
+        return 4
+    }
+  }
 
   useEffect(() => {
     setProjectsPerPage(getProjectsPerPage(window.innerWidth))
