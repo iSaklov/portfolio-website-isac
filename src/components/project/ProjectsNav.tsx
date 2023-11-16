@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Project } from '@/interfaces/Project'
 import { getScreenSizeLabel } from '@/utils/get-screen-size-label'
+import { getIdFromPathname } from '@/utils/get-id-from-pathname'
 import { Carousel } from 'flowbite-react'
 
 export default function ProjectsNav({ projects }: { projects: Project[] }) {
@@ -32,75 +33,73 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
     return (
       <nav className='container mx-auto mb-10 h-56 max-w-2xl px-4 sm:h-64 lg:max-w-4xl xl:h-80 2xl:h-96'>
         <Carousel slide={false} className='shadow-lg'>
-          {projects.map(({ id, name, cover }) => {
-            return (
-              <Link key={id} href={`/projects/${id}`} className='h-full'>
-                <Image
-                  src={cover[1].thumbnails.large.url}
-                  alt=''
-                  width={cover[1].thumbnails.large.width}
-                  height={cover[1].thumbnails.large.height}
-                  className={`h-full w-full object-cover ${
-                    pathname === `/projects/${id}` ? '' : ''
-                  }`}
-                />
-                <h6 className='absolute bottom-0 left-0 right-0 bg-white p-2 text-center text-xl font-light text-primary-dark'>
-                  {name}
-                </h6>
-              </Link>
-            )
-          })}
+          {projects
+            .filter((project) => project.id !== getIdFromPathname(pathname))
+            .map(({ id, name, cover }) => {
+              return (
+                <Link key={id} href={`/projects/${id}`} className='h-full'>
+                  <Image
+                    src={cover[1].thumbnails.large.url}
+                    alt=''
+                    width={cover[1].thumbnails.large.width}
+                    height={cover[1].thumbnails.large.height}
+                    className='h-full w-full object-cover'
+                  />
+                  <h6 className='absolute bottom-0 left-0 right-0 bg-white p-2 text-center text-xl font-light text-primary-dark'>
+                    {name}
+                  </h6>
+                </Link>
+              )
+            })}
         </Carousel>
       </nav>
     )
   }
 
   if (devise === 'md') {
-    const carouselItems = projects.map(({ id, name, cover }, index) => {
-      if (index % 2 === 0) {
-        const nextProject = projects[index + 1]
+    const carouselItems = projects
+      // .filter((project) => project.id !== getIdFromPathname(pathname))
+      .map(({ id, name, cover }, index) => {
+        if (index % 2 === 0) {
+          const nextProject = projects[index + 1]
 
-        return (
-          <div key={id} className='flex'>
-            <Link href={`/projects/${id}`} className='h-full w-1/2 pr-2'>
-              <Image
-                src={cover[1].thumbnails.large.url}
-                alt=''
-                width={cover[1].thumbnails.large.width}
-                height={cover[1].thumbnails.large.height}
-                className={`h-full w-full object-cover ${
-                  pathname === `/projects/${id}` ? '' : ''
-                }`}
-              />
-              <h6 className='absolute bottom-0 left-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
-                {name}
-              </h6>
-            </Link>
-            {nextProject && (
-              <Link
-                key={nextProject.id}
-                href={`/projects/${nextProject.id}`}
-                className='h-full w-1/2 pl-2'
-              >
+          return (
+            <div key={id} className='flex'>
+              <Link href={`/projects/${id}`} className='h-full w-1/2 pr-2'>
                 <Image
-                  src={nextProject.cover[1].thumbnails.large.url}
+                  src={cover[1].thumbnails.large.url}
                   alt=''
-                  width={nextProject.cover[1].thumbnails.large.width}
-                  height={nextProject.cover[1].thumbnails.large.height}
-                  className={`h-full w-full object-cover ${
-                    pathname === `/projects/${nextProject.id}` ? '' : ''
-                  }`}
+                  width={cover[1].thumbnails.large.width}
+                  height={cover[1].thumbnails.large.height}
+                  className='h-full w-full object-cover'
                 />
-                <h6 className='absolute bottom-0 right-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
-                  {nextProject.name}
+                <h6 className='absolute bottom-0 left-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
+                  {name}
                 </h6>
               </Link>
-            )}
-          </div>
-        )
-      }
-      return null
-    })
+              {nextProject && (
+                <Link
+                  key={nextProject.id}
+                  href={`/projects/${nextProject.id}`}
+                  className='h-full w-1/2 pl-2'
+                >
+                  <Image
+                    src={nextProject.cover[0].thumbnails.large.url}
+                    alt=''
+                    width={nextProject.cover[0].thumbnails.large.width}
+                    height={nextProject.cover[0].thumbnails.large.height}
+                    className='h-full w-full object-cover'
+                  />
+                  <h6 className='absolute bottom-0 right-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
+                    {nextProject.name}
+                  </h6>
+                </Link>
+              )}
+            </div>
+          )
+        }
+        return null
+      })
 
     return (
       <nav className='container mx-auto mb-10 h-80 max-w-2xl px-4'>

@@ -30,9 +30,10 @@ export default function ProjectsPagination({
       case 'md':
         return 2
       case 'lg':
+      case 'xl':
         return 3
       default:
-        return 4
+        return 6
     }
   }
 
