@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -9,7 +9,7 @@ import { getScreenSizeLabel } from '@/utils/get-screen-size-label'
 import { Carousel } from 'flowbite-react'
 
 export default function ProjectsNav({ projects }: { projects: Project[] }) {
-  const [devise, setDevise] = useState('')
+  const [devise, setDevise] = useState<string | undefined>(undefined)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -25,6 +25,8 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  if (!devise) return null
 
   if (devise === 'sm') {
     return (
@@ -48,6 +50,64 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
               </Link>
             )
           })}
+        </Carousel>
+      </nav>
+    )
+  }
+
+  if (devise === 'md') {
+    const carouselItems = projects.map(({ id, name, cover }, index) => {
+      if (index % 2 === 0) {
+        const nextProject = projects[index + 1]
+
+        return (
+          <div key={id} className='flex'>
+            <Link href={`/projects/${id}`} className='h-full w-1/2 pr-2'>
+              <Image
+                src={cover[1].thumbnails.large.url}
+                alt=''
+                width={cover[1].thumbnails.large.width}
+                height={cover[1].thumbnails.large.height}
+                className={`h-full w-full object-cover ${
+                  pathname === `/projects/${id}` ? '' : ''
+                }`}
+              />
+              <h6 className='absolute bottom-0 left-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
+                {name}
+              </h6>
+            </Link>
+            {nextProject && (
+              <Link
+                key={nextProject.id}
+                href={`/projects/${nextProject.id}`}
+                className='h-full w-1/2 pl-2'
+              >
+                <Image
+                  src={nextProject.cover[1].thumbnails.large.url}
+                  alt=''
+                  width={nextProject.cover[1].thumbnails.large.width}
+                  height={nextProject.cover[1].thumbnails.large.height}
+                  className={`h-full w-full object-cover ${
+                    pathname === `/projects/${nextProject.id}` ? '' : ''
+                  }`}
+                />
+                <h6 className='absolute bottom-0 right-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
+                  {nextProject.name}
+                </h6>
+              </Link>
+            )}
+          </div>
+        )
+      }
+      return null
+    })
+
+    return (
+      <nav className='container mx-auto mb-10 h-80 max-w-2xl px-4'>
+        <Carousel slide={false} className='shadow-lg'>
+          {carouselItems.filter(Boolean).map((item, index) => (
+            <React.Fragment key={index}>{item}</React.Fragment>
+          ))}
         </Carousel>
       </nav>
     )

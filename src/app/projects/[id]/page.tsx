@@ -22,7 +22,7 @@ export default async function ProjectPage({
   const project: Project = (await getRecord(id)) || []
 
   return (
-    <div className='container mx-auto min-h-screen max-w-2xl px-4 pb-10 pt-20 lg:max-w-4xl lg:pb-20 lg:pt-80'>
+    <div className='container mx-auto min-h-screen max-w-2xl px-4 pb-10 pt-20 md:pt-60 lg:max-w-4xl lg:pb-20 lg:pt-80'>
       {/* <Suspense fallback={<Loading />}> */}
       <Suspense fallback={<p>Loading project...</p>}>
         <ProjectHeader
@@ -36,12 +36,9 @@ export default async function ProjectPage({
         <ProjectDescription description={project.fullDescription} />
         <ProjectLinks links={project.links} />
       </Suspense>
-      <Link
-        href='/#projects'
-        className='mt-20 flex items-center justify-center'
-      >
+      <Link href='/' className='mt-20 flex items-center justify-center'>
         <Button type='button' variant='secondary'>
-          {'< Retour aux Projets'}
+          {"< Retour à l'Accueil"}
         </Button>
       </Link>
     </div>
