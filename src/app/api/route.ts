@@ -5,10 +5,12 @@ export const revalidate = 3600
 
 export async function GET() {
   try {
-		const records = await table.select({
-			view: 'Grid view',
-			maxRecords: 3
-		}).firstPage()
+    const records = await table
+      .select({
+        view: 'Grid view',
+        maxRecords: 3
+      })
+      .firstPage()
     // const minifiedRecords = minifyItems(records)
 
     // return Response.json(minifiedRecords)

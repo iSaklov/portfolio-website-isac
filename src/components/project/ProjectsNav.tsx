@@ -13,6 +13,28 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   const [devise, setDevise] = useState<string | undefined>(undefined)
   const pathname = usePathname()
 
+  const generateProjectPairs = (projects: Project[]) => {
+    // Splits the array of projects into pairs for 'md' devices
+    const projectPairs = []
+
+    for (let i = 0; i < projects.length; i++) {
+      const currentProject = projects[i]
+      const nextProject = projects[i + 1]
+
+      // If there is a next project, skip to the next pair and increment the index
+      if (nextProject) {
+        i++
+        projectPairs.push([currentProject, nextProject])
+        continue
+      }
+
+      // If there is no next project, push the current project with a null next project
+      projectPairs.push([currentProject, nextProject])
+    }
+
+    return projectPairs
+  }
+
   useEffect(() => {
     setDevise(getScreenSizeLabel(window.innerWidth))
   }, [])
@@ -34,6 +56,7 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
       <nav className='container mx-auto mb-10 h-56 max-w-2xl px-4 sm:h-64 lg:max-w-4xl xl:h-80 2xl:h-96'>
         <Carousel slide={false} className='shadow-lg'>
           {projects
+            // Filters the projects array to exclude the project with an ID matching the one derived from the current URL pathname
             .filter((project) => project.id !== getIdFromPathname(pathname))
             .map(({ id, name, cover }) => {
               return (
@@ -57,25 +80,29 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   }
 
   if (devise === 'md') {
-		const carouselItems = projects
-			//TODO
-      // .filter((project) => project.id !== getIdFromPathname(pathname))
-      .map(({ id, name, cover }, index) => {
-        if (index % 2 === 0) {
-          const nextProject = projects[index + 1]
+    const projectPairs = generateProjectPairs(
+      // Filters the projects array to exclude the project with an ID matching the one derived from the current URL pathname
+      projects.filter((project) => project.id !== getIdFromPathname(pathname))
+    )
 
-          return (
-            <div key={id} className='flex'>
-              <Link href={`/projects/${id}`} className='h-full w-1/2 pr-2'>
+    return (
+      <nav className='container mx-auto mb-10 h-80 max-w-2xl px-4'>
+        <Carousel slide={false} className='shadow-lg'>
+          {projectPairs.map(([project, nextProject], index) => (
+            <div key={index} className='flex h-full'>
+              <Link
+                href={`/projects/${project.id}`}
+                className='h-full w-1/2 pr-2'
+              >
                 <Image
-                  src={cover[1].thumbnails.large.url}
+                  src={project.cover[1].thumbnails.large.url}
                   alt=''
-                  width={cover[1].thumbnails.large.width}
-                  height={cover[1].thumbnails.large.height}
+                  width={project.cover[1].thumbnails.large.width}
+                  height={project.cover[1].thumbnails.large.height}
                   className='h-full w-full object-cover'
                 />
                 <h6 className='absolute bottom-0 left-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
-                  {name}
+                  {project.name}
                 </h6>
               </Link>
               {nextProject && (
@@ -97,16 +124,6 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                 </Link>
               )}
             </div>
-          )
-        }
-        return null
-      })
-
-    return (
-      <nav className='container mx-auto mb-10 h-80 max-w-2xl px-4'>
-        <Carousel slide={false} className='shadow-lg'>
-          {carouselItems.filter(Boolean).map((item, index) => (
-            <React.Fragment key={index}>{item}</React.Fragment>
           ))}
         </Carousel>
       </nav>
