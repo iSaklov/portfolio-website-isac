@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import Navbar from '../components/Navbar'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,12 +16,9 @@ export default function RootLayout({
   return (
     <html lang='fr' className='scroll-smooth'>
       <body>
-        <header className='relative bg-white'>
-          <Navbar />
-          <h1 className='text-center text-primary-dark pt-80'>Hello Next.js</h1>
-        </header>
-        <main className='text-center'>{children}</main>
-        <footer></footer>
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   )

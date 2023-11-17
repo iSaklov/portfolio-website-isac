@@ -7,7 +7,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/images/logo.svg'
 import LogoWhite from '@/assets/images/logo-white.svg'
-import { time } from 'console'
 
 const navigation = [
   { name: 'Projects.', href: { pathname: '/', hash: 'projects' } },
@@ -26,7 +25,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    console.log('isMenuOpen', isMenuOpen)
+    // console.log('isMenuOpen', isMenuOpen)
     if (isMenuOpen && document) {
       document.body.classList.add('overflow-hidden')
     } else if (document !== null) {
@@ -35,7 +34,7 @@ export default function Navbar() {
   }, [isMenuOpen])
 
   useEffect(() => {
-    console.log('currentSection', currentSection)
+    // console.log('currentSection', currentSection)
   }, [currentSection])
 
   const handleScroll = () => {
@@ -48,7 +47,7 @@ export default function Navbar() {
         const bottom = top + section.clientHeight
 
         if (window.scrollY >= top && window.scrollY < bottom) {
-          currentSectionValue = `#${section.id}`
+          currentSectionValue = section.id
         }
       })
 
@@ -67,11 +66,11 @@ export default function Navbar() {
   }, [])
 
   return (
-    <Disclosure as='nav' className='fixed w-full sm:bg-white'>
+    <Disclosure as='nav' className='fixed z-30 w-full sm:bg-white'>
       {({ open }) => (
         <>
           {open ? setIsMenuOpen(true) : setIsMenuOpen(false)}
-          <div className='container mx-auto flex max-w-7xl items-center justify-center'>
+          <div className='container mx-auto flex max-w-7xl items-center justify-center px-4'>
             <div className='absolute right-2 top-2 flex items-center sm:hidden'>
               {/* Mobile menu button*/}
               <Disclosure.Button className='relative z-50 inline-flex items-center justify-center rounded-md p-2 text-primary-dark hover:bg-primary-dark-translucent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
@@ -106,13 +105,13 @@ export default function Navbar() {
                     key={name}
                     href={href}
                     className={classNames(
-                      `#${href.hash}` === currentSection
+                      href.hash === currentSection
                         ? 'bg-primary-dark text-white hover:cursor-default'
                         : 'text-primary-dark hover:text-accent-orange',
                       '__nav-link rounded-md px-3 py-0 lowercase'
                     )}
                     aria-current={
-                      `#${href.hash}` === currentSection ? 'page' : undefined
+                      href.hash === currentSection ? 'page' : undefined
                     }
                   >
                     {name}
@@ -145,9 +144,9 @@ export default function Navbar() {
                 leave='transition-transform duration-300 ease-in-out'
                 leaveFrom='translate-x-0'
                 leaveTo='translate-x-full'
-                className='h-full w-full'
+                className='ml-auto h-full w-4/5'
               >
-                <div className='absolute inset-y-0 right-0 flex h-full w-4/5 min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
+                <div className='absolute inset-y-0 right-0 z-40 flex h-full w-4/5 min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
                   <div>
                     <Link href='/'>
                       <Disclosure.Button>
@@ -165,15 +164,13 @@ export default function Navbar() {
                         key={name}
                         href={href}
                         className={classNames(
-                          `#${href.hash}` === currentSection
+                          href.hash === currentSection
                             ? 'bg-light-gray text-primary-dark'
                             : 'bg-transparent text-white',
                           '__nav-link rounded-md px-2 py-0'
                         )}
                         aria-current={
-                          `#${href.hash}` === currentSection
-                            ? 'page'
-                            : undefined
+                          href.hash === currentSection ? 'page' : undefined
                         }
                       >
                         <Disclosure.Button className='lowercase'>
