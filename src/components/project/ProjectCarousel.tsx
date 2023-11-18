@@ -27,7 +27,7 @@ export default function ProjectCarousel({
               placeholder='blur'
               blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
               fill
-              className='object-cover object-center'
+              className='h-full w-full object-cover object-center'
             />
           </div>
         ))}

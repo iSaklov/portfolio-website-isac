@@ -3,6 +3,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { classNames } from '@/utils/class-names'
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/images/logo.svg'
@@ -16,26 +17,9 @@ const navigation = [
   { name: 'Etc.', href: { pathname: '/', hash: '#' } }
 ]
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Navbar() {
   const [currentSection, setCurrentSection] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  useEffect(() => {
-    // console.log('isMenuOpen', isMenuOpen)
-    if (isMenuOpen && document) {
-      document.body.classList.add('overflow-hidden')
-    } else if (document !== null) {
-      document.body.classList.remove('overflow-hidden')
-    }
-  }, [isMenuOpen])
-
-  useEffect(() => {
-    // console.log('currentSection', currentSection)
-  }, [currentSection])
 
   const handleScroll = () => {
     if (document !== null) {
@@ -56,6 +40,46 @@ export default function Navbar() {
   }
 
   useEffect(() => {
+    const targetElement = document.querySelector('._nav')
+
+    if (!targetElement) {
+      return
+    }
+
+    // Using data attributes
+
+    // The handleMenuStateChange function is responsible for checking the value of the data-headlessui-state attribute on the targetElement.
+    // In this case, it checks if the value is 'open'. This attribute is set by the headless UI library to indicate the current state of the component.
+
+    const handleMenuStateChange = () => {
+      const isOpen =
+        targetElement.getAttribute('data-headlessui-state') === 'open'
+
+      // Set the state variable isMenuOpen based on the value of the data-headlessui-state attribute.
+      setIsMenuOpen(isOpen)
+    }
+
+    const observer = new MutationObserver(handleMenuStateChange)
+
+    observer.observe(targetElement, {
+      attributes: true,
+      attributeFilter: ['data-headlessui-state']
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [isMenuOpen])
+
+  useEffect(() => {
     handleScroll()
 
     window.addEventListener('scroll', handleScroll)
@@ -65,17 +89,19 @@ export default function Navbar() {
     }
   }, [])
 
+  useEffect(() => {
+    // console.log('currentSection', currentSection)
+  }, [currentSection])
+
   return (
-    <Disclosure as='nav' className='fixed z-30 w-full sm:bg-white'>
+    <Disclosure as='nav' className='_nav fixed z-30 w-full sm:bg-white'>
       {({ open }) => (
         <>
-          {open ? setIsMenuOpen(true) : setIsMenuOpen(false)}
           <div className='container mx-auto flex max-w-7xl items-center justify-center px-4'>
             <div className='absolute right-2 top-2 flex items-center sm:hidden'>
               {/* Mobile menu button*/}
               <Disclosure.Button className='relative z-50 inline-flex items-center justify-center rounded-md p-2 text-primary-dark hover:bg-primary-dark-translucent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
                 <span className='absolute -inset-0.5' />
-                {/* <span className='sr-only'>Open main menu</span> */}
                 <span className='sr-only'>Ouvrir le menu principal</span>
                 {open ? (
                   <XMarkIcon
