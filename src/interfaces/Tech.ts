@@ -6,5 +6,5 @@ export interface Tech {
   icon: Array<ImageMetadata>
   url: string
   description: string
-  projects?: Array<string>
+  projects: Array<string>
 }

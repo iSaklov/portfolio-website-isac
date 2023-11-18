@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import { Project } from '@/interfaces/Project'
 import { getRecord } from '@/database/get-record'
+import { projectRecordType } from '@/database/airtable'
 import ProjectHeader from '@/components/project/ProjectHeader'
 import ProjectCarousel from '@/components/project/ProjectCarousel'
 import ProjectLighthouse from '@/components/project/ProjectLighthouse'
@@ -19,7 +20,7 @@ export default async function ProjectPage({
   //   params: { slug: string }
   // }) {
 
-  const project: Project = (await getRecord(id)) || []
+  const project: Project = (await getRecord(id, projectRecordType)) || []
 
   return (
     <div className='container mx-auto min-h-screen max-w-2xl px-4 pb-10 pt-20 md:pt-60 lg:max-w-4xl lg:pb-20 lg:pt-80'>
