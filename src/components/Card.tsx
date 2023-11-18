@@ -18,8 +18,9 @@ export default function Card({ project }: { project: Project }) {
             alt={`Screenshot du projet ${project.name}`}
             placeholder='blur'
             blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
-            className='!static h-full w-full object-cover object-center group-hover:opacity-75'
             fill
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            className='!static h-full w-full object-cover object-center group-hover:opacity-75'
           />
         </div>
         <div className='pl-5 pr-5 pt-5'>
@@ -50,7 +51,7 @@ export default function Card({ project }: { project: Project }) {
           <Image
             src={LinkIcon}
             alt=''
-            className='mr-2 inline-block align-middle'
+            className='mr-2 inline-block h-auto w-6 align-middle md:w-8'
           />{' '}
           Apercu en direct
         </a>
@@ -62,7 +63,7 @@ export default function Card({ project }: { project: Project }) {
           <Image
             src={GithubIcon}
             alt=''
-            className='mr-2 inline-block align-middle'
+            className='mr-2 inline-block h-auto w-6 align-middle md:w-8'
           />{' '}
           Afficher le code
         </a>
