@@ -7,9 +7,9 @@ export interface ProjectData {
   }
   fields: {
     Name: string
-    Cover: ImageMetadata[]
+    Cover: Array<ImageMetadata>
     'Short Description': string
-    'Tech Stack': string
+    'Tech Stack': Array<string>
     'Full Description': string
     Date: string
     City: string
@@ -22,6 +22,6 @@ export interface ProjectData {
     'Best Practices': number
     SEO: number
     'Progressive Web'?: boolean
-    Images?: ImageMetadata[]
+    Images?: Array<ImageMetadata>
   }
 }
