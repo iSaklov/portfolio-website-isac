@@ -16,21 +16,20 @@ Airtable.configure({
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
 
 export interface RecordType<T, U> {
-  isProject: (record: T) => record is ProjectData
-  isTech: (record: T) => record is TechData
+  // isProject: (record: T) => record is ProjectData
+  // isTech: (record: T) => record is TechData
+  isProject: (record: T) => boolean
   getMinifiedItem: (record: T) => U
 }
 
 const projectRecordType: RecordType<ProjectData, Project> = {
   isProject: (record): record is ProjectData =>
     'techStack' in keysToCamelCase(record.fields),
-  isTech: (record): record is TechData =>
-    !('techStack' in keysToCamelCase(record.fields)),
   getMinifiedItem: (record): Project => {
     const camelCaseFields = keysToCamelCase(record.fields)
     return {
       id: record.id,
-      createdTime: record._rawJson.createdTime,
+      createdTime: record._rawJson?.createdTime,
       slug: generateSlug(camelCaseFields.name),
       name: camelCaseFields.name,
       cover: camelCaseFields.cover,
@@ -56,10 +55,9 @@ const projectRecordType: RecordType<ProjectData, Project> = {
 }
 
 const techRecordType: RecordType<TechData, Tech> = {
-  isTech: (record): record is TechData =>
-    'projects' in keysToCamelCase(record.fields),
-  isProject: (record): record is ProjectData =>
-    !('projects' in keysToCamelCase(record.fields)),
+  // isTech: (record): record is TechData =>
+  //   'projects' in keysToCamelCase(record.fields),
+  isProject: (record): record is TechData => false, // Always false for TechData
   getMinifiedItem: (record: TechData): Tech => {
     const camelCaseFields = keysToCamelCase(record.fields)
     return {
