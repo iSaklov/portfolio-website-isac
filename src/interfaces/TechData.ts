@@ -6,7 +6,7 @@ export interface TechData {
     Name: string
     Icon: Array<ImageMetadata>
     URL: string
-		Description: string
-		Projects: Array<string>
+    Description: string
+    Projects: Array<string>
   }
 }

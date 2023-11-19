@@ -109,11 +109,4 @@ const getMinifiedItem = <T, U>(record: T, recordType: RecordType<T, U>): U => {
   throw new Error('Invalid record type')
 }
 
-export {
-	// table,
-	base,
-  minifyItems,
-  getMinifiedItem,
-  projectRecordType,
-  techRecordType
-}
+export { base, minifyItems, getMinifiedItem, projectRecordType, techRecordType }

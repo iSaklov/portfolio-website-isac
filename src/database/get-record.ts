@@ -1,25 +1,34 @@
 import { cache } from 'react'
 import {
-	// table,
-	base,
+  base,
   getMinifiedItem,
+  RecordType,
   projectRecordType,
-  techRecordType,
-  RecordType
+  techRecordType
 } from './airtable'
-// import 'server-only'
+import 'server-only'
 
 export const revalidate = 3600 // revalidate the data at most every hour
+
+const getTable = (recordType: RecordType<any, any>) => {
+  if (recordType === projectRecordType) {
+    return base(process.env.NEXT_PUBLIC_AIRTABLE_PROJECTS_TABLE_ID)
+  } else if (recordType === techRecordType) {
+    return base(process.env.NEXT_PUBLIC_AIRTABLE_TECH_STACK_TABLE_ID)
+  }
+}
 
 export const getRecord = cache(
   async <T, U>(id: string, recordType: RecordType<T, U>) => {
     try {
+      const table = getTable(recordType)
       const record = await table.find(id)
       const minifiedRecord = getMinifiedItem(record, recordType)
 
       return minifiedRecord
     } catch (err) {
-      console.error(err)
+      console.error('Error in getRecord:', err)
+      throw err
     }
   }
 )
