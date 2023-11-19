@@ -9,17 +9,11 @@ import { generateSlug } from '@/utils/generate-slug'
 // Authenticate
 Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
-  // apiKey: process.env.AIRTABLE_API_TOKEN,
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN
+  apiKey: process.env.AIRTABLE_API_TOKEN
 })
 
 // Initialize a base
-// const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
-const base = Airtable.base(process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID)
-
-// Reference a table
-// const table = base(process.env.AIRTABLE_TABLE_ID)
-// const table = base(process.env.NEXT_PUBLIC_AIRTABLE_TABLE_ID)
+const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
 
 export interface RecordType<T, U> {
   isProject: (record: T) => record is T & ProjectData
