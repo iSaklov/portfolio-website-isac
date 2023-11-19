@@ -16,8 +16,8 @@ Airtable.configure({
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
 
 export interface RecordType<T, U> {
-  isProject: (record: T) => record is T & ProjectData
-  isTech: (record: T) => record is T & TechData
+  isProject: (record: T) => record is ProjectData
+  isTech: (record: T) => record is TechData
   getMinifiedItem: (record: T) => U
 }
 
@@ -28,7 +28,6 @@ const projectRecordType: RecordType<ProjectData, Project> = {
     !('techStack' in keysToCamelCase(record.fields)),
   getMinifiedItem: (record): Project => {
     const camelCaseFields = keysToCamelCase(record.fields)
-
     return {
       id: record.id,
       createdTime: record._rawJson.createdTime,
@@ -63,7 +62,6 @@ const techRecordType: RecordType<TechData, Tech> = {
     !('projects' in keysToCamelCase(record.fields)),
   getMinifiedItem: (record: TechData): Tech => {
     const camelCaseFields = keysToCamelCase(record.fields)
-
     return {
       id: record.id,
       name: camelCaseFields.name,
@@ -75,32 +73,12 @@ const techRecordType: RecordType<TechData, Tech> = {
   }
 }
 
-// To get minified records array
-const minifyItems = <T, U>(
-  records: Array<T>,
-  recordType: RecordType<T, U>
-): Array<U> => {
-  const result: Array<U> = []
-
-  records.forEach((record) => {
-    if (recordType.isProject(record)) {
-      result.push(recordType.getMinifiedItem(record))
-    } else if (recordType.isTech(record)) {
-      result.push(recordType.getMinifiedItem(record))
-    }
-  })
-
-  return result
+const getMinifiedItem = <T, U>(record: T, recordType: RecordType<T, U>): U => {
+  return recordType.getMinifiedItem(record)
 }
 
-const getMinifiedItem = <T, U>(record: T, recordType: RecordType<T, U>): U => {
-  if (recordType.isProject(record)) {
-    return recordType.getMinifiedItem(record)
-  } else if (recordType.isTech(record)) {
-    return recordType.getMinifiedItem(record)
-  }
-
-  throw new Error('Invalid record type')
+const minifyItems = <T, U>(records: T[], recordType: RecordType<T, U>): U[] => {
+  return records.map(recordType.getMinifiedItem)
 }
 
 export { base, minifyItems, getMinifiedItem, projectRecordType, techRecordType }
