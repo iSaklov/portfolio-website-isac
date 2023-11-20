@@ -2,6 +2,7 @@ import { cache } from 'react'
 import {
   base,
   getMinifiedItem,
+  RecordDataType,
   RecordType,
   projectRecordType,
   techRecordType
@@ -19,7 +20,10 @@ const getTable = (recordType: RecordType<any, any>) => {
 }
 
 export const getRecord = cache(
-  async <T, U>(id: string, recordType: RecordType<T, U>) => {
+  async <T extends RecordDataType, U>(
+    id: string,
+    recordType: RecordType<T, U>
+  ) => {
     try {
       const table = getTable(recordType)
       const record = await table.find(id)

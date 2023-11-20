@@ -15,15 +15,15 @@ Airtable.configure({
 // Initialize a base
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
 
-export interface RecordType<T, U> {
-  // isProject: (record: T) => record is ProjectData
-  // isTech: (record: T) => record is TechData
-  isProject: (record: T) => boolean
+export type RecordDataType = ProjectData | TechData
+
+export interface RecordType<T extends RecordDataType, U> {
+  isType: (record: T) => boolean
   getMinifiedItem: (record: T) => U
 }
 
 const projectRecordType: RecordType<ProjectData, Project> = {
-  isProject: (record): record is ProjectData =>
+  isType: (record): record is ProjectData =>
     'techStack' in keysToCamelCase(record.fields),
   getMinifiedItem: (record): Project => {
     const camelCaseFields = keysToCamelCase(record.fields)
@@ -55,9 +55,8 @@ const projectRecordType: RecordType<ProjectData, Project> = {
 }
 
 const techRecordType: RecordType<TechData, Tech> = {
-  // isTech: (record): record is TechData =>
-  //   'projects' in keysToCamelCase(record.fields),
-  isProject: (record): record is TechData => false, // Always false for TechData
+  isType: (record): record is TechData =>
+    'projects' in keysToCamelCase(record.fields),
   getMinifiedItem: (record: TechData): Tech => {
     const camelCaseFields = keysToCamelCase(record.fields)
     return {
@@ -71,11 +70,17 @@ const techRecordType: RecordType<TechData, Tech> = {
   }
 }
 
-const getMinifiedItem = <T, U>(record: T, recordType: RecordType<T, U>): U => {
+const getMinifiedItem = <T extends RecordDataType, U>(
+  record: T,
+  recordType: RecordType<T, U>
+): U => {
   return recordType.getMinifiedItem(record)
 }
 
-const minifyItems = <T, U>(records: T[], recordType: RecordType<T, U>): U[] => {
+const minifyItems = <T extends RecordDataType, U>(
+  records: T[],
+  recordType: RecordType<T, U>
+): U[] => {
   return records.map(recordType.getMinifiedItem)
 }
 
