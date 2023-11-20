@@ -7,15 +7,18 @@ import {
   projectRecordType,
   techRecordType
 } from './airtable'
+import { TechData } from '@/interfaces/TechData'
 import 'server-only'
 
 export const revalidate = 3600 // revalidate the data at most every hour
 
-const getTable = (recordType: RecordType<any, any>) => {
-  if (recordType === projectRecordType) {
+const getTable = <T extends RecordDataType, U>(
+  recordType: RecordType<T, U>
+) => {
+  if (recordType.isType === projectRecordType.isType) {
     // Reference a Projects table
     return base(process.env.AIRTABLE_PROJECTS_TABLE_ID)
-  } else if (recordType === techRecordType) {
+  } else if (recordType.isType === techRecordType.isType) {
     // Reference a Tech table
     return base(process.env.AIRTABLE_TECH_STACK_TABLE_ID)
   }
@@ -36,7 +39,15 @@ export const getRecords = cache(
         return []
       }
 
-      const records = await table.select({ view: 'Grid view' }).firstPage()
+      const records = await table
+        .select({
+          // The records will be sorted according to the order of the view unless the sort parameter is included, which overrides that order
+          view: 'Grid view',
+          ...(recordType.isType === techRecordType.isType && {
+            sort: [{ field: 'Name', direction: 'asc' }]
+          })
+        })
+        .firstPage()
 
       const minifiedRecords = minifyItems(records, recordType)
 
