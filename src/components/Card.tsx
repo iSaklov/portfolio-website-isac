@@ -1,10 +1,17 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Project } from '@/interfaces/Project'
+import { Tech } from '@/interfaces/Tech'
 import LinkIcon from '@/assets/images/icons/akar-icons_link-chain.svg'
 import GithubIcon from '@/assets/images/icons/akar-icons_github-fill.svg'
 
-export default function Card({ project }: { project: Project }) {
+export default function Card({
+  project,
+  techs
+}: {
+  project: Project
+  techs: Tech[]
+}) {
   return (
     <div className='group w-full max-w-sm shadow-md hover:shadow-xl'>
       <Link
@@ -30,15 +37,19 @@ export default function Card({ project }: { project: Project }) {
           </p>
           <h6 className='mb-5 text-highlight-gray'>
             Tech stack :{' '}
-            {project.techStack.map((item, index) => (
-              <span
-                key={item}
-                className='__poppins_light_extralow text-subtle-blue'
-              >
-                {item}
-                {index < project.techStack.length - 1 && ', '}
-              </span>
-            ))}
+            {project.techStack.map((techId, index) => {
+              const matchingTech = techs.find((tech) => tech.id === techId)
+
+              return (
+                <span
+                  key={techId}
+                  className='__poppins_light_extralow text-subtle-blue'
+                >
+                  {matchingTech?.name}
+                  {index < project.techStack.length - 1 && ', '}
+                </span>
+              )
+            })}
           </h6>
         </div>
       </Link>

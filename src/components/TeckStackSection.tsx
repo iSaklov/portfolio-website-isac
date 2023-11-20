@@ -14,14 +14,6 @@ export default async function TeckStackSection() {
     <Section id={idSection} title={title} subtitle={subtitle}>
       <div className='flex flex-wrap items-center justify-center gap-8 sm:gap-16'>
         {techs.map((tech) => (
-          // <Image
-          //   key={tech.id}
-          //   src={tech.icon[0].url}
-          //   alt={tech.name}
-          //   width={tech.icon[0].width}
-          //   height={tech.icon[0].height}
-          //   className='h-auto w-16 sm:h-auto sm:w-28'
-          // />
           <img
             key={tech.id}
             src={tech.icon[0].url}

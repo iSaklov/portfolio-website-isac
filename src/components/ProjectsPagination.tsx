@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import { Pagination } from 'flowbite-react'
 import { Project } from '@/interfaces/Project'
+import { Tech } from '@/interfaces/Tech'
 import Card from '@/components/Card'
 import { getScreenSizeLabel } from '@/utils/get-screen-size-label'
 
 export default function ProjectsPagination({
-  projects: projects
+  projects: projects,
+  techs: techs
 }: {
   projects: Project[]
+  techs: Tech[]
 }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [projectsPerPage, setProjectsPerPage] = useState<number | undefined>(
@@ -66,7 +69,7 @@ export default function ProjectsPagination({
     <>
       <div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8'>
         {currentProjects?.map((project) => (
-          <Card key={project.id} project={project} />
+          <Card key={project.id} project={project} techs={techs} />
         ))}
       </div>
       <div className='flex overflow-x-auto sm:justify-center'>
