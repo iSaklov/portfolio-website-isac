@@ -1,4 +1,5 @@
 import { Project } from '@/interfaces/Project'
+import { Tech } from '@/interfaces/Tech'
 
 export default function ProjectHeader({
   name,
@@ -9,7 +10,7 @@ export default function ProjectHeader({
   name: Project['name']
   date: Project['date']
   city: Project['city']
-  techStack: Project['techStack']
+  techStack: Tech[]
 }) {
   return (
     <div>
@@ -27,10 +28,16 @@ export default function ProjectHeader({
         </h6>
         <h6 className='__heading-6'>
           tech stack <span className='text-accent-orange'>:</span>{' '}
-          {techStack.map((item, index) => (
-            <span key={item} className='__poppins_light_low text-subtle-blue'>
-              {item} {index < techStack.length - 1 ? ', ' : ''}
-            </span>
+          {techStack.map(({ id, name, icon }, index) => (
+            // <span key={id} className='__poppins_light_low text-subtle-blue'>
+            //   {name} {index < techStack.length - 1 ? ', ' : ''}
+            // </span>
+            <img
+              key={id}
+              src={icon[0].url}
+              alt={name}
+              className='mx-2 inline-block h-auto w-8'
+            />
           ))}
         </h6>
       </div>

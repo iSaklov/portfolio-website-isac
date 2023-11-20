@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getRecords } from '@/database/get-records'
+import { projectRecordType } from '@/database/airtable'
 import { Project } from '@/interfaces/Project'
 import ProjectsNav from '@/components/project/ProjectsNav'
 
@@ -13,7 +14,7 @@ export default async function Layout({
 }: {
   children: React.ReactNode
 }) {
-  const projects: Project[] = (await getRecords()) || []
+  const projects: Project[] = await getRecords(projectRecordType)
 
   return (
     <>
