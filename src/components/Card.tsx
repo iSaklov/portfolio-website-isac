@@ -13,7 +13,7 @@ export default function Card({
   techs: Tech[]
 }) {
   return (
-    <div className='group mx-auto w-full max-w-sm overflow-hidden rounded-lg shadow-md hover:shadow-xl'>
+    <div className='group mx-auto flex w-full max-w-sm flex-col justify-between overflow-hidden rounded-lg pb-5 shadow-md hover:shadow-xl'>
       <Link
         key={project.id}
         // href={`/projects/${encodeURIComponent(project.slug)}`}
@@ -30,12 +30,14 @@ export default function Card({
             className='!static h-full w-full object-cover object-center group-hover:opacity-75'
           />
         </div>
-        <div className='px-5 pt-5'>
-          <h4 className='__heading-4 mb-5'>{project.name}</h4>
-          <p className='__poppins_light_middle mb-5 line-clamp-5 text-justify'>
+        <div className='px-5 py-5'>
+          <h4 className='text-2xl font-medium md:text-3xl lg:text-[1.75rem]'>
+            {project.name}
+          </h4>
+          <p className='my-5 line-clamp-5 text-justify font-light leading-relaxed'>
             {project.shortDescription}
           </p>
-          <h6 className='mb-5 text-highlight-gray'>
+          <h5 className='text-base text-highlight-gray'>
             Tech stack :{' '}
             {project.techStack.map((techId, index) => {
               const matchingTech = techs.find((tech) => tech.id === techId)
@@ -43,40 +45,42 @@ export default function Card({
               return (
                 <span
                   key={techId}
-                  className='__poppins_light_extralow text-subtle-blue'
+                  className='text-sm font-light text-subtle-blue'
                 >
                   {matchingTech?.name}
                   {index < project.techStack.length - 1 && ', '}
                 </span>
               )
             })}
-          </h6>
+          </h5>
         </div>
       </Link>
-      <div className='flex justify-between pb-5 pl-5 pr-5'>
+      <div className='flex justify-between px-5'>
         <a
           href={project.links.toDeploy}
-          target='_blanck'
-          className='__heading-6 underline'
+          target='_blank'
+          className='group/link relative inline-block text-sm leading-6'
         >
           <Image
             src={LinkIcon}
             alt=''
-            className='mr-2 inline-block h-auto w-6 align-middle md:w-8'
-          />{' '}
-          Apercu en direct
+            className='mr-2 inline-block h-auto w-6 align-middle transition-transform duration-300 group-hover/link:scale-110'
+          />
+          <span className=''>Apercu en direct</span>
+          <span className='absolute bottom-1 left-0 right-0 ml-8 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0'></span>
         </a>
         <a
           href={project.links.toGithub}
           target='_blanck'
-          className='__heading-6 underline'
+          className='group/link relative inline-block text-sm leading-6'
         >
           <Image
             src={GithubIcon}
             alt=''
-            className='mr-2 inline-block h-auto w-6 align-middle md:w-8'
-          />{' '}
-          Afficher le code
+            className='mr-2 inline-block h-auto w-6 align-middle transition-transform duration-300 group-hover/link:scale-110'
+          />
+          <span className=''>Afficher le code</span>
+          <span className='absolute bottom-1 left-0 right-0 ml-8 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0'></span>
         </a>
       </div>
     </div>

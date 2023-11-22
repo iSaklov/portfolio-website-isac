@@ -12,9 +12,9 @@ export default function Section({
   return (
     <section
       id={id}
-      className='container mx-auto max-w-2xl px-4 py-16 md:px-6 md:py-24 lg:max-w-7xl lg:px-8 lg:py-32'
+      className='container mx-auto max-w-3xl px-4 pb-16 pt-20 md:px-6 md:pb-20 md:pt-24 lg:max-w-7xl lg:px-8 lg:pb-24 lg:pt-28'
     >
-      <div className='mb-20 text-center'>
+      <div className='text-center'>
         <h2 className='font-serif text-[2.75rem] font-normal md:text-5xl lg:text-7xl'>{`${title.toLowerCase()}.`}</h2>
         {subtitle && (
           <h3 className='text-lg font-extralight leading-snug md:text-xl lg:text-3xl'>
