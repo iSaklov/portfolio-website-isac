@@ -12,13 +12,13 @@ export default async function TeckStackSection() {
 
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
-      <div className='flex flex-wrap items-center justify-center gap-8 sm:gap-16'>
+      <div className='flex flex-wrap items-center justify-center gap-8 pt-20 lg:gap-16'>
         {techs.map((tech) => (
           <img
             key={tech.id}
             src={tech.icon[0].url}
             alt={tech.name}
-            className='h-auto w-16 sm:h-auto sm:w-28'
+            className='max-w-16 md:max-w-24 lg:max-w-28 aspect-square max-h-16 md:max-h-24 lg:max-h-28'
           />
         ))}
       </div>

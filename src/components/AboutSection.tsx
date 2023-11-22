@@ -7,9 +7,10 @@ export default function AboutSection() {
   const idSection = 'about'
   const title = 'À propos'
   const subtitle = 'Qui je suis et ce que je fais'
+
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
-      <div className='relative -z-10 mb-10 overflow-hidden rounded-bl-[80px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[40px] md:float-right md:mb-0 md:w-1/2 lg:w-1/3'>
+      <div className='relative -z-10 mt-20 overflow-hidden rounded-bl-[80px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[40px] md:float-right md:mt-28 md:w-1/2 lg:mt-40 lg:w-1/3'>
         <Image
           src={Profil}
           alt='Photos du développeur du site'
@@ -21,9 +22,11 @@ export default function AboutSection() {
           style={{ backgroundImage: `url(${Mask.src})` }}
         />
       </div>
-      <article className='mb-10'>
-        <h5 className='__heading-5 mb-3'>Qui je suis</h5>
-        <p className='__poppins_light_middle'>
+      <article className='mt-10 md:mt-28 lg:mt-40'>
+        <h3 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
+          Qui je suis
+        </h3>
+        <p className='mt-3 font-light leading-7 lg:mt-4 lg:text-[1.125rem] lg:leading-8'>
           Salut! Je m&apos;appelle Oleg Smaliakou. Je suis un ingénieur full
           stack avec un vif intérêt pour le développement frontend, ce qui
           motive ma passion pour la conception UI/UX. Actuellement basé à
@@ -34,9 +37,11 @@ export default function AboutSection() {
           rendre mes applications modernes et performantes.
         </p>
       </article>
-      <article className='mb-10'>
-        <h5 className='__heading-5 mb-3'>Ce que j&apos;ai fait</h5>
-        <p className='__poppins_light_middle'>
+      <article className='mt-10 md:mt-12 lg:mt-14'>
+        <h5 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
+          Ce que j&apos;ai fait
+        </h5>
+        <p className='mt-3 font-light leading-7 lg:mt-4 lg:text-[1.125rem] lg:leading-8'>
           Après avoir terminé ma formation, sans perdre de temps, j&apos;ai
           immédiatement commencé à travailler avec diverses entreprises
           biélorusses en tant que freelance, en attendant de régler les
@@ -57,9 +62,11 @@ export default function AboutSection() {
           2021.
         </p>
       </article>
-      <article>
-        <h5 className='__heading-5 mb-3'>Ce que je fais</h5>
-        <p className='__poppins_light_middle'>
+      <article className='mt-10 md:mt-12 lg:mt-14'>
+        <h5 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
+          Ce que je fais
+        </h5>
+        <p className='mt-3 font-light leading-7 lg:mt-4 lg:text-[1.125rem] lg:leading-8'>
           Avec trois ans d&apos;expérience en développement web, j&apos;ai enfin
           eu l&apos;opportunité de travailler officiellement en France.
           Récemment, j&apos;ai pu concrétiser plusieurs projets personnels,

@@ -35,7 +35,7 @@ export default function ProjectsPagination({
       case 'lg':
       case 'xl':
         return 3
-      default:
+      case '2xl':
         return 6
     }
   }
@@ -67,7 +67,7 @@ export default function ProjectsPagination({
 
   return (
     <>
-      <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8 2xl:gap-y-8 pt-20 pb-10'>
+      <div className='grid grid-cols-1 pb-10 pt-20 md:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:gap-x-8 2xl:gap-y-8'>
         {currentProjects?.map((project) => (
           <Card key={project.id} project={project} techs={techs} />
         ))}
