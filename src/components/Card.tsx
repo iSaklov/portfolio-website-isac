@@ -13,13 +13,13 @@ export default function Card({
   techs: Tech[]
 }) {
   return (
-    <div className='group w-full max-w-sm shadow-md hover:shadow-xl'>
+    <div className='group mx-auto w-full max-w-sm overflow-hidden rounded-lg shadow-md hover:shadow-xl'>
       <Link
         key={project.id}
         // href={`/projects/${encodeURIComponent(project.slug)}`}
         href={`/projects/${project.id}`}
       >
-        <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative -z-10 w-full overflow-hidden rounded-t-lg'>
+        <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative -z-10 aspect-[4/3]'>
           <Image
             src={project.cover[0].url}
             alt={`Screenshot du projet ${project.name}`}
@@ -30,7 +30,7 @@ export default function Card({
             className='!static h-full w-full object-cover object-center group-hover:opacity-75'
           />
         </div>
-        <div className='pl-5 pr-5 pt-5'>
+        <div className='px-5 pt-5'>
           <h4 className='__heading-4 mb-5'>{project.name}</h4>
           <p className='__poppins_light_middle mb-5 line-clamp-5 text-justify'>
             {project.shortDescription}

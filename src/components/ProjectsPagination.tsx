@@ -67,19 +67,19 @@ export default function ProjectsPagination({
 
   return (
     <>
-      <div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8 2xl:gap-y-8'>
         {currentProjects?.map((project) => (
           <Card key={project.id} project={project} techs={techs} />
         ))}
       </div>
-      <div className='flex overflow-x-auto sm:justify-center'>
+      <div className='flex justify-center overflow-x-auto'>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPage}
           onPageChange={onPageChange}
           // layout='navigation'
-          previousLabel='< Previous'
-          nextLabel='Next >'
+          // previousLabel='<'
+          // nextLabel='>'
           // showIcons
         />
       </div>

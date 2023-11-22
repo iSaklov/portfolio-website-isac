@@ -7,7 +7,6 @@ import {
   projectRecordType,
   techRecordType
 } from './airtable'
-import { TechData } from '@/interfaces/TechData'
 import 'server-only'
 
 export const revalidate = 3600 // revalidate the data at most every hour

@@ -5,15 +5,15 @@ import ArrowDown from '@/assets/images/icons/ep_arrow-down.svg'
 
 export default function HeroSection() {
   return (
-    <div>
-      <div className='container mx-auto flex max-w-7xl items-center justify-center pt-5 sm:hidden'>
+    <div className='container mx-auto max-w-2xl px-4 md:px-6 lg:max-w-7xl lg:px-8 '>
+      <div className='flex items-center justify-center py-5 md:hidden'>
         <Link href='/'>
-          <Image src={Logo} alt='iSac Development' className='h-full w-full' />
+          <Image src={Logo} alt='iSac Development logo' className='h-20 w-20' />
         </Link>
       </div>
-      <div className='container mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-10 text-2xl font-extralight sm:pt-[285px] sm:text-3xl'>
+      <div className='flex flex-col items-center justify-center py-10 text-2xl font-extralight tracking-wide md:pt-[285px] md:text-3xl'>
         <h1 className='py-2 text-center'>
-          Aventures numériques – projets en ligne
+          Aventures numériques – <br className='md:hidden' /> projets en ligne
         </h1>
         <Link href='/#projects'>
           <Image src={ArrowDown} alt='' className='h-8 w-8' />

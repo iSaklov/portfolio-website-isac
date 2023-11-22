@@ -62,10 +62,10 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
               return (
                 <Link key={id} href={`/projects/${id}`} className='h-full'>
                   <Image
-                    src={cover[1].thumbnails.large.url}
+                    src={cover[0].thumbnails.large.url}
                     alt=''
-                    width={cover[1].thumbnails.large.width}
-                    height={cover[1].thumbnails.large.height}
+                    width={cover[0].thumbnails.large.width}
+                    height={cover[0].thumbnails.large.height}
                     className='h-full w-full object-cover'
                   />
                   <h6 className='absolute bottom-0 left-0 right-0 bg-white p-2 text-center text-xl font-light text-primary-dark'>
@@ -95,10 +95,10 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                 className='h-full w-1/2 pr-2'
               >
                 <Image
-                  src={project.cover[1].thumbnails.large.url}
+                  src={project.cover[0].thumbnails.large.url}
                   alt=''
-                  width={project.cover[1].thumbnails.large.width}
-                  height={project.cover[1].thumbnails.large.height}
+                  width={project.cover[0].thumbnails.large.width}
+                  height={project.cover[0].thumbnails.large.height}
                   className='h-full w-full object-cover'
                 />
                 <h6 className='absolute bottom-0 left-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
@@ -112,10 +112,10 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                   className='h-full w-1/2 pl-2'
                 >
                   <Image
-                    src={nextProject.cover[1].thumbnails.large.url}
+                    src={nextProject.cover[0].thumbnails.large.url}
                     alt=''
-                    width={nextProject.cover[1].thumbnails.large.width}
-                    height={nextProject.cover[1].thumbnails.large.height}
+                    width={nextProject.cover[0].thumbnails.large.width}
+                    height={nextProject.cover[0].thumbnails.large.height}
                     className='h-full w-full object-cover'
                   />
                   <h6 className='absolute bottom-0 right-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
