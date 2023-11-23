@@ -130,7 +130,7 @@ export default async function ContactsSection() {
         </div>
         <div className='mt-12 flex flex-col items-center justify-between gap-y-5 md:flex-row md:gap-x-12 lg:gap-x-32'>
           <div className='order-1 flex flex-col items-center justify-center gap-y-5 md:order-none md:flex-1 md:flex-row md:justify-evenly'>
-            <span className='font-extralight lg:text-[1.375rem] block'>
+            <span className='block font-extralight lg:text-[1.375rem]'>
               info@monsite.fr
             </span>
             <div className='flex items-center gap-x-5'>
@@ -139,17 +139,29 @@ export default async function ContactsSection() {
                 target='_blank'
                 rel='noopener'
               >
-                <Image src={LinkedinIcon} alt='' className='w-8 h-auto aspect-square hover:scale-110 transition-transform' />
+                <Image
+                  src={LinkedinIcon}
+                  alt=''
+                  className='aspect-square h-auto w-8 transition-transform hover:scale-110'
+                />
               </a>
               <a
                 href='https://github.com/iSaklov'
                 target='_blank'
                 rel='noopener'
               >
-                <Image src={GithubIcon} alt='' className='w-8 h-auto aspect-square hover:scale-110 transition-transform' />
+                <Image
+                  src={GithubIcon}
+                  alt=''
+                  className='aspect-square h-auto w-8 transition-transform hover:scale-110'
+                />
               </a>
               <a href='https://t.me/iSaklov' target='_blank' rel='noopener'>
-                <Image src={TelegramIcon} alt='' className='w-8 h-auto aspect-square hover:scale-110 transition-transform' />
+                <Image
+                  src={TelegramIcon}
+                  alt=''
+                  className='aspect-square h-auto w-8 transition-transform hover:scale-110'
+                />
               </a>
             </div>
           </div>
