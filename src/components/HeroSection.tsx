@@ -8,7 +8,7 @@ import BgImg from '@/assets/images/background/api-512d36c09662682717108a38bbb5c5
 export default function HeroSection() {
   return (
     <div
-      className='relative h-[90vh] bg-cover bg-fixed bg-center'
+      className='relative h-[90vh] bg-cover bg-fixed bg-center bg-no-repeat'
       style={{ backgroundImage: `url(${BgImg.src})` }}
     >
       <div

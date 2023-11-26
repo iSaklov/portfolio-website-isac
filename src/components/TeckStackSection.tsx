@@ -8,7 +8,7 @@ export default async function TeckStackSection() {
   const title = 'Teck stack'
   const subtitle = 'Technologies avec lesquelles je travaille régulièrement'
 
-  const techs = (await getRecords(techRecordType)) || []
+  const techs = await getRecords(techRecordType)
 
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
