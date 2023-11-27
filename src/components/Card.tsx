@@ -19,7 +19,7 @@ export default function Card({
         // href={`/projects/${encodeURIComponent(project.slug)}`}
         href={`/projects/${project.id}`}
       >
-        <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative -z-10 aspect-[4/3]'>
+        <div className='aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 relative  aspect-[4/3] '>
           <Image
             src={project.cover[0].url}
             alt={`Screenshot du projet ${project.name}`}

@@ -13,23 +13,14 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({
 }) => {
   useEffect(() => {
     const handleScroll = () => {
-      const scrollHeight = window.scrollY
       const parallaxContainer = document.querySelector(
         `.parallax-container-${imageUrl.replace(/\W/g, '_')}`
       ) as HTMLDivElement
 
-      console.log('parallaxContainer', parallaxContainer)
-
       if (parallaxContainer) {
-        // Adjust backgroundPositionY based on screen size
-        const coefficient = window.innerWidth >= 1024 ? 0.3 : 0.5
-        // parallaxContainer.style.backgroundPositionY = `${
-        //   scrollHeight * coefficient
-        // }px`
-        const containerTop = parallaxContainer.getBoundingClientRect().top
-        parallaxContainer.style.backgroundPositionY = `${
-          containerTop * coefficient
-        }px`
+        const containerTop = parallaxContainer.getBoundingClientRect().top + 200
+        console.log('containerTop', containerTop)
+        parallaxContainer.style.backgroundPositionY = `${containerTop * 0.5}px`
       }
     }
 
@@ -41,19 +32,16 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({
   }, [imageUrl])
 
   return (
-    <div className='relative'>
-      <div
-        className={`parallax-container-${imageUrl.replace(
-          /\W/g,
-          '_'
-        )} overflow-y-auto bg-contain bg-fixed bg-top bg-no-repeat pt-[40vh]  lg:pt-[50vh]`}
-        style={{
-          backgroundImage: `url(${imageUrl})`
-          // backgroundPositionY: '0'
-        }}
-      >
-        {children}
-      </div>
+    <div
+      className={`parallax-container-${imageUrl.replace(
+        /\W/g,
+        '_'
+      )} bg-contain bg-fixed bg-center bg-no-repeat pt-[40vh] md:pt-[60vh] lg:bg-cover lg:pt-[80vh]`}
+      style={{
+        backgroundImage: `url(${imageUrl})`
+      }}
+    >
+      {children}
     </div>
   )
 }

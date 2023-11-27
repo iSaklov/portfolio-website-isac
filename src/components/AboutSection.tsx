@@ -10,7 +10,7 @@ export default function AboutSection() {
 
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
-      <div className='relative -z-10 mt-20 overflow-hidden rounded-bl-[80px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[40px] md:float-right md:mt-28 md:w-1/2 lg:mt-40 lg:w-1/3'>
+      <div className='relative mt-20 overflow-hidden rounded-bl-[80px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[40px] md:float-right md:mt-28 md:w-1/2 lg:mt-40 lg:w-1/3'>
         <Image
           src={Profil}
           alt='Photos du développeur du site'
