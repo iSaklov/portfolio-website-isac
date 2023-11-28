@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, useRef } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { classNames } from '@/utils/class-names'
@@ -20,27 +20,35 @@ const navigation = [
 export default function Navbar() {
   const [currentSection, setCurrentSection] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrollingDown, setIsScrollingDown] = useState(false)
+  const scrollYRef = useRef(0)
 
   const handleScroll = () => {
-    if (document !== null) {
-      const sections = document.querySelectorAll('section')
-      let currentSectionValue = ''
+    const currentScrollY = window.scrollY
+    const sections = document.querySelectorAll('section')
+    let currentSectionValue = ''
 
-      sections.forEach((section) => {
-        const top = section.offsetTop
-        const bottom = top + section.clientHeight
-
-        if (window.scrollY >= top && window.scrollY < bottom) {
-          currentSectionValue = section.id
-        }
-      })
-
-      setCurrentSection(currentSectionValue)
+    if (currentScrollY > scrollYRef.current) {
+      setIsScrollingDown(true)
+    } else {
+      setIsScrollingDown(false)
     }
+
+    sections.forEach((section) => {
+      const top = section.offsetTop
+      const bottom = top + section.clientHeight
+
+      if (currentScrollY >= top && currentScrollY < bottom) {
+        currentSectionValue = section.id
+      }
+    })
+
+    setCurrentSection(currentSectionValue)
+    scrollYRef.current = currentScrollY
   }
 
   useEffect(() => {
-    const targetElement = document.querySelector('._nav')
+    const targetElement = document.querySelector('.__nav')
 
     if (!targetElement) {
       return
@@ -90,15 +98,28 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    // console.log('currentSection', currentSection)
-  }, [currentSection])
+    console.log('isScrollingDown', isScrollingDown)
+
+    if (isScrollingDown) {
+      document.body.classList.remove('scrolling-up')
+    } else {
+      document.body.classList.add('scrolling-up')
+    }
+  }, [isScrollingDown])
 
   return (
-    <Disclosure as='nav' className='_nav fixed z-30 w-full sm:bg-white'>
+    <Disclosure
+      as='nav'
+      className={`__nav fixed z-30 w-full md:bg-white ${
+        isScrollingDown
+          ? 'translate-y-[-100%] transition-transform delay-150 duration-300 ease-out'
+          : 'translate-y-0 transition-transform delay-150 duration-300 ease-in'
+      }`}
+    >
       {({ open }) => (
         <>
           <div className='container mx-auto flex max-w-7xl items-center justify-center px-4'>
-            <div className='absolute right-2 top-2 flex items-center sm:hidden'>
+            <div className='absolute right-2 top-2 flex items-center md:hidden'>
               {/* Mobile menu button*/}
               <Disclosure.Button className='relative z-50 inline-flex items-center justify-center rounded-md p-2 text-primary-dark hover:bg-primary-dark-translucent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
                 <span className='absolute -inset-0.5' />
@@ -113,14 +134,14 @@ export default function Navbar() {
                 )}
               </Disclosure.Button>
             </div>
-            <div className='hidden w-full flex-col items-center justify-center gap-5 px-2 py-5 sm:flex'>
+            <div className='hidden w-full flex-col items-center justify-center gap-5 px-2 py-5 md:flex'>
               {/* Logo */}
               <div>
                 <Link href='/'>
                   <Image
                     src={Logo}
                     alt='iSac Development'
-                    className='h-[90px] w-auto'
+                    className='h-[80px] w-auto lg:h-[90px]'
                   />
                 </Link>
               </div>
@@ -134,7 +155,7 @@ export default function Navbar() {
                       href.hash === currentSection
                         ? 'bg-primary-dark text-white hover:cursor-default'
                         : 'text-primary-dark hover:text-accent-orange',
-                      '__nav-link rounded-md px-3 py-0 lowercase'
+                      'rounded-md px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight lg:px-3 lg:text-4xl lg:leading-[3.5rem]'
                     )}
                     aria-current={
                       href.hash === currentSection ? 'page' : undefined
@@ -147,7 +168,7 @@ export default function Navbar() {
             </div>
           </div>
           <Transition>
-            <Disclosure.Panel className='h-screen w-screen sm:hidden'>
+            <Disclosure.Panel className='h-screen w-screen md:hidden'>
               <Transition.Child
                 enter='transition-opacity ease-linear duration-300'
                 enterFrom='opacity-0'
@@ -172,7 +193,7 @@ export default function Navbar() {
                 leaveTo='translate-x-full'
                 className='ml-auto h-full w-4/5'
               >
-                <div className='absolute inset-y-0 right-0 z-40 flex h-full w-4/5 min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
+                <div className='absolute inset-y-0 right-0 z-40 flex h-full w-full min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
                   <div>
                     <Link href='/'>
                       <Disclosure.Button>
@@ -193,7 +214,7 @@ export default function Navbar() {
                           href.hash === currentSection
                             ? 'bg-light-gray text-primary-dark'
                             : 'bg-transparent text-white',
-                          '__nav-link rounded-md px-2 py-0'
+                          'rounded-md px-2 py-0 font-serif text-[1.625rem] leading-[3rem] tracking-tight'
                         )}
                         aria-current={
                           href.hash === currentSection ? 'page' : undefined

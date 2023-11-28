@@ -12,14 +12,14 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({
   children
 }) => {
   useEffect(() => {
-    const handleScroll = () => {
-      const parallaxContainer = document.querySelector(
-        `.parallax-container-${imageUrl.replace(/\W/g, '_')}`
-      ) as HTMLDivElement
+    const parallaxContainer = document.querySelector(
+      `.parallax-container-${imageUrl.replace(/\W/g, '_')}`
+    ) as HTMLDivElement
 
+    const handleScroll = () => {
       if (parallaxContainer) {
         const containerTop = parallaxContainer.getBoundingClientRect().top + 200
-        console.log('containerTop', containerTop)
+        // console.log('containerTop', containerTop)
         parallaxContainer.style.backgroundPositionY = `${containerTop * 0.5}px`
       }
     }
