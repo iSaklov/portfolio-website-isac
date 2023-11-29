@@ -97,31 +97,29 @@ export default function Navbar() {
     }
   }, [])
 
-  useEffect(() => {
-    console.log('isScrollingDown', isScrollingDown)
-
-    if (isScrollingDown) {
-      document.body.classList.remove('scrolling-up')
-    } else {
-      document.body.classList.add('scrolling-up')
-    }
-  }, [isScrollingDown])
-
   return (
     <Disclosure
       as='nav'
-      className={`__nav fixed z-30 w-full md:bg-white ${
+      className={classNames(
+        '__nav fixed z-30 w-full md:bg-white md:transition-transform md:delay-150 md:duration-300',
         isScrollingDown
-          ? 'translate-y-[-100%] transition-transform delay-150 duration-300 ease-out'
-          : 'translate-y-0 transition-transform delay-150 duration-300 ease-in'
-      }`}
+          ? 'md:translate-y-[-100%] md:ease-out'
+          : 'md:translate-y-0 md:ease-in'
+      )}
     >
       {({ open }) => (
         <>
           <div className='container mx-auto flex max-w-7xl items-center justify-center px-4'>
             <div className='absolute right-2 top-2 flex items-center md:hidden'>
               {/* Mobile menu button*/}
-              <Disclosure.Button className='relative z-50 inline-flex items-center justify-center rounded-md p-2 text-primary-dark hover:bg-primary-dark-translucent hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
+              <Disclosure.Button
+                className={classNames(
+                  'relative z-50 inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset',
+                  currentSection && !open
+                    ? 'focus:ring-primary-dark'
+                    : 'focus:ring-white'
+                )}
+              >
                 <span className='absolute -inset-0.5' />
                 <span className='sr-only'>Ouvrir le menu principal</span>
                 {open ? (
@@ -130,7 +128,13 @@ export default function Navbar() {
                     aria-hidden='true'
                   />
                 ) : (
-                  <Bars3Icon className='block h-10 w-10' aria-hidden='true' />
+                  <Bars3Icon
+                    className={classNames(
+                      'block h-10 w-10 transition duration-300',
+                      currentSection ? 'text-primary-dark' : 'text-white'
+                    )}
+                    aria-hidden='true'
+                  />
                 )}
               </Disclosure.Button>
             </div>
