@@ -35,10 +35,12 @@ export default function Navbar() {
     }
 
     sections.forEach((section) => {
-      const top = section.offsetTop
-      const bottom = top + section.clientHeight
-
-      if (currentScrollY >= top && currentScrollY < bottom) {
+      const top = section.offsetTop - 30
+      const bottom = top + section.clientHeight + 120
+      // These values are optimized to ensure a smooth transition of the mobile menu button color during scrolling.
+      // The top buffer zone (-30) helps trigger the color change when the section's top border approaches the top of the screen.
+      // The bottom buffer zone (+120) helps maintain the color change when the section's bottom border approaches the bottom of the screen, creating a visually pleasing and smooth scrolling effect.
+      if (currentScrollY > top && currentScrollY < bottom) {
         currentSectionValue = section.id
       }
     })
@@ -145,7 +147,7 @@ export default function Navbar() {
                   <Image
                     src={Logo}
                     alt='iSac Development'
-                    className='h-[80px] w-auto lg:h-[90px]'
+                    className='h-[90px] w-auto'
                   />
                 </Link>
               </div>
