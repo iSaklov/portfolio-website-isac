@@ -28,10 +28,12 @@ export default function Navbar() {
     const sections = document.querySelectorAll('section')
     let currentSectionValue = ''
 
-    if (currentScrollY > scrollYRef.current) {
-      setIsScrollingDown(true)
-    } else {
-      setIsScrollingDown(false)
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      if (currentScrollY > scrollYRef.current) {
+        setIsScrollingDown(true)
+      } else {
+        setIsScrollingDown(false)
+      }
     }
 
     sections.forEach((section) => {
@@ -142,15 +144,13 @@ export default function Navbar() {
             </div>
             <div className='hidden w-full flex-col items-center justify-center gap-5 px-2 py-5 md:flex'>
               {/* Logo */}
-              <div>
-                <Link href='/'>
-                  <Image
-                    src={Logo}
-                    alt='iSac Development'
-                    className='h-[90px] w-auto'
-                  />
-                </Link>
-              </div>
+              <Link href='/'>
+                <Image
+                  src={Logo}
+                  alt='iSac Development'
+                  className='h-[90px] w-auto'
+                />
+              </Link>
               {/* Navigation Links */}
               <div className='flex w-full justify-evenly'>
                 {navigation.map(({ name, href }) => (
@@ -159,9 +159,9 @@ export default function Navbar() {
                     href={href}
                     className={classNames(
                       href.hash === currentSection
-                        ? 'bg-primary-dark text-white hover:cursor-default'
+                        ? 'pointer-events-none bg-primary-dark text-white'
                         : 'text-primary-dark hover:text-accent-orange',
-                      'rounded-md px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight lg:px-3 lg:text-4xl lg:leading-[3.5rem]'
+                      'rounded-md px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight transition-colors lg:px-3 lg:text-4xl lg:leading-[3.5rem]'
                     )}
                     aria-current={
                       href.hash === currentSection ? 'page' : undefined
@@ -200,17 +200,15 @@ export default function Navbar() {
                 className='ml-auto h-full w-4/5'
               >
                 <div className='absolute inset-y-0 right-0 z-40 flex h-full w-full min-w-[320px] flex-col items-center gap-14 bg-primary-dark py-14'>
-                  <div>
-                    <Link href='/'>
-                      <Disclosure.Button>
-                        <Image
-                          src={LogoWhite}
-                          alt='iSac Development'
-                          className='h-[90px] w-auto'
-                        />
-                      </Disclosure.Button>
-                    </Link>
-                  </div>
+                  <Link href='/'>
+                    <Disclosure.Button>
+                      <Image
+                        src={LogoWhite}
+                        alt='iSac Development'
+                        className='h-[90px] w-auto'
+                      />
+                    </Disclosure.Button>
+                  </Link>
                   <div className='flex h-full flex-col justify-center space-y-8 pb-24 text-center'>
                     {navigation.map(({ name, href }) => (
                       <Link
@@ -218,7 +216,7 @@ export default function Navbar() {
                         href={href}
                         className={classNames(
                           href.hash === currentSection
-                            ? 'bg-light-gray text-primary-dark'
+                            ? 'pointer-events-none bg-light-gray text-primary-dark'
                             : 'bg-transparent text-white',
                           'rounded-md px-2 py-0 font-serif text-[1.625rem] leading-[3rem] tracking-tight'
                         )}
