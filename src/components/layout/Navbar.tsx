@@ -13,8 +13,7 @@ const navigation = [
   { name: 'Projects.', href: { pathname: '/', hash: 'projects' } },
   { name: 'Tech stack.', href: { pathname: '/', hash: 'tech-stack' } },
   { name: 'À propos.', href: { pathname: '/', hash: 'about' } },
-  { name: 'Contacts.', href: { pathname: '/', hash: 'contacts' } },
-  { name: 'Etc.', href: { pathname: '/', hash: '#' } }
+  { name: 'Contacts.', href: { pathname: '/', hash: 'contacts' } }
 ]
 
 export default function Navbar() {
@@ -170,6 +169,55 @@ export default function Navbar() {
                     {name}
                   </Link>
                 ))}
+                {/* etc. dropdown */}
+                <Menu as='div' className='relative'>
+                  <Menu.Button className='px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight text-primary-dark transition-colors hover:text-accent-orange lg:px-3 lg:text-4xl lg:leading-[3.5rem]'>
+                    <span className='absolute -inset-1.5' />
+                    <span className='sr-only'>Ouvrir lien etc.</span>
+                    Etc.
+                  </Menu.Button>
+                  <Transition
+                    as={Fragment}
+                    enter='transition ease-out duration-100'
+                    enterFrom='transform opacity-0 scale-95'
+                    enterTo='transform opacity-100 scale-100'
+                    leave='transition ease-in duration-75'
+                    leaveFrom='transform opacity-100 scale-100'
+                    leaveTo='transform opacity-0 scale-95'
+                  >
+                    <Menu.Items className='absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none lg:w-60'>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href='/docs/CV.pdf'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-xl font-extralight leading-snug text-primary-dark lg:text-2xl'
+                            )}
+                          >
+                            Voir mon CV
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href='/docs/CV.pdf'
+                            download='CV_iSac_full_stack_developer.pdf'
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-xl font-extralight leading-snug text-primary-dark lg:text-2xl'
+                            )}
+                          >
+                            Télécharger mon CV
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
               </div>
             </div>
           </div>
@@ -229,6 +277,45 @@ export default function Navbar() {
                         </Disclosure.Button>
                       </Link>
                     ))}
+                    {/* etc. dropdown */}
+                    <Menu as='div' className='relative'>
+                      <Menu.Button className='px-2 py-0 font-serif text-[1.625rem] lowercase leading-[3rem] tracking-tight text-white'>
+                        <span className='absolute -inset-1.5' />
+                        <span className='sr-only'>Ouvrir lien etc.</span>
+                        Etc.
+                      </Menu.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-100'
+                        enterFrom='transform opacity-0 scale-95'
+                        enterTo='transform opacity-100 scale-100'
+                        leave='transition ease-in duration-75'
+                        leaveFrom='transform opacity-100 scale-100'
+                        leaveTo='transform opacity-0 scale-95'
+                      >
+                        <Menu.Items className='absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                          <Menu.Item>
+                            <a
+                              href='/docs/CV.pdf'
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='block bg-gray-100 px-4 py-2 text-left text-xl font-extralight leading-snug text-primary-dark'
+                            >
+                              Voir mon CV
+                            </a>
+                          </Menu.Item>
+                          <Menu.Item>
+                            <a
+                              href='/docs/CV.pdf'
+                              download='CV_iSac_full_stack_developer.pdf'
+                              className='block bg-gray-100 px-4 py-2 text-left text-xl font-extralight leading-snug text-primary-dark'
+                            >
+                              Télécharger mon CV
+                            </a>
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
                   </div>
                 </div>
               </Transition.Child>
