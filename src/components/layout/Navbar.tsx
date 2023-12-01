@@ -22,34 +22,6 @@ export default function Navbar() {
   const [isScrollingDown, setIsScrollingDown] = useState(false)
   const scrollYRef = useRef(0)
 
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY
-    const sections = document.querySelectorAll('section')
-    let currentSectionValue = ''
-
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      if (currentScrollY > scrollYRef.current) {
-        setIsScrollingDown(true)
-      } else {
-        setIsScrollingDown(false)
-      }
-    }
-
-    sections.forEach((section) => {
-      const top = section.offsetTop - 30
-      const bottom = top + section.clientHeight + 120
-      // These values are optimized to ensure a smooth transition of the mobile menu button color during scrolling.
-      // The top buffer zone (-30) helps trigger the color change when the section's top border approaches the top of the screen.
-      // The bottom buffer zone (+120) helps maintain the color change when the section's bottom border approaches the bottom of the screen, creating a visually pleasing and smooth scrolling effect.
-      if (currentScrollY > top && currentScrollY < bottom) {
-        currentSectionValue = section.id
-      }
-    })
-
-    setCurrentSection(currentSectionValue)
-    scrollYRef.current = currentScrollY
-  }
-
   useEffect(() => {
     const targetElement = document.querySelector('.__nav')
 
@@ -91,6 +63,45 @@ export default function Navbar() {
   }, [isMenuOpen])
 
   useEffect(() => {
+    const sections = document.querySelectorAll('section')
+
+    function handleScroll() {
+      const currentScrollY = window.scrollY
+      let currentSectionId = ''
+
+      sections.forEach((section) => {
+        const isMobileView = !window.matchMedia('(min-width: 768px)').matches
+        const sectionRect = section.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        let topCondition
+        let bottomCondition
+
+        if (isMobileView) {
+          // These values are optimized to ensure a smooth transition of the mobile menu button color during scrolling
+          topCondition = sectionRect.top < 20
+          bottomCondition = sectionRect.bottom > -160
+        } else {
+          // Used to hide the navbar when scrolling down on devices with a width of md and larger
+          if (currentScrollY > scrollYRef.current) {
+            setIsScrollingDown(true)
+          } else {
+            setIsScrollingDown(false)
+          }
+          // Check if the top boundary of the section is above the middle of the visible area
+          topCondition = sectionRect.top < windowHeight / 2
+          // Check if the bottom boundary of the section is below the middle of the visible area
+          bottomCondition = sectionRect.bottom > windowHeight / 2
+        }
+
+        if (topCondition && bottomCondition) {
+          currentSectionId = section.id
+        }
+      })
+
+      setCurrentSection(currentSectionId)
+      scrollYRef.current = currentScrollY
+    }
+
     handleScroll()
 
     window.addEventListener('scroll', handleScroll)
@@ -151,8 +162,9 @@ export default function Navbar() {
                 />
               </Link>
               {/* Navigation Links */}
-              <div className='flex w-full justify-evenly'>
+              <ul className='flex w-full justify-evenly'>
                 {navigation.map(({ name, href }) => (
+                  // <li key={name} >
                   <Link
                     key={name}
                     href={href}
@@ -168,57 +180,40 @@ export default function Navbar() {
                   >
                     {name}
                   </Link>
+                  // </li>
                 ))}
                 {/* etc. dropdown */}
-                <Menu as='div' className='relative'>
-                  <Menu.Button className='px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight text-primary-dark transition-colors hover:text-accent-orange lg:px-3 lg:text-4xl lg:leading-[3.5rem]'>
-                    <span className='absolute -inset-1.5' />
+                <li className='group relative'>
+                  <span className='block px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight text-primary-dark transition-colors group-hover:text-accent-orange lg:px-3 lg:text-4xl lg:leading-[3.5rem]'>
+                    <span className='absolute -inset-2' />
                     <span className='sr-only'>Ouvrir lien etc.</span>
                     Etc.
-                  </Menu.Button>
-                  <Transition
-                    as={Fragment}
-                    enter='transition ease-out duration-100'
-                    enterFrom='transform opacity-0 scale-95'
-                    enterTo='transform opacity-100 scale-100'
-                    leave='transition ease-in duration-75'
-                    leaveFrom='transform opacity-100 scale-100'
-                    leaveTo='transform opacity-0 scale-95'
-                  >
-                    <Menu.Items className='absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none lg:w-60'>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href='/docs/CV.pdf'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-xl font-extralight leading-snug text-primary-dark lg:text-2xl'
-                            )}
-                          >
-                            Voir mon CV
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href='/docs/CV.pdf'
-                            download='CV_iSac_full_stack_developer.pdf'
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-xl font-extralight leading-snug text-primary-dark lg:text-2xl'
-                            )}
-                          >
-                            Télécharger mon CV
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-              </div>
+                  </span>
+                  <div className='invisible scale-95 transform opacity-0 transition duration-75 ease-in group-hover:visible group-hover:scale-100 group-hover:opacity-100 group-hover:duration-100 group-hover:ease-out'>
+                    <ul className='absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none lg:w-60'>
+                      <li>
+                        <a
+                          href='/docs/CV.pdf'
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='block px-4 py-2 text-xl font-extralight leading-snug text-primary-dark hover:bg-gray-100 lg:text-2xl'
+                        >
+                          Voir mon CV
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href='/docs/CV.pdf'
+                          download='CV_iSac_full_stack_developer.pdf'
+                          className='block px-4 py-2 text-xl font-extralight leading-snug text-primary-dark hover:bg-gray-100 lg:text-2xl'
+                        >
+                          Télécharger mon CV
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <Transition>
