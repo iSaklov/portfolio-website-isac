@@ -47,7 +47,11 @@ const config: Config = {
       }
     }
   },
-  plugins: [require('flowbite/plugin'), require('@tailwindcss/typography')]
+  plugins: [
+    require('flowbite/plugin'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio')
+  ]
 }
 
 export default config
