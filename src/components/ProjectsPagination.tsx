@@ -42,6 +42,18 @@ export default function ProjectsPagination({
   const onPageChange = (page: number) => setCurrentPage(page)
 
   useEffect(() => {
+    const handleResize = () => {
+      setProjectsPerPage(getProjectsPerPage(window.innerWidth))
+    }
+
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
     setLoading(true)
 
     if (projectsPerPage) {
@@ -54,18 +66,6 @@ export default function ProjectsPagination({
       setLoading(false)
     }
   }, [currentPage, projectsPerPage, projects])
-
-  useEffect(() => {
-    const handleResize = () => {
-      setProjectsPerPage(getProjectsPerPage(window.innerWidth))
-    }
-
-    handleResize()
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   return (
     <>
