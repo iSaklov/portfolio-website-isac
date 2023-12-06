@@ -24,11 +24,11 @@ export default async function ContactsSection() {
       <form className='group mx-auto lg:max-w-3xl' noValidate>
         <div className='space-y-12'>
           <div className='border-b border-gray-900/10 pb-12'>
-            <div className='mt-10 grid grid-cols-1 gap-y-9 sm:grid-cols-6'>
+            <div className='mt-20 grid grid-cols-1 gap-y-10'>
               <div className='col-span-full'>
                 <label
                   htmlFor='name'
-                  className={`__poppins_extrali_high block after:ml-1.5 after:text-accent-orange after:content-['*']`}
+                  className={`block font-extralight after:ml-1.5 after:text-accent-orange after:content-['*'] md:text-[text-lg] lg:text-[1.375rem]`}
                 >
                   Saisissez votre nom
                 </label>
@@ -41,9 +41,9 @@ export default async function ContactsSection() {
                     placeholder='Jacques Cousteau'
                     required
                     pattern='(?:[A-Za-z]{2,}\s*)+'
-                    className='__poppins_thin_extralow peer block h-12 w-full border-0 py-1.5 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
+                    className='peer block h-12 w-full border-0 pt-2 text-sm font-extralight leading-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 lg:text-base invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
                   />
-                  <span className='__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible'>
+                  <span className='invisible absolute text-sm font-thin text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible md:-bottom-6'>
                     Veuillez saisir un nom valide
                   </span>
                 </div>
@@ -51,7 +51,7 @@ export default async function ContactsSection() {
               <div className='col-span-full'>
                 <label
                   htmlFor='email'
-                  className={`__poppins_extrali_high block after:ml-1.5 after:text-accent-orange after:content-['*']`}
+                  className={`block font-extralight after:ml-1.5 after:text-accent-orange after:content-['*'] md:text-[text-lg] lg:text-[1.375rem]`}
                 >
                   Saisissez votre e-mail
                 </label>
@@ -64,33 +64,35 @@ export default async function ContactsSection() {
                     placeholder='yves@mail.com'
                     required
                     pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
-                    className='__poppins_thin_extralow peer block h-12 w-full border-0 py-1.5 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
+                    className='peer block h-12 w-full border-0 pt-2 text-sm font-extralight leading-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 lg:text-base invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
                   />
-                  <span className='__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible'>
+                  <span className='invisible absolute text-sm font-thin text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible md:-bottom-6'>
                     Veuillez saisir une adresse e-mail valide
                   </span>
                 </div>
               </div>
               <div className='col-span-full'>
-                <label htmlFor='tel' className='__poppins_extrali_high block'>
+                <label
+                  htmlFor='tel'
+                  className='block font-extralight md:text-[text-lg] lg:text-[1.375rem]'
+                >
                   Saisissez votre numéro de téléphone
                 </label>
-                <div className='__poppins_thin_extralow relative mt-2'>
+                <div className='relative mt-2'>
                   <input
                     id='tel'
                     name='tel'
                     type='tel'
                     autoComplete='tel'
-                    placeholder='33602030405'
+                    placeholder='33601020304'
                     pattern='[0-9]{11,}'
-                    // value={"this.value=this.value.replace(/[^0-9+]/g,'')"}
-                    className={`peer block h-12 w-full border-0 py-1.5 pl-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent  placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange`}
+                    className='peer block h-12 w-full border-0 pl-6 pt-2 text-sm font-extralight leading-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 lg:text-base invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
                   />
                   <span
-                    className={`absolute pl-3 before:absolute before:-translate-y-12 before:content-['+'] peer-[&:focus]:before:-translate-y-9 peer-[&:not(:placeholder-shown):not(:focus)]:before:-translate-y-9`}
+                    className={`absolute pl-3 text-sm font-extralight leading-6 before:absolute before:-translate-y-12 before:content-['+'] peer-[&:focus]:before:-translate-y-9 peer-[&:not(:placeholder-shown):not(:focus)]:before:-translate-y-9`}
                   />
                   <span
-                    className={`__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible`}
+                    className={`invisible absolute text-sm font-thin text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible md:-bottom-6`}
                   >
                     Veuillez saisir un numéro de téléphone au format
                     international, par exemple en composant le code{' '}
@@ -101,7 +103,7 @@ export default async function ContactsSection() {
               <div className='col-span-full'>
                 <label
                   htmlFor='message'
-                  className={`__poppins_extrali_high block after:ml-1.5 after:text-accent-orange after:content-['*']`}
+                  className={`block font-extralight after:ml-1.5 after:text-accent-orange after:content-['*'] md:text-[text-lg] lg:text-[1.375rem]`}
                 >
                   Écrivez votre message
                 </label>
@@ -115,10 +117,10 @@ export default async function ContactsSection() {
                     minLength={20}
                     wrap='hard'
                     spellCheck
-                    className='__poppins_thin_extralow peer block h-60 w-full resize-none border-0 py-3 shadow-sm ring-1 ring-inset ring-primary-dark-translucent placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
+                    className='peer block h-60 w-full resize-none border-0 py-3.5 text-sm font-extralight leading-6 shadow-sm ring-1 ring-inset ring-primary-dark-translucent placeholder:-translate-y-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:focus:translate-y-0 lg:text-base invalid:[&:not(:placeholder-shown):not(:focus)]:bg-pale-pink invalid:[&:not(:placeholder-shown):not(:focus)]:ring-accent-orange'
                     defaultValue={''}
                   />
-                  <span className='__poppins_thin_extralow invisible absolute -bottom-6 text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible'>
+                  <span className='invisible absolute text-sm font-thin text-accent-orange peer-[&:not(:placeholder-shown):not(:focus):invalid]:visible md:-bottom-6'>
                     Votre message doit contenir au moins 20 caractères
                   </span>
                 </div>
@@ -126,28 +128,40 @@ export default async function ContactsSection() {
             </div>
           </div>
         </div>
-        <div className='mt-6 flex flex-col items-center justify-between gap-y-5 md:flex-row md:gap-x-12 lg:gap-x-32'>
-          <div className='order-1 flex flex-col items-center justify-center gap-y-5 md:order-none md:flex-1 md:flex-row md:justify-between'>
-            <span className='__poppins_extrali_high block lg:mr-16'>
+        <div className='mt-12 flex flex-col items-center justify-between gap-y-5 md:flex-row md:gap-x-12 lg:gap-x-32'>
+          <div className='order-1 flex flex-col items-center justify-center gap-y-5 md:order-none md:flex-1 md:flex-row md:justify-evenly'>
+            <span className='block font-extralight lg:text-[1.375rem]'>
               info@monsite.fr
             </span>
-            <div className='flex items-center gap-x-4'>
+            <div className='flex items-center gap-x-5'>
               <a
                 href='https://www.linkedin.com/in/oleg-smaliakou/'
                 target='_blank'
                 rel='noopener'
               >
-                <Image src={LinkedinIcon} alt='' width={32} height={32} />
+                <Image
+                  src={LinkedinIcon}
+                  alt=''
+                  className='aspect-square h-auto w-8 transition-transform hover:scale-110'
+                />
               </a>
               <a
                 href='https://github.com/iSaklov'
                 target='_blank'
                 rel='noopener'
               >
-                <Image src={GithubIcon} alt='' width={32} height={32} />
+                <Image
+                  src={GithubIcon}
+                  alt=''
+                  className='aspect-square h-auto w-8 transition-transform hover:scale-110'
+                />
               </a>
               <a href='https://t.me/iSaklov' target='_blank' rel='noopener'>
-                <Image src={TelegramIcon} alt='' width={32} height={32} />
+                <Image
+                  src={TelegramIcon}
+                  alt=''
+                  className='aspect-square h-auto w-8 transition-transform hover:scale-110'
+                />
               </a>
             </div>
           </div>

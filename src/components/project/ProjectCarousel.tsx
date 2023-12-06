@@ -1,33 +1,49 @@
 'use client'
 
-import { Carousel } from 'flowbite-react'
 import Image from 'next/image'
+import { useQuery } from '@tanstack/react-query'
+import { Carousel } from 'flowbite-react'
 import { Project } from '@/interfaces/Project'
+import { getRecord } from '@/database/getRecord'
+import { projectRecordType } from '@/database/airtable'
 
 export default function ProjectCarousel({
-  images
+  // images
+  projectId,
+  project
 }: {
-  images: Project['images']
+  // images: Project['images']
+  projectId: string
+  project: Project
 }) {
-  if (!images || images.length === 0) {
-    // Handle the case when 'images' is undefined or empty
-    return null // or you can return a message like <p>No images available</p>
-  }
+  const {
+    data: projectData,
+    isPending,
+    isError,
+    error
+  } = useQuery<Project, Error>({
+    queryKey: ['project', projectId, projectRecordType],
+    queryFn: async () => await getRecord(projectId, projectRecordType),
+    initialData: project
+  })
+
+  const { images } = projectData
 
   return (
-    // <div className='mb-10 h-56 sm:h-64 xl:h-80 2xl:h-96'>
-    <div className='z-10 mb-10 mt-10 h-screen md:h-[640] xl:h-[800px]'>
+    <div className='z-10 my-10 h-[384px] md:h-[448px] lg:h-[512px] xl:h-[576px] 2xl:h-[640px]'>
       <Carousel pauseOnHover slide={false}>
-        {images.map((image) => (
-          <div key={image.id} className='h-full w-full'>
+        {images?.map((image) => (
+          <div
+            key={image.id}
+            className='relative aspect-[16/9] h-full w-full overflow-hidden shadow-sm'
+          >
             <Image
-              // key={image.id}
               src={image.url}
               alt=''
-              placeholder='blur'
-              blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
+              // placeholder='blur'
+              // blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
               fill
-              className='object-cover object-center'
+              className='h-full w-full object-scale-down  object-center'
             />
           </div>
         ))}

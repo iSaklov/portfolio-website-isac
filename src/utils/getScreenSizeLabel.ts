@@ -1,5 +1,5 @@
 export function getScreenSizeLabel(screenWidth: number): string {
-  if (screenWidth < 640) {
+  if (screenWidth < 768) {
     return 'sm'
   } else if (screenWidth < 1024) {
     return 'md'
