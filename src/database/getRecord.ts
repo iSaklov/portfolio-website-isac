@@ -7,15 +7,15 @@ import {
   projectRecordType,
   techRecordType
 } from './airtable'
-import 'server-only'
+// import 'server-only'
 
 export const revalidate = 3600 // revalidate the data at most every hour
 
 const getTable = (recordType: RecordType<any, any>) => {
   if (recordType === projectRecordType) {
-    return base(process.env.AIRTABLE_PROJECTS_TABLE_ID)
+    return base(process.env.NEXT_PUBLIC_AIRTABLE_PROJECTS_TABLE_ID)
   } else if (recordType === techRecordType) {
-    return base(process.env.AIRTABLE_TECH_STACK_TABLE_ID)
+    return base(process.env.NEXT_PUBLIC_AIRTABLE_TECH_STACK_TABLE_ID)
   }
 }
 

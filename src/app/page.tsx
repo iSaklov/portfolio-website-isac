@@ -1,4 +1,7 @@
 import { Metadata } from 'next'
+import { getRecords } from '@/database/getRecords'
+import { projectRecordType, techRecordType } from '@/database/airtable'
+import { getDeviceType } from '@/utils/deviceDetect'
 import Header from '@/components/layout/Header'
 import Main from '@/components/layout/Main'
 import HeroSection from '@/components/HeroSection'
@@ -16,16 +19,24 @@ export const metadata: Metadata = {
   title: 'Next.js'
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const initialProjectsData = await getRecords(projectRecordType)
+  const initialTechsData = await getRecords(techRecordType)
+  const deviceType = getDeviceType()
+
   return (
     <>
       <Header>
         <HeroSection />
       </Header>
       <Main>
-        <ProjectsSection />
+        <ProjectsSection
+          projects={initialProjectsData}
+          techs={initialTechsData}
+          deviceType={deviceType}
+        />
         <ParallaxImage imageUrl={BgImgTeck.src}>
-          <TeckStackSection />
+          <TeckStackSection techs={initialTechsData} />
         </ParallaxImage>
         <ParallaxImage imageUrl={BgImgAbout.src}>
           <AboutSection />

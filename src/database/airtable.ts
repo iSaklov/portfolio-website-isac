@@ -3,17 +3,17 @@ import { ProjectData } from '@/interfaces/ProjectData'
 import { TechData } from '@/interfaces/TechData'
 import { Project } from '@/interfaces/Project'
 import { Tech } from '@/interfaces/Tech'
-import { keysToCamelCase } from '@/utils/keys-to-camel-case'
-import { generateSlug } from '@/utils/generate-slug'
+import { keysToCamelCase } from '@/utils/keysToCamelCase'
+import { generateSlug } from '@/utils/generateSlug'
 
 // Authenticate
 Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
-  apiKey: process.env.AIRTABLE_API_TOKEN
+  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN
 })
 
 // Initialize a base
-const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
+const base = Airtable.base(process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID)
 
 export type RecordDataType = ProjectData | TechData
 

@@ -28,7 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/route.ts",
-    "src/utils/keys-to-camel-case.ts"
+    "src/utils/keysToCamelCase.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Project } from '@/interfaces/Project'
-import { getScreenSizeLabel } from '@/utils/get-screen-size-label'
-import { getIdFromPathname } from '@/utils/get-id-from-pathname'
+import { getScreenSizeLabel } from '@/utils/getScreenSizeLabel'
+import { getIdFromPathname } from '@/utils/getIdFromPathname'
 import { Carousel } from 'flowbite-react'
 
 export default function ProjectsNav({ projects }: { projects: Project[] }) {

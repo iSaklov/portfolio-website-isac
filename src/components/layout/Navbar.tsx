@@ -3,7 +3,7 @@
 import { Fragment, useState, useEffect, useRef } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { classNames } from '@/utils/class-names'
+import { classNames } from '@/utils/classNames'
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/images/logo.svg'

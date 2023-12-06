@@ -1,14 +1,13 @@
 import Image from 'next/image'
-import { getRecords } from '@/database/get-records'
+import { getRecords } from '@/database/getRecords'
+import { Tech } from '@/interfaces/Tech'
 import { techRecordType } from '@/database/airtable'
 import Section from '@/components/layout/Section'
 
-export default async function TeckStackSection() {
+export default async function TeckStackSection({ techs }: { techs: Tech[] }) {
   const idSection = 'tech-stack'
   const title = 'Teck stack'
   const subtitle = 'Technologies avec lesquelles je travaille régulièrement'
-
-  const techs = await getRecords(techRecordType)
 
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
@@ -18,7 +17,7 @@ export default async function TeckStackSection() {
             <img
               src={tech.icon[0].url}
               alt={tech.name}
-              className='h-auto max-h-[64px] w-auto max-w-[64px] md:max-h-[80px] md:max-w-[80px] lg:max-w-[96px] lg:max-w-[96px] xl:max-h-[128px] xl:max-w-[128px]'
+              className='h-auto max-h-[64px] w-auto max-w-[64px] md:max-h-[80px] md:max-w-[80px] lg:max-h-[96px] lg:max-w-[96px] xl:max-h-[128px] xl:max-w-[128px]'
             />
             <span className='absolute bottom-0 left-1/2 z-10 hidden -translate-x-1/2 translate-y-1/2 scale-95 transform rounded-lg bg-primary-dark px-4 py-2 font-extralight text-white opacity-0 transition before:absolute before:-top-2 before:left-1/2 before:inline-block before:h-4 before:w-4 before:-translate-x-1/2 before:rotate-45 before:bg-primary-dark group-hover:translate-y-[130%] group-hover:scale-100 group-hover:opacity-100 lg:inline-block lg:text-[1.375rem]'>
               {tech.name}
