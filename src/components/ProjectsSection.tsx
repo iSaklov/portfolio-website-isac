@@ -9,7 +9,7 @@ import { Skeleton } from '@mui/material'
 import { Project } from '@/interfaces/Project'
 import { Tech } from '@/interfaces/Tech'
 import Section from '@/components/layout/Section'
-import SkeletonCard from './skeletons/SkeletonCard'
+import CardSkeleton from './skeletons/CardSkeleton'
 import Card from '@/components/Card'
 import { getScreenSizeLabel } from '@/utils/getScreenSizeLabel'
 
@@ -92,7 +92,7 @@ export default function ProjectsSection({
               ...Array(
                 deviceType === 'mobile' ? 1 : deviceType === 'tablet' ? 2 : 3
               )
-            ].map((_, i) => <SkeletonCard key={i} />)
+            ].map((_, i) => <CardSkeleton key={i} />)
           : currentProjects.map((project) => (
               <Card key={project.id} project={project} techs={techs} />
             ))}

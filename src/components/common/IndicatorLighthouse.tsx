@@ -2,7 +2,7 @@ import Image from 'next/image'
 import checkIcon from '@/assets/images/icons/check.svg'
 import dashIcon from '@/assets/images/icons/dash.svg'
 
-export default function Indicator({
+export default function IndicatorLighthouse({
   keyName,
   value
 }: {
@@ -53,7 +53,9 @@ export default function Indicator({
             )}
           </div>
         </div>
-        <span className='__poppins_med_low mt-2 text-center'>{category}</span>
+        <span className='mt-2 text-center text-sm font-medium lg:text-[0.9375rem]'>
+          {category}
+        </span>
       </div>
     )
   }
@@ -81,9 +83,11 @@ export default function Indicator({
           ...styles
         ].join(' ')}
       >
-        <span className={`__lighthouse_score`}>{value}</span>
+        <span className='text-[1.625rem] font-medium'>{value}</span>
       </div>
-      <span className='__poppins_med_low mt-2 text-center'>{category}</span>
+      <span className='mt-2 text-center text-sm font-medium lg:text-[0.9375rem]'>
+        {category}
+      </span>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { getRecord } from '@/database/getRecord'
 import { projectRecordType } from '@/database/airtable'
 import { Project } from '@/interfaces/Project'
-import Indicator from '@/components/common/Indicator'
+import IndicatorLighthouse from '@/components/common/IndicatorLighthouse'
 
 export default async function ProjectLighthouse({
   // lighthouse
@@ -16,7 +16,7 @@ export default async function ProjectLighthouse({
     <div className='container mx-auto my-10 px-4'>
       <div className='flex flex-wrap justify-center gap-8'>
         {Object.entries(lighthouse).map(([key, value]) => {
-          return <Indicator key={key} keyName={key} value={value} />
+          return <IndicatorLighthouse key={key} keyName={key} value={value} />
         })}
       </div>
       <span className='mt-5 block text-center text-[0.9375rem]/7 font-light'>

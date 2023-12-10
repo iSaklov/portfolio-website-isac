@@ -71,7 +71,7 @@ export default function Card({
               className='mr-2 inline-block h-auto w-6 align-middle transition-transform duration-300 group-hover/link:scale-110 lg:mr-1 xl:mr-2'
             />
             <span className=''>Aperçu en direct</span>
-            <span className='invisible absolute bottom-1 left-0 right-0 ml-8 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0 md:visible md:block'></span>
+            <span className='invisible absolute bottom-1 left-0 right-0 ml-8 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0 md:visible md:block' />
           </a>
           <a
             href={project.links.toGithub}
@@ -88,7 +88,7 @@ export default function Card({
               className='mr-2 inline-block h-auto w-6 align-middle transition-transform duration-300 group-hover/link:scale-110 lg:mr-1 xl:mr-2'
             />
             <span className=''>Afficher le code</span>
-            <span className='invisible absolute bottom-1 left-0 right-0 ml-8 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0 md:visible md:block'></span>
+            <span className='invisible absolute bottom-1 left-0 right-0 ml-8 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0 md:visible md:block' />
           </a>
         </div>
       </div>

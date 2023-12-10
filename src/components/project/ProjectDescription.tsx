@@ -16,7 +16,7 @@ export default async function ProjectDescription({
   )
 
   return (
-    <article className='prose max-w-none prose-p:text-justify'>
+    <article className='prose max-w-none prose-headings:text-[1.375rem] prose-headings:font-normal prose-p:text-justify prose-p:text-base prose-p:font-light prose-p:leading-loose lg:prose-headings:text-[1.625rem] lg:prose-p:text-lg'>
       <Markdown>{fullDescription}</Markdown>
     </article>
   )

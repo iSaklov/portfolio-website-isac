@@ -6,26 +6,27 @@ import { getRecord } from '@/database/getRecord'
 import { projectRecordType } from '@/database/airtable'
 
 export default function ProjectHeader({
-  id,
+  // id,
   project,
   children
 }: {
-  id: string
+  // id: string
   project: Project
   children: React.ReactNode
 }) {
-  const {
-    data: projectData,
-    isPending,
-    isError,
-    error
-  } = useQuery<Project, Error>({
-    queryKey: ['project', id, projectRecordType],
-    queryFn: async () => await getRecord(id, projectRecordType),
-    initialData: project
-  })
+  // const {
+  //   data: projectData,
+  //   isPending,
+  //   isError,
+  //   error
+  // } = useQuery<Project, Error>({
+  //   queryKey: ['project', id, projectRecordType],
+  //   queryFn: async () => await getRecord(id, projectRecordType),
+  //   initialData: project
+  // })
 
-  const { name, date, city } = projectData
+  // const { name, date, city } = projectData
+  const { name, date, city } = project
 
   return (
     <div>

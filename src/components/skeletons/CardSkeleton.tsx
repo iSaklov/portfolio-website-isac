@@ -2,7 +2,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Skeleton from '@mui/material/Skeleton'
 
-export default function SkeletonCard() {
+export default function CardSkeleton() {
   return (
     <Card
       sx={{

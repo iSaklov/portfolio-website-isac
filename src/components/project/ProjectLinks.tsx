@@ -16,22 +16,36 @@ export default async function ProjectLinks({
 
   return (
     <div className='mt-10 flex justify-between'>
-      <a href={links.toDeploy} target='_blank' className='flex items-center'>
+      <a
+        href={links.toDeploy}
+        target='_blank'
+        className='group/link relative flex items-center'
+      >
         <Image
           src={LinkToDeployIcon}
-          alt='lien vers le déploiement du projet'
-          className='mr-2 inline-block h-8 max-h-[32px] w-auto max-w-[32px]'
+          alt='icone du lien vers le déploiement du projet'
+          className='mr-2 h-8 max-h-[32px] w-auto max-w-[32px] transition-transform duration-300 group-hover/link:scale-105'
         />{' '}
-        Aperçu en direct
+        <span className='text-lg font-light transition-transform duration-300 group-hover/link:scale-105'>
+          Aperçu en direct
+        </span>
+        <span className='invisible absolute inset-x-0 bottom-1 left-9 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0 md:visible md:block' />
       </a>
 
-      <a href={links.toGithub} target='_blank' className='flex items-center'>
+      <a
+        href={links.toGithub}
+        target='_blank'
+        className='group/link relative flex items-center'
+      >
         <Image
           src={LinkToGithubIcon}
-          alt='lien vers le code source du projet'
-          className='mr-2 inline-block h-8 max-h-[32px] w-auto max-w-[32px]'
+          alt='icone du lien vers le code source du projet'
+          className='mr-2 h-8 max-h-[32px] w-auto max-w-[32px] transition-transform duration-300 group-hover/link:scale-105'
         />{' '}
-        Afficher le code
+        <span className='text-lg font-light transition-transform duration-300 group-hover/link:scale-105'>
+          Afficher le code
+        </span>
+        <span className='invisible absolute inset-x-0 bottom-1 left-9 h-px origin-bottom-left scale-x-100 transform bg-primary-dark transition-transform duration-300 group-hover/link:scale-x-0 md:visible md:block' />
       </a>
     </div>
   )
