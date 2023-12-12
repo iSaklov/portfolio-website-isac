@@ -1,5 +1,5 @@
 import { Skeleton } from '@mui/material'
-import ProjectTechsSkeleton from './ProjectTechsSkeleton'
+import TechStackListSkeleton from './TechStackListSkeleton'
 
 export default function ProjectHeaderSkeleton() {
   return (
@@ -61,7 +61,7 @@ export default function ProjectHeaderSkeleton() {
               }}
             />
           ))} */}
-					<ProjectTechsSkeleton />
+          <TechStackListSkeleton />
         </h6>
       </div>
     </div>

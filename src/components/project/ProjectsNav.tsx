@@ -1,13 +1,15 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Project } from '@/interfaces/Project'
 import { getScreenSizeLabel } from '@/utils/getScreenSizeLabel'
 import { getIdFromPathname } from '@/utils/getIdFromPathname'
+import { classNames } from '@/utils/classNames'
 import { Carousel } from 'flowbite-react'
+import CircularIndeterminate from '../common/CircularIndeterminate'
 
 export default function ProjectsNav({ projects }: { projects: Project[] }) {
   const [devise, setDevise] = useState<string | undefined>(undefined)
@@ -36,20 +38,22 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   }
 
   useEffect(() => {
-    setDevise(getScreenSizeLabel(window.innerWidth))
-  }, [])
-
-  useEffect(() => {
     const handleResize = () => {
       setDevise(getScreenSizeLabel(window.innerWidth))
     }
+
+    handleResize()
 
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  if (!devise) return null
+  if (!projects) {
+    console.log('ProjectsNav.tsx: projects is undefined')
+  }
+
+  if (!devise) return <CircularIndeterminate />
 
   if (devise === 'sm') {
     return (
@@ -131,23 +135,29 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <aside className='absolute left-10 top-[300px] z-20'>
+    <aside className='absolute left-6 top-[300px] z-20 h-[980px] overflow-y-auto xl:left-10'>
       <nav>
         <ol>
           {projects.map(({ id, cover }) => {
             return (
               <li key={id} className='mb-12'>
-                <Link href={`/projects/${id}`}>
+                <Link
+                  href={`/projects/${id}`}
+                  className={classNames(
+                    pathname === `/projects/${id}` ? 'pointer-events-none ' : ''
+                  )}
+                >
                   <Image
                     src={cover[0].thumbnails.large.url}
                     alt=''
                     width={cover[0].thumbnails.large.width}
                     height={cover[0].thumbnails.large.height}
-                    className={`h-24 w-24 object-cover ${
+                    className={classNames(
+                      'h-24 w-24 object-cover',
                       pathname === `/projects/${id}`
-                        ? 'cursor-default shadow-lg hover:shadow-lg hover:saturate-100'
-                        : 'opacity-75 shadow-md saturate-50 hover:opacity-100 hover:shadow-xl hover:saturate-150'
-                    }`}
+                        ? 'shadow-lg'
+                        : 'opacity-75 shadow-md saturate-50 hover:scale-105 hover:opacity-100 hover:shadow-xl hover:saturate-150'
+                    )}
                   />
                 </Link>
               </li>

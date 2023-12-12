@@ -8,7 +8,7 @@ import ProjectCarousel from './ProjectCarousel'
 import ProjectLighthouse from './ProjectLighthouse'
 import ProjectDescription from './ProjectDescription'
 import ProjectLinks from './ProjectLinks'
-import ProjectTechsSkeleton from '@/components/skeletons/project/ProjectTechsSkeleton'
+import TechStackListSkeleton from '@/components/skeletons/project/TechStackListSkeleton'
 
 export default async function Project({ projectId }: { projectId: string }) {
   const project: Project = await getRecord(projectId, projectRecordType)
@@ -16,7 +16,7 @@ export default async function Project({ projectId }: { projectId: string }) {
   return (
     <>
       <ProjectHeader project={project}>
-        <Suspense fallback={<ProjectTechsSkeleton />}>
+        <Suspense fallback={<TechStackListSkeleton />}>
           <TechStackList projectTechStack={project.techStack} />
         </Suspense>
       </ProjectHeader>

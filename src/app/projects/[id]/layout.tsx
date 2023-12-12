@@ -1,9 +1,9 @@
-import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { getRecords } from '@/database/getRecords'
 import { projectRecordType } from '@/database/airtable'
 import { Project } from '@/interfaces/Project'
-import ReactQueryProvider from '@/providers/ReactQueryProvider'
+// import ReactQueryProvider from '@/providers/ReactQueryProvider'
+import Main from '@/components/layout/Main'
 import ProjectsNav from '@/components/project/ProjectsNav'
 
 export const metadata: Metadata = {
@@ -19,11 +19,9 @@ export default async function Layout({
   const projects: Project[] = await getRecords(projectRecordType)
 
   return (
-    <div>
+    <Main>
       {children}
-      <Suspense fallback={<div>Loading ...</div>}>
-        <ProjectsNav projects={projects} />
-      </Suspense>
-    </div>
+      <ProjectsNav projects={projects} />
+    </Main>
   )
 }

@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material'
 
-export default function ProjectTechsSkeleton({
+export default function TechStackListSkeleton({
   length = 3
 }: {
   length?: number
