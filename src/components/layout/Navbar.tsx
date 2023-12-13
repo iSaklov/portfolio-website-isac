@@ -164,23 +164,22 @@ export default function Navbar() {
               {/* Navigation Links */}
               <ul className='flex w-full justify-evenly'>
                 {navigation.map(({ name, href }) => (
-                  // <li key={name} >
-                  <Link
-                    key={name}
-                    href={href}
-                    className={classNames(
-                      href.hash === currentSection
-                        ? 'pointer-events-none bg-primary-dark text-white'
-                        : 'text-primary-dark hover:text-accent-orange',
-                      'rounded-md px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight transition-colors lg:px-3 lg:text-4xl lg:leading-[3.5rem]'
-                    )}
-                    aria-current={
-                      href.hash === currentSection ? 'page' : undefined
-                    }
-                  >
-                    {name}
-                  </Link>
-                  // </li>
+                  <li key={name}>
+                    <Link
+                      href={href}
+                      className={classNames(
+                        href.hash === currentSection
+                          ? 'pointer-events-none bg-primary-dark text-white'
+                          : 'text-primary-dark hover:text-accent-orange',
+                        'inline-block rounded-md px-2 py-0 font-serif text-3xl lowercase leading-[3rem] tracking-tight transition-colors lg:px-3 lg:text-4xl lg:leading-[3.5rem]'
+                      )}
+                      aria-current={
+                        href.hash === currentSection ? 'page' : undefined
+                      }
+                    >
+                      {name}
+                    </Link>
+                  </li>
                 ))}
                 {/* etc. dropdown */}
                 <li className='group relative'>
@@ -252,25 +251,26 @@ export default function Navbar() {
                       />
                     </Disclosure.Button>
                   </Link>
-                  <div className='flex h-full flex-col justify-center space-y-8 pb-24 text-center'>
+                  <ul className='flex h-full flex-col justify-center space-y-8 pb-24 text-center'>
                     {navigation.map(({ name, href }) => (
-                      <Link
-                        key={name}
-                        href={href}
-                        className={classNames(
-                          href.hash === currentSection
-                            ? 'pointer-events-none bg-light-gray text-primary-dark'
-                            : 'bg-transparent text-white',
-                          'rounded-md px-2 py-0 font-serif text-[1.625rem] leading-[3rem] tracking-tight'
-                        )}
-                        aria-current={
-                          href.hash === currentSection ? 'page' : undefined
-                        }
-                      >
-                        <Disclosure.Button className='lowercase'>
-                          {name}
-                        </Disclosure.Button>
-                      </Link>
+                      <li key={name}>
+                        <Link
+                          href={href}
+                          className={classNames(
+                            href.hash === currentSection
+                              ? 'pointer-events-none bg-light-gray text-primary-dark'
+                              : 'bg-transparent text-white',
+                            'inline-block rounded-md px-2 py-0 font-serif text-[1.625rem] leading-[3rem] tracking-tight'
+                          )}
+                          aria-current={
+                            href.hash === currentSection ? 'page' : undefined
+                          }
+                        >
+                          <Disclosure.Button className='lowercase'>
+                            {name}
+                          </Disclosure.Button>
+                        </Link>
+                      </li>
                     ))}
                     {/* etc. dropdown */}
                     <Menu as='div' className='relative'>
@@ -311,7 +311,7 @@ export default function Navbar() {
                         </Menu.Items>
                       </Transition>
                     </Menu>
-                  </div>
+                  </ul>
                 </div>
               </Transition.Child>
             </Disclosure.Panel>

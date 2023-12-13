@@ -14,16 +14,23 @@ export default async function TechStackList({
     })
   )
 
-  return techStack.map(({ id, name, icon }, index) => (
-    // <span key={id} className='text-[0.9375rem]/7 font-light mx-0.5 text-subtle-blue'>
-    //   {name}
-    //   {index < techStack.length - 1 ? ', ' : ''}
-    // </span>
-    <img
-      key={id}
-      src={icon[0].url}
-      alt={name}
-      className='mx-2 inline-block h-auto max-h-[32px] w-auto max-w-[32px]'
-    />
-  ))
+  return (
+    <div className='inline flex-wrap align-middle md:inline-flex'>
+      {techStack.map(({ id, name, icon }) => (
+        <span
+          key={id}
+          className='m-1 inline-flex items-center rounded-2xl border border-subtle-blue bg-highlight-gray px-1 align-middle'
+        >
+          <img
+            src={icon[0].url}
+            alt={name}
+            className='inline-block h-auto max-h-[16px] w-auto max-w-[16px] rounded-full bg-white p-px'
+          />
+          <span className='pl-2 pr-[7px] text-sm font-light text-white'>
+            {name}
+          </span>
+        </span>
+      ))}
+    </div>
+  )
 }

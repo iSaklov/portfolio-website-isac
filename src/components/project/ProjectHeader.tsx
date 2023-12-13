@@ -38,11 +38,11 @@ export default function ProjectHeader({
           date<span className='text-accent-orange'>.</span>{' '}
           <span className='text-base font-light'>{date}</span>
         </h6>
-        <h6 className='text-[0.9375rem]/7'>
+        <h6 className='mt-1 text-[0.9375rem]/7'>
           city<span className='text-accent-orange'>.</span>{' '}
           <span className='text-base font-light'>{city}</span>
         </h6>
-        <h6 className='text-[0.9375rem]/7'>
+        <h6 className='mt-1 text-[0.9375rem]/7'>
           tech stack <span className='text-accent-orange'>:</span> {children}
         </h6>
       </div>
