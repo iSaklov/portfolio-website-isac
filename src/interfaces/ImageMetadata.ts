@@ -23,4 +23,6 @@ export interface ImageMetadata {
       height: number
     }
   }
+  // missing from the received data from Airtable
+  blurDataUrl?: string
 }

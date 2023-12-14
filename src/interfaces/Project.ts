@@ -6,6 +6,7 @@ export interface Project {
   slug: string
   name: string
   cover: Array<ImageMetadata>
+  // coverPlaceholder: string
   shortDescription: string
   techStack: Array<string>
   fullDescription: string
@@ -22,5 +23,5 @@ export interface Project {
     seo: number
     pwa: boolean
   }
-  images?: Array<ImageMetadata>
+  images: Array<ImageMetadata>
 }

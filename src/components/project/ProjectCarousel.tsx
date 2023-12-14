@@ -40,8 +40,9 @@ export default function ProjectCarousel({
             <Image
               src={image.url}
               alt=''
-              // placeholder='blur'
+              placeholder='blur'
               // blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
+              blurDataURL={image.blurDataUrl}
               fill
               className='h-full w-full object-scale-down  object-center'
             />

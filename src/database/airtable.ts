@@ -1,10 +1,12 @@
 const Airtable = require('airtable')
 import { ProjectData } from '@/interfaces/ProjectData'
 import { TechData } from '@/interfaces/TechData'
+import { ImageMetadata } from '@/interfaces/ImageMetadata'
 import { Project } from '@/interfaces/Project'
 import { Tech } from '@/interfaces/Tech'
 import { keysToCamelCase } from '@/utils/keysToCamelCase'
 import { generateSlug } from '@/utils/generateSlug'
+import { dynamicBlurDataUrl } from '@/utils/dynamicBlurDataUrl'
 
 // Authenticate
 Airtable.configure({
@@ -19,15 +21,28 @@ export type RecordDataType = ProjectData | TechData
 
 export interface RecordType<T extends RecordDataType, U> {
   isType: (record: T) => boolean
-  getMinifiedItem: (record: T) => U
+  getMinifiedItem: (record: T) => U | Promise<U>
 }
 
 const projectRecordType: RecordType<ProjectData, Project> = {
   isType: (record): record is ProjectData =>
     'techStack' in keysToCamelCase(record.fields),
-  getMinifiedItem: (record): Project => {
+  getMinifiedItem: async (record): Promise<Project> => {
     const camelCaseFields = keysToCamelCase(record.fields)
-    return {
+
+    await Promise.all(
+      camelCaseFields.cover.map(async (item: ImageMetadata) => {
+        item.blurDataUrl = await dynamicBlurDataUrl(item.url)
+      })
+    )
+
+    await Promise.all(
+      camelCaseFields.images.map(async (image: ImageMetadata) => {
+        image.blurDataUrl = await dynamicBlurDataUrl(image.url)
+      })
+    )
+
+    return Promise.resolve({
       id: record.id,
       createdTime: record._rawJson?.createdTime,
       slug: generateSlug(camelCaseFields.name),
@@ -50,7 +65,7 @@ const projectRecordType: RecordType<ProjectData, Project> = {
         pwa: camelCaseFields.progressiveWeb ? true : false
       },
       images: camelCaseFields.images
-    }
+    })
   }
 }
 
@@ -59,6 +74,7 @@ const techRecordType: RecordType<TechData, Tech> = {
     'projects' in keysToCamelCase(record.fields),
   getMinifiedItem: (record: TechData): Tech => {
     const camelCaseFields = keysToCamelCase(record.fields)
+
     return {
       id: record.id,
       name: camelCaseFields.name,
@@ -70,18 +86,22 @@ const techRecordType: RecordType<TechData, Tech> = {
   }
 }
 
-const getMinifiedItem = <T extends RecordDataType, U>(
+const getMinifiedItem = async <T extends RecordDataType, U>(
   record: T,
   recordType: RecordType<T, U>
-): U => {
-  return recordType.getMinifiedItem(record)
+): Promise<U> => {
+  return await recordType.getMinifiedItem(record)
 }
 
 const minifyItems = <T extends RecordDataType, U>(
   records: T[],
   recordType: RecordType<T, U>
-): U[] => {
-  return records.map(recordType.getMinifiedItem)
+): Promise<U[]> => {
+  const promises = records.map(
+    async (record) => await recordType.getMinifiedItem(record)
+  )
+
+  return Promise.all(promises)
 }
 
 export { base, minifyItems, getMinifiedItem, projectRecordType, techRecordType }

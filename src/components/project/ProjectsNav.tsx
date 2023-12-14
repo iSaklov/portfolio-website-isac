@@ -67,9 +67,11 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                 <Link key={id} href={`/projects/${id}`} className='h-full'>
                   <Image
                     src={cover[0].thumbnails.large.url}
-                    alt=''
+                    alt={name}
                     width={cover[0].thumbnails.large.width}
                     height={cover[0].thumbnails.large.height}
+                    placeholder='blur'
+                    blurDataURL={cover[0].blurDataUrl}
                     className='h-full w-full object-cover'
                   />
                   <h6 className='absolute bottom-0 left-0 right-0 bg-white p-2 text-center text-xl font-light text-primary-dark'>
@@ -100,9 +102,11 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
               >
                 <Image
                   src={project.cover[0].thumbnails.large.url}
-                  alt=''
+                  alt={project.name}
                   width={project.cover[0].thumbnails.large.width}
                   height={project.cover[0].thumbnails.large.height}
+                  placeholder='blur'
+                  blurDataURL={project.cover[0].blurDataUrl}
                   className='h-full w-full object-cover'
                 />
                 <h6 className='absolute bottom-0 left-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
@@ -117,9 +121,11 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                 >
                   <Image
                     src={nextProject.cover[0].thumbnails.large.url}
-                    alt=''
+                    alt={nextProject.name}
                     width={nextProject.cover[0].thumbnails.large.width}
                     height={nextProject.cover[0].thumbnails.large.height}
+                    placeholder='blur'
+                    blurDataURL={nextProject.cover[0].blurDataUrl}
                     className='h-full w-full object-cover'
                   />
                   <h6 className='absolute bottom-0 right-0 w-1/2 bg-white p-2 text-center text-xl font-light text-primary-dark'>
@@ -138,7 +144,7 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
     <aside className='absolute left-6 top-[300px] z-20 h-[980px] overflow-y-auto xl:left-10'>
       <nav>
         <ol>
-          {projects.map(({ id, cover }) => {
+          {projects.map(({ id, cover, name }) => {
             return (
               <li key={id} className='mb-12'>
                 <Link
@@ -149,9 +155,11 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                 >
                   <Image
                     src={cover[0].thumbnails.large.url}
-                    alt=''
+                    alt={name}
                     width={cover[0].thumbnails.large.width}
                     height={cover[0].thumbnails.large.height}
+                    placeholder='blur'
+                    blurDataURL={cover[0].blurDataUrl}
                     className={classNames(
                       'h-24 w-24 object-cover',
                       pathname === `/projects/${id}`
