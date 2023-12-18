@@ -3,9 +3,10 @@
 import { Fragment, useState, useEffect, useRef } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { classNames } from '@/utils/classNames'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { classNames } from '@/utils/classNames'
 import Logo from '@/assets/images/logo.svg'
 import LogoWhite from '@/assets/images/logo-white.svg'
 
@@ -21,6 +22,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrollingDown, setIsScrollingDown] = useState(false)
   const scrollYRef = useRef(0)
+  const pathname = usePathname()
 
   useEffect(() => {
     const targetElement = document.querySelector('.__nav')
@@ -66,27 +68,21 @@ export default function Navbar() {
     const sections = document.querySelectorAll('section')
 
     function handleScroll() {
+      const isMobileView = !window.matchMedia('(min-width: 768px)').matches
       const currentScrollY = window.scrollY
+      const windowHeight = window.innerHeight
       let currentSectionId = ''
+      let topCondition = undefined
+      let bottomCondition = undefined
 
       sections.forEach((section) => {
-        const isMobileView = !window.matchMedia('(min-width: 768px)').matches
         const sectionRect = section.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        let topCondition
-        let bottomCondition
 
         if (isMobileView) {
           // These values are optimized to ensure a smooth transition of the mobile menu button color during scrolling
           topCondition = sectionRect.top < 20
           bottomCondition = sectionRect.bottom > -160
         } else {
-          // Used to hide the navbar when scrolling down on devices with a width of md and larger
-          if (currentScrollY > scrollYRef.current) {
-            setIsScrollingDown(true)
-          } else {
-            setIsScrollingDown(false)
-          }
           // Check if the top boundary of the section is above the middle of the visible area
           topCondition = sectionRect.top < windowHeight / 2
           // Check if the bottom boundary of the section is below the middle of the visible area
@@ -97,6 +93,15 @@ export default function Navbar() {
           currentSectionId = section.id
         }
       })
+
+      if (!isMobileView) {
+        if (currentScrollY > scrollYRef.current) {
+          // Used to hide the navbar when scrolling down on devices with a width of md and larger
+          setIsScrollingDown(true)
+        } else {
+          setIsScrollingDown(false)
+        }
+      }
 
       setCurrentSection(currentSectionId)
       scrollYRef.current = currentScrollY
@@ -109,7 +114,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [pathname])
 
   return (
     <Disclosure
@@ -145,7 +150,9 @@ export default function Navbar() {
                   <Bars3Icon
                     className={classNames(
                       'block h-10 w-10 transition duration-300',
-                      currentSection ? 'text-primary-dark' : 'text-white'
+                      currentSection || pathname !== '/'
+                        ? 'text-primary-dark'
+                        : 'text-white'
                     )}
                     aria-hidden='true'
                   />

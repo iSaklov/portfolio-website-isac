@@ -29,7 +29,7 @@ export default function ProjectHeader({
   const { name, date, city } = project
 
   return (
-    <div>
+    <header>
       <h1 className='font-serif text-[2.125rem] lowercase tracking-tight md:text-5xl lg:text-[3.125rem]'>
         titre<span className='text-accent-orange'>.</span> {name}
       </h1>
@@ -46,6 +46,6 @@ export default function ProjectHeader({
           tech stack <span className='text-accent-orange'>:</span> {children}
         </h6>
       </div>
-    </div>
+    </header>
   )
 }
