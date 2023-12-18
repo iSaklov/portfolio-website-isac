@@ -141,12 +141,17 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <aside className='absolute left-6 top-[300px] z-20 h-[980px] overflow-y-auto xl:left-10'>
+    <aside className='absolute left-6 top-[300px] z-20 h-[980px] overflow-y-scroll xl:left-10'>
       <nav>
         <ol>
-          {projects.map(({ id, cover, name }) => {
+          {projects.map(({ id, cover, name }, index) => {
             return (
-              <li key={id} className='mb-12'>
+              <li
+                key={id}
+                className={classNames(
+                  index !== projects.length - 1 ? 'mb-12' : ''
+                )}
+              >
                 <Link
                   href={`/projects/${id}`}
                   className={classNames(

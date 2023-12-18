@@ -6,6 +6,7 @@ import { Carousel } from 'flowbite-react'
 import { Project } from '@/interfaces/Project'
 import { getRecord } from '@/database/getRecord'
 import { projectRecordType } from '@/database/airtable'
+import CustomControl from '@/components/common/CustomControl'
 
 export default function ProjectCarousel({
   // images
@@ -31,7 +32,12 @@ export default function ProjectCarousel({
 
   return (
     <div className='z-10 my-10 h-[384px] md:h-[448px] lg:h-[512px] xl:h-[576px] 2xl:h-[640px]'>
-      <Carousel pauseOnHover slide={false}>
+      <Carousel
+        pauseOnHover
+        // slide={false}
+        leftControl={<CustomControl position='left' />}
+        rightControl={<CustomControl position='right' />}
+      >
         {images?.map((image) => (
           <div
             key={image.id}
@@ -41,10 +47,9 @@ export default function ProjectCarousel({
               src={image.url}
               alt=''
               placeholder='blur'
-              // blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8FqhbDwAFbgHl+9JQRQAAAABJRU5ErkJggg=='
               blurDataURL={image.blurDataUrl}
               fill
-              className='h-full w-full object-scale-down  object-center'
+              className='h-full w-full object-scale-down object-center'
             />
           </div>
         ))}
