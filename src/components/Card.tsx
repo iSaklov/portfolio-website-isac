@@ -41,17 +41,31 @@ export default function Card({
             {shortDescription}
           </p>
           <h5 className='mt-5 text-base text-highlight-gray'>
-            Tech stack :{' '}
-            {techStack.map((techId, index) => {
+            Tech stack :
+            {techStack.map((techId) => {
               const matchingTech = techs.find((tech) => tech.id === techId)
 
               return (
+                // <span
+                //   key={techId}
+                //   className='text-sm font-light text-subtle-blue'
+                // >
+                //   {matchingTech?.name}
+                //   {index < techStack.length - 1 && ', '}
+                // </span>
+
                 <span
                   key={techId}
-                  className='text-sm font-light text-subtle-blue'
+                  className='m-1 inline-flex items-center rounded-2xl border border-subtle-blue bg-highlight-gray px-1 align-middle'
                 >
-                  {matchingTech?.name}
-                  {index < techStack.length - 1 && ', '}
+                  <img
+                    src={matchingTech?.icon[0].url}
+                    alt={matchingTech?.name}
+                    className='inline-block h-auto max-h-[16px] w-auto max-w-[16px] rounded-full bg-white p-px'
+                  />
+                  <span className='pl-2 pr-[7px] text-sm font-light text-white'>
+                    {matchingTech?.name}
+                  </span>
                 </span>
               )
             })}

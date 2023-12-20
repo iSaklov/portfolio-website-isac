@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getRecords } from '@/database/getRecords'
 import { projectRecordType, techRecordType } from '@/database/airtable'
 import { Pagination } from 'flowbite-react'
+import type { CustomFlowbiteTheme } from 'flowbite-react'
 import { Skeleton } from '@mui/material'
 import { Project } from '@/interfaces/Project'
 import { Tech } from '@/interfaces/Tech'
@@ -12,6 +13,27 @@ import Section from '@/components/layout/Section'
 import CardSkeleton from './skeletons/CardSkeleton'
 import Card from '@/components/Card'
 import { getScreenSizeLabel } from '@/utils/getScreenSizeLabel'
+
+const customTheme: CustomFlowbiteTheme['pagination'] = {
+  base: 'overflow-y-hidden',
+  pages: {
+    base: 'xs:mt-0 mt-2 inline-flex items-center lg:space-x-4',
+    previous: {
+      base: 'ml-0 mr-4 bg-transparent py-2 px-3 leading-tight text-primary-dark enabled:hover:text-zinc-500',
+      icon: 'h-5 w-5'
+    },
+    next: {
+      base: 'bg-transparent ml-4 py-2 px-3 leading-tight text-primary-dark enabled:hover:text-zinc-500',
+      icon: 'h-5 w-5'
+    },
+    selector: {
+      base: 'w-full py-2 px-3 leading-tight enabled:hover:text-zinc-500 text-2xl lg:text-4xl',
+      active:
+        'hover:text-zinc-500 pointer-events-none after:content-["•"] after:text-accent-orange after:absolute after:inset-x-0 relative after:-bottom-3 lg:after:-bottom-5 pb-4 after:text-5xl lg:after:text-6xl bg-transparent text-ineherit transition-all duration-300 ease-in-out',
+      disabled: 'opacity-50 pointer-events-none'
+    }
+  }
+}
 
 export default function ProjectsSection({
   projects,
@@ -97,7 +119,7 @@ export default function ProjectsSection({
               <Card key={project.id} project={project} techs={techs} />
             ))}
       </div>
-      <div className='flex justify-center overflow-x-auto'>
+      <div className='flex h-24 justify-center overflow-x-hidden font-serif text-4xl lg:text-5xl'>
         {!isRenderReady ? (
           <Skeleton
             width='100%'
@@ -112,9 +134,9 @@ export default function ProjectsSection({
             currentPage={currentPage}
             totalPages={totalPage}
             onPageChange={onPageChange}
-            previousLabel='Précédent'
-            nextLabel='Suivant'
-            // showIcons
+            previousLabel='<'
+            nextLabel='>'
+            theme={customTheme}
           />
         )}
       </div>

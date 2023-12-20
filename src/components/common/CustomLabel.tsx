@@ -1,10 +1,10 @@
 import { classNames } from '@/utils/classNames'
 
-type CustomControlType = {
+type CustomLabelType = {
   position: 'left' | 'right'
 }
 
-export default function CustomControl({ position }: CustomControlType) {
+export default function CustomLabel({ position }: CustomLabelType) {
   return (
     <div
       className={classNames(

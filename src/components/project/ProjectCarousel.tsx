@@ -45,7 +45,7 @@ export default function ProjectCarousel({
           >
             <Image
               src={image.url}
-              alt=''
+              alt={image.filename}
               placeholder='blur'
               blurDataURL={image.blurDataUrl}
               fill
