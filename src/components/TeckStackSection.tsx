@@ -7,7 +7,7 @@ import Section from '@/components/layout/Section'
 export default async function TeckStackSection({ techs }: { techs: Tech[] }) {
   const idSection = 'tech-stack'
   const title = 'Teck stack'
-  const subtitle = 'Technologies avec lesquelles je travaille régulièrement'
+  const subtitle = 'Les outils que je manie au fil de mes projets'
 
   return (
     <Section id={idSection} title={title} subtitle={subtitle}>
