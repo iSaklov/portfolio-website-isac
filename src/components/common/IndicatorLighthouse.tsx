@@ -1,6 +1,91 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import checkIcon from '@/assets/images/icons/check.svg'
 import dashIcon from '@/assets/images/icons/dash.svg'
+
+import CircularProgress, {
+  CircularProgressProps
+} from '@mui/material/CircularProgress'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+
+import { classNames } from '@/utils/classNames'
+
+const getStyles = (value: number) =>
+  value < 50
+    ? {
+        bg: 'bg-low-result-bg',
+        text: 'text-low-result-main'
+      }
+    : value < 90
+    ? {
+        bg: 'bg-medium-result-bg',
+        text: 'text-medium-result-main'
+      }
+    : {
+        bg: 'bg-high-result-bg',
+        text: 'text-high-result-main'
+      }
+
+function CircularProgressWithLabel(
+  props: CircularProgressProps & { value: number }
+) {
+  const styles = getStyles(props.value)
+
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress
+        variant='determinate'
+        size='4rem'
+        thickness={1.5}
+        className={classNames(styles.text, 'z-10')} // Set border color
+        {...props}
+      />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+        className={classNames(styles.bg, 'rounded-full')} // Set background color
+      >
+        <Typography
+          variant='caption'
+          component='span'
+          color='inherit'
+          className={classNames(
+            styles.text, // Set text color
+            'mt-0.5 text-[1.625rem] font-medium'
+          )}
+        >
+          {props.value}
+        </Typography>
+      </Box>
+    </Box>
+  )
+}
+
+const getCategory = (key: string) => {
+  switch (key) {
+    case 'performance':
+      return 'Performance'
+    case 'accessibility':
+      return 'Accessibilité'
+    case 'bestPractices':
+      return 'Meilleures pratiques'
+    case 'seo':
+      return 'SEO'
+    case 'pwa':
+      return 'PWA'
+  }
+}
 
 export default function IndicatorLighthouse({
   keyName,
@@ -9,29 +94,31 @@ export default function IndicatorLighthouse({
   keyName: string
   value: number | boolean
 }) {
-  let category
+  const [score, setScore] = useState<number>(0)
+  const category = getCategory(keyName)
 
-  switch (keyName) {
-    case 'performance':
-      category = 'Performance'
-      break
-    case 'accessibility':
-      category = 'Accessibilité'
-      break
-    case 'bestPractices':
-      category = 'Meilleures pratiques'
-      break
-    case 'seo':
-      category = 'SEO'
-      break
-    case 'pwa':
-      category = 'PWA'
-      break
-  }
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (typeof value === 'number') {
+        setScore((prevProgress) =>
+          prevProgress >= value ? value : prevProgress + 1
+        )
+
+        if (score >= value) {
+          clearInterval(timer)
+        }
+      }
+    }, 100)
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [value, score])
 
   if (typeof value === 'boolean') {
     const styles = value ? ['text-light-gray'] : ['text-service-gray']
 
+    // PWA is a special case
     return (
       <div className='flex w-28 flex-col items-center'>
         <div
@@ -60,34 +147,14 @@ export default function IndicatorLighthouse({
     )
   }
 
-  const styles =
-    value >= 90
-      ? [
-          'bg-high-result-bg',
-          'text-high-result-main',
-          'border-high-result-main'
-        ]
-      : value >= 50
-      ? [
-          'bg-medium-result-bg',
-          'text-medium-result-main',
-          'border-medium-result-main'
-        ]
-      : ['bg-low-result-bg', 'text-low-result-main', 'border-low-result-main']
-
   return (
     <div className='flex w-28 flex-col items-center'>
-      <div
-        className={[
-          'flex h-16 w-16 flex-col items-center justify-center rounded-full border-2 p-2',
-          ...styles
-        ].join(' ')}
-      >
-        <span className='text-[1.625rem] font-medium'>{value}</span>
+      <div className='flex w-28 flex-col items-center'>
+        <CircularProgressWithLabel value={score} color='inherit' />
+        <span className='mt-2 text-center text-sm font-medium lg:text-[0.9375rem]'>
+          {category}
+        </span>
       </div>
-      <span className='mt-2 text-center text-sm font-medium lg:text-[0.9375rem]'>
-        {category}
-      </span>
     </div>
   )
 }
