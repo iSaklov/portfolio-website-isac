@@ -16,17 +16,19 @@ export default function Button({
 }: ButtonProps) {
   const styles: Variants = {
     primary:
-      'bg-primary-dark hover:bg-service-gray target:bg-highlight-gray target:border-accent-orange target:border-2 disabled:bg-light-gray disabled:pointer-events-none disabled:text-mid-gray active:bg-accent-orange text-white',
+      'border border-transparent bg-primary-dark text-white active:bg-accent-orange enabled:hover:bg-highlight-gray disabled:bg-light-gray disabled:text-mid-gray',
     secondary:
-      'text-primary-dark target:border-accent-orange target:border-2 disabled:pointer-events-none disabled:text-mid-gray hover:underline hover:underline-offset-8 active:decoration-accent-orange'
+      'text-primary-dark disabled:text-mid-gray enabled:hover:animate-[wiggle_1s_ease-in-out_infinite]'
   }
 
   return (
     <button
-      className={`w-full max-w-[200px] py-5 md:max-w-[280px] ${styles[variant]} ${className}`}
+      className={`relative flex items-center justify-center px-12 py-3 text-center transition-all duration-200 focus:z-10 focus:outline-none focus:ring-4 disabled:pointer-events-none md:px-16 md:py-4 ${styles[variant]} ${className}`}
       {...props}
     >
-      <span className='__poppins_light_high'>{children}</span>
+      <span className='text-base font-light lg:text-[1.375rem]'>
+        {children}
+      </span>
     </button>
   )
 }

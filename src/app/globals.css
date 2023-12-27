@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
-@import '@/styles/typography.css';
 
 :root {
   --foreground-rgb: 0, 0, 0;
