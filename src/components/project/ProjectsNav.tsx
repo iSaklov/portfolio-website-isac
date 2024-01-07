@@ -141,9 +141,9 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <aside className='absolute left-6 top-[300px] z-20 h-[980px] overflow-y-scroll xl:left-10'>
+    <aside className='absolute left-6 top-[300px] h-[980px] w-32 overflow-y-scroll py-4 xl:left-10'>
       <nav>
-        <ol>
+        <ol className='flex flex-col items-center justify-center'>
           {projects.map(({ id, cover, name }, index) => {
             return (
               <li
@@ -155,7 +155,7 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                 <Link
                   href={`/projects/${id}`}
                   className={classNames(
-                    pathname === `/projects/${id}` ? 'pointer-events-none ' : ''
+                    pathname === `/projects/${id}` ? 'pointer-events-none' : ''
                   )}
                 >
                   <Image
@@ -166,10 +166,10 @@ export default function ProjectsNav({ projects }: { projects: Project[] }) {
                     placeholder='blur'
                     blurDataURL={cover[0].blurDataUrl}
                     className={classNames(
-                      'h-24 w-24 object-cover',
+                      'h-24 w-24 transform object-cover transition duration-300',
                       pathname === `/projects/${id}`
                         ? 'shadow-lg'
-                        : 'opacity-75 shadow-md saturate-50 hover:scale-105 hover:opacity-100 hover:shadow-xl hover:saturate-150'
+                        : 'opacity-75 shadow-md saturate-50 hover:scale-125 hover:opacity-100 hover:shadow-xl hover:saturate-150'
                     )}
                   />
                 </Link>
