@@ -1,7 +1,7 @@
 import { getRecord } from '@/database/getRecord'
 import { projectRecordType } from '@/database/airtable'
 import { Project } from '@/interfaces/Project'
-import IndicatorLighthouse from '@/components/common/IndicatorLighthouse'
+import IndicatorLighthouse from '@/components/common/indicatorLigthhouse/Default'
 
 export default async function ProjectLighthouse({
   // lighthouse
