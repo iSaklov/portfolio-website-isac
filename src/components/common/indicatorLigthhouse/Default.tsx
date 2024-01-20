@@ -25,6 +25,21 @@ const getStyles = (value: number) =>
         text: 'text-high-result-main'
       }
 
+const getCategory = (key: string) => {
+  switch (key) {
+    case 'performance':
+      return 'Performance'
+    case 'accessibility':
+      return 'Accessibilité'
+    case 'bestPractices':
+      return 'Meilleures pratiques'
+    case 'seo':
+      return 'SEO'
+    case 'pwa':
+      return 'PWA'
+  }
+}
+
 function CircularProgressWithLabel(
   props: CircularProgressProps & { value: number }
 ) {
@@ -66,21 +81,6 @@ function CircularProgressWithLabel(
       </Box>
     </Box>
   )
-}
-
-const getCategory = (key: string) => {
-  switch (key) {
-    case 'performance':
-      return 'Performance'
-    case 'accessibility':
-      return 'Accessibilité'
-    case 'bestPractices':
-      return 'Meilleures pratiques'
-    case 'seo':
-      return 'SEO'
-    case 'pwa':
-      return 'PWA'
-  }
 }
 
 export default function IndicatorLighthouse({

@@ -24,7 +24,7 @@ export default async function ProjectPage({
       <Suspense fallback={<ProjectSkeleton />}>
         <Project projectId={id} />
       </Suspense>
-      <Link href='/' className='mt-20 flex items-center justify-center'>
+      <Link href='/' className='mx-auto mt-20 block w-max'>
         <Button type='button' variant='secondary'>
           {"< Retour à l'Accueil"}
         </Button>

@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import CircularProgress from '@mui/material/CircularProgress'
+import { classNames } from '@/utils/classNames'
 import checkIcon from '@/assets/images/icons/check.svg'
 import dashIcon from '@/assets/images/icons/dash.svg'
-import { classNames } from '@/utils/classNames'
 
 export default function PWA({
   category,

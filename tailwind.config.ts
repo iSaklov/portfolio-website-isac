@@ -1,5 +1,22 @@
 import type { Config } from 'tailwindcss'
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
+
+// Custom plugin for backface-visibility
+const backfaceVisibility = plugin(function ({
+  addUtilities
+}: {
+  addUtilities: Function
+}) {
+  addUtilities({
+    '.backface-visible': {
+      'backface-visibility': 'visible'
+    },
+    '.backface-hidden': {
+      'backface-visibility': 'hidden'
+    }
+  })
+})
 
 const config: Config = {
   content: [
@@ -49,17 +66,39 @@ const config: Config = {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-1.5deg)' },
           '50%': { transform: 'rotate(1.5deg)' }
+        },
+        rotate3d: {
+          '0%': { transform: 'perspective(500px) rotateY(0deg)' },
+          '50%': { transform: 'perspective(500px) rotateY(180deg)' },
+          '100%': { transform: 'perspective(500px) rotateY(360deg)' }
+        },
+        flashingBorder: {
+          '0%, 100%': { borderColor: 'initial' },
+          '50%': { borderColor: '#e6512d' }
+        },
+        jump: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: ' translateY(-10px)' }
+        },
+        textShine: {
+          '0%, 100%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(100%)' }
         }
       },
       animation: {
-        wiggle: 'wiggle 1s ease-in-out infinite'
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        rotate3d: 'rotate3d 3s ease-in-out infinite',
+        flashingBorder: 'flashingBorder 1s ease-in-out infinite',
+        jump: 'jump 1s ease-in-out infinite',
+        textShine: 'textShine 2s ease-in-out infinite'
       }
     }
   },
   plugins: [
     require('flowbite/plugin'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio')
+    require('@tailwindcss/aspect-ratio'),
+    backfaceVisibility
   ]
 }
 
