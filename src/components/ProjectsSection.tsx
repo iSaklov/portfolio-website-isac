@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getRecords } from '@/database/getRecords'
 import { projectRecordType, techRecordType } from '@/database/airtable'
@@ -106,6 +106,10 @@ export default function ProjectsSection({
     }
   }, [currentPage, projectsPerPage, projectsData])
 
+  useEffect(() => {
+    console.log('totalPage : ', totalPage)
+  }, [totalPage])
+
   return (
     <Section id={idSection} title={title}>
       <div className='mb-10 mt-20 grid grid-cols-1 md:grid-cols-2 md:gap-x-4 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-6 2xl:gap-8'>
@@ -130,14 +134,16 @@ export default function ProjectsSection({
             }}
           />
         ) : (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPage}
-            onPageChange={onPageChange}
-            previousLabel='<'
-            nextLabel='>'
-            theme={customTheme}
-          />
+          totalPage > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPage}
+              onPageChange={onPageChange}
+              previousLabel='<'
+              nextLabel='>'
+              theme={customTheme}
+            />
+          )
         )}
       </div>
     </Section>

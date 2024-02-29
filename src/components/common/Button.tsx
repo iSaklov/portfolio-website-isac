@@ -23,7 +23,7 @@ export default function Button({
 
   return (
     <button
-      className={`relative w-full max-w-[240px] border border-transparent px-6 py-3 text-center text-base font-light focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none md:max-w-[260px] md:px-8 md:py-4 md:text-lg xl:max-w-[280px] xl:text-xl ${styles[variant]} ${className}`}
+      className={`relative w-full max-w-[240px] border border-transparent px-6 py-3 text-center text-base font-light disabled:pointer-events-none md:max-w-[260px] md:px-8 md:py-4 md:text-lg xl:max-w-[280px] xl:text-xl ${styles[variant]} ${className}`}
       {...props}
     >
       {children}

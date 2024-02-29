@@ -34,17 +34,17 @@ export default function ProjectHeader({
         titre<span className='text-accent-orange'>.</span> {name}
       </h1>
       <div className='mt-10'>
-        <h6 className='text-[0.9375rem]/7'>
+        <h2 className='text-[0.9375rem]/7'>
           date<span className='text-accent-orange'>.</span>{' '}
           <span className='text-base font-light'>{date}</span>
-        </h6>
-        <h6 className='mt-1 text-[0.9375rem]/7'>
+        </h2>
+        <h2 className='mt-1 text-[0.9375rem]/7'>
           city<span className='text-accent-orange'>.</span>{' '}
           <span className='text-base font-light'>{city}</span>
-        </h6>
-        <h6 className='mt-1 text-[0.9375rem]/7'>
+        </h2>
+        <h2 className='mt-1 text-[0.9375rem]/7'>
           tech stack <span className='text-accent-orange'>:</span> {children}
-        </h6>
+        </h2>
       </div>
     </header>
   )

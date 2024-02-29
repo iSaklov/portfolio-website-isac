@@ -34,13 +34,13 @@ export default function Card({
           />
         </div>
         <div className='flex-1 px-5 py-5'>
-          <h4 className='text-2xl font-medium md:text-3xl lg:text-[1.75rem]'>
+          <h3 className='text-2xl font-medium md:text-3xl lg:text-[1.75rem]'>
             {name}
-          </h4>
+          </h3>
           <p className='mt-5 line-clamp-5 text-justify font-light leading-relaxed'>
             {shortDescription}
           </p>
-          <h5 className='mt-5 text-base text-highlight-gray'>
+          <h4 className='mt-5 text-base text-highlight-gray'>
             Tech stack :
             {techStack.map((techId) => {
               const matchingTech = techs.find((tech) => tech.id === techId)
@@ -58,18 +58,20 @@ export default function Card({
                   key={techId}
                   className='m-1 inline-flex items-center rounded-2xl border border-subtle-blue bg-highlight-gray px-1 align-middle'
                 >
-                  <img
-                    src={matchingTech?.icon[0].url}
-                    alt={matchingTech?.name}
-                    className='inline-block h-auto max-h-[16px] w-auto max-w-[16px] rounded-full bg-white p-px'
-                  />
+                  <picture>
+                    <img
+                      src={matchingTech?.icon[0].url}
+                      alt={matchingTech?.name}
+                      className='inline-block h-auto max-h-[16px] w-auto max-w-[16px] rounded-full bg-white p-px'
+                    />
+                  </picture>
                   <span className='pl-2 pr-[7px] text-sm font-light text-white'>
                     {matchingTech?.name}
                   </span>
                 </span>
               )
             })}
-          </h5>
+          </h4>
         </div>
         <div className='flex justify-between px-5 pb-5'>
           <a

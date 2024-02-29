@@ -138,6 +138,7 @@ export default async function ContactsSection() {
                 href='https://www.linkedin.com/in/oleg-smaliakou/'
                 target='_blank'
                 rel='noopener'
+                aria-label='lien vers le profil Linkedin du développeur du site'
               >
                 <Image
                   src={LinkedinIcon}
@@ -149,6 +150,7 @@ export default async function ContactsSection() {
                 href='https://github.com/iSaklov'
                 target='_blank'
                 rel='noopener'
+                aria-label='lien vers le profil Github du développeur du site'
               >
                 <Image
                   src={GithubIcon}
@@ -156,7 +158,12 @@ export default async function ContactsSection() {
                   className='aspect-square h-auto w-8 transition-transform hover:scale-110'
                 />
               </a>
-              <a href='https://t.me/iSaklov' target='_blank' rel='noopener'>
+              <a
+                href='https://t.me/iSaklov'
+                target='_blank'
+                rel='noopener'
+                aria-label='lien vers telegram du développeur du site'
+              >
                 <Image
                   src={TelegramIcon}
                   alt=''

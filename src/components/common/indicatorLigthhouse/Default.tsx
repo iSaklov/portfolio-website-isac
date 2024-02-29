@@ -51,7 +51,8 @@ function CircularProgressWithLabel(
         variant='determinate'
         size='4rem'
         thickness={1.5}
-        className={classNames(styles.text, 'z-10')} // Set border color
+				className={classNames(styles.text, 'z-10')} // Set border color
+				aria-label='lightouse score progress'
         {...props}
       />
       <Box

@@ -23,9 +23,9 @@ export default function AboutSection() {
         />
       </div>
       <article className='mt-10 md:mt-28 lg:mt-40'>
-        <h3 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
+        <h4 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
           Qui je suis
-        </h3>
+        </h4>
         <p className='mt-3 text-justify font-light leading-7 lg:mt-4 lg:text-[1.125rem] lg:leading-8'>
           Salut à tous! Je m&apos;appelle Oleg. Je suis concepteur développeur
           d&apos;applications (full stack JavaScript & TypesScript) avec un vif
@@ -44,9 +44,9 @@ export default function AboutSection() {
         </p>
       </article>
       <article className='mt-10 md:mt-12 lg:mt-14'>
-        <h5 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
+        <h4 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
           Ce que j&apos;ai fait
-        </h5>
+        </h4>
         <p className='mt-3 text-justify font-light leading-7 lg:mt-4 lg:text-[1.125rem] lg:leading-8'>
           Ayant obtenu un master en philosophie dans mon pays d&apos;origine
           (Université d&apos;État de Biélorussie), j&apos;ai poursuivi mes
@@ -83,9 +83,9 @@ export default function AboutSection() {
         </p>
       </article>
       <article className='mt-10 md:mt-12 lg:mt-14'>
-        <h5 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
+        <h4 className='text-[1.375rem] md:text-2xl lg:text-[1.625rem]'>
           Ce que je fais
-        </h5>
+        </h4>
         <p className='mt-3 text-justify font-light leading-7 lg:mt-4 lg:text-[1.125rem] lg:leading-8'>
           Avec déjà trois années d&apos;expérience dans le développement web,
           j&apos;ai enfin eu l&apos;opportunité de travailler officiellement en
