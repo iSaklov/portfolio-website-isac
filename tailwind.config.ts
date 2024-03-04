@@ -1,6 +1,10 @@
 import type { Config } from 'tailwindcss'
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
+// @ts-check
+import fs from 'node:fs'
+import path from 'node:path'
+import plaiceholder from '@plaiceholder/tailwindcss'
 
 // Custom plugin for backface-visibility
 const backfaceVisibility = plugin(function ({
@@ -98,7 +102,10 @@ const config: Config = {
     require('flowbite/plugin'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-    backfaceVisibility
+    backfaceVisibility,
+    plaiceholder({
+      resolver: (src) => fs.readFileSync(path.join('./public', `${src}.jpg`))
+    })
   ]
 }
 

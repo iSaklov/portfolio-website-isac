@@ -18,7 +18,7 @@ export default function AboutSection() {
           className='h-auto w-full object-contain'
         />
         <div
-          className='absolute top-0 h-full w-full'
+          className='pointer-events-none absolute inset-0 bg-repeat'
           style={{ backgroundImage: `url(${Mask.src})` }}
         />
       </div>

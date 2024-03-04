@@ -6,7 +6,7 @@ import { Project } from '@/interfaces/Project'
 import { Tech } from '@/interfaces/Tech'
 import { keysToCamelCase } from '@/utils/keysToCamelCase'
 import { generateSlug } from '@/utils/generateSlug'
-import { dynamicBlurDataUrl } from '@/utils/dynamicBlurDataUrl'
+import { getDynamicBlurDataUrl } from '@/utils/getDynamicBlurDataUrl'
 
 // Authenticate
 Airtable.configure({
@@ -32,13 +32,13 @@ const projectRecordType: RecordType<ProjectData, Project> = {
 
     await Promise.all(
       camelCaseFields.cover.map(async (item: ImageMetadata) => {
-        item.blurDataUrl = await dynamicBlurDataUrl(item.url)
+        item.blurDataUrl = await getDynamicBlurDataUrl(item.url)
       })
     )
 
     await Promise.all(
       camelCaseFields.images.map(async (image: ImageMetadata) => {
-        image.blurDataUrl = await dynamicBlurDataUrl(image.url)
+        image.blurDataUrl = await getDynamicBlurDataUrl(image.url)
       })
     )
 

@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/assets/*": ["./public/assets/*"]
     }
   },
   "include": [
@@ -28,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/route.ts",
-    "src/utils/keysToCamelCase.ts"
+    "src/utils/keysToCamelCase.ts",
+    "next.config.mjs"
   ],
   "exclude": ["node_modules"]
 }

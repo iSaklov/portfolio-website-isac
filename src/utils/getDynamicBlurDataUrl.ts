@@ -5,7 +5,7 @@ const baseUrl =
     ? 'http://localhost:3000/'
     : process.env.NEXT_PUBLIC_DOMAIN
 
-export async function dynamicBlurDataUrl(
+export async function getDynamicBlurDataUrl(
   url: string
 ): Promise<string | undefined> {
   try {
