@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 import type { Config } from 'tailwindcss'
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
@@ -35,9 +36,9 @@ const config: Config = {
     extend: {
       colors: {
         // basic
-        transparent: 'transparent',
-        current: 'currentColor',
-        white: '#ffffff',
+        // transparent: 'transparent',
+        // current: 'currentColor',
+        // white: '#ffffff',
         'primary-dark': {
           translucent: 'rgba(47, 46, 46, 0.5)',
           DEFAULT: '#2f2e2e'
@@ -58,7 +59,7 @@ const config: Config = {
         'light-gray': '#e6e6e6'
       },
       fontFamily: {
-        sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans],
         serif: ['Georgia', ...defaultTheme.fontFamily.serif]
       },
       backgroundImage: {

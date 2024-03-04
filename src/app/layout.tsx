@@ -1,8 +1,17 @@
-import './globals.css'
+import { Poppins } from 'next/font/google'
 import type { Metadata } from 'next'
 import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import './globals.css'
+
+const poppins = Poppins({
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-poppins'
+})
 
 export const metadata: Metadata = {
   title: "Portfolio réalisé par iSac - Concepteur Développeur d'Applications",
@@ -32,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='fr' className='scroll-smooth'>
+    <html lang='fr' className={`scroll-smooth ${poppins.variable}`}>
       <body>
         <ReactQueryProvider>
           <Navbar />
