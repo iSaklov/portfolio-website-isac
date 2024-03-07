@@ -1,13 +1,12 @@
 import { Poppins } from 'next/font/google'
 import type { Metadata } from 'next'
-// import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import './globals.css'
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  style: ['normal'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-poppins'
@@ -43,11 +42,9 @@ export default function RootLayout({
   return (
     <html lang='fr' className={`scroll-smooth ${poppins.variable}`}>
       <body>
-        {/* <ReactQueryProvider> */}
-          <Navbar />
-          {children}
-          <Footer />
-        {/* </ReactQueryProvider> */}
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   )

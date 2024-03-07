@@ -93,15 +93,4 @@ const getMinifiedItem = async <T extends RecordDataType, U>(
   return await recordType.getMinifiedItem(record)
 }
 
-const minifyItems = <T extends RecordDataType, U>(
-  records: T[],
-  recordType: RecordType<T, U>
-): Promise<U[]> => {
-  const promises = records.map(
-    async (record) => await recordType.getMinifiedItem(record)
-  )
-
-  return Promise.all(promises)
-}
-
-export { base, minifyItems, getMinifiedItem, projectRecordType, techRecordType }
+export { base, getMinifiedItem, projectRecordType, techRecordType }

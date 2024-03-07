@@ -17,8 +17,12 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const initialProjectsData = await getRecords(projectRecordType)
-  const initialTechsData = await getRecords(techRecordType)
+  const initialProjectsData = await getRecords(projectRecordType, {
+    maxRecords: 4
+  })
+  const initialTechsData = await getRecords(techRecordType, {
+    sort: [{ field: 'Name', direction: 'asc' }]
+  })
   const deviceType = getDeviceType()
 
   return (
