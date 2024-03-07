@@ -16,10 +16,10 @@ const getTable = <T extends RecordDataType, U>(
 ) => {
   if (recordType.isType === projectRecordType.isType) {
     // Reference a Projects table
-    return base(process.env.NEXT_PUBLIC_AIRTABLE_PROJECTS_TABLE_ID)
+    return base(process.env.AIRTABLE_PROJECTS_TABLE_ID)
   } else if (recordType.isType === techRecordType.isType) {
     // Reference a Tech table
-    return base(process.env.NEXT_PUBLIC_AIRTABLE_TECH_STACK_TABLE_ID)
+    return base(process.env.AIRTABLE_TECH_STACK_TABLE_ID)
   }
 }
 

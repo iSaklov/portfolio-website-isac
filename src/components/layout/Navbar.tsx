@@ -165,6 +165,7 @@ export default function Navbar() {
                 <Image
                   src={Logo}
                   alt='iSac Development'
+                  priority
                   className='h-[90px] w-auto'
                 />
               </Link>

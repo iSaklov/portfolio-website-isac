@@ -11,19 +11,28 @@ import ProjectLinks from './ProjectLinks'
 import TechStackListSkeleton from '@/components/skeletons/project/TechStackListSkeleton'
 
 export default async function Project({ projectId }: { projectId: string }) {
-  const project: Project = await getRecord(projectId, projectRecordType)
+  const {
+    name,
+    date,
+    city,
+    techStack,
+    images,
+    lighthouse,
+    fullDescription,
+    links
+  } = (await getRecord(projectId, projectRecordType)) as Project
 
   return (
     <>
-      <ProjectHeader project={project}>
+      <ProjectHeader name={name} date={date} city={city}>
         <Suspense fallback={<TechStackListSkeleton />}>
-          <TechStackList projectTechStack={project.techStack} />
+          <TechStackList projectTechStack={techStack} />
         </Suspense>
       </ProjectHeader>
-      <ProjectCarousel projectId={projectId} project={project} />
-      <ProjectLighthouse projectId={projectId} />
-      <ProjectDescription projectId={projectId} />
-      <ProjectLinks projectId={projectId} />
+      <ProjectCarousel images={images} />
+      <ProjectLighthouse lighthouse={lighthouse} />
+      <ProjectDescription description={fullDescription} />
+      <ProjectLinks links={links} />
     </>
   )
 }

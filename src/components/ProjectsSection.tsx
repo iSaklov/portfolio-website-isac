@@ -1,9 +1,6 @@
 'use client'
 
-import { useState, useEffect, use } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { getRecords } from '@/database/getRecords'
-import { projectRecordType, techRecordType } from '@/database/airtable'
+import { useState, useEffect } from 'react'
 import { Pagination } from 'flowbite-react'
 import type { CustomFlowbiteTheme } from 'flowbite-react'
 import { Skeleton } from '@mui/material'
@@ -53,17 +50,6 @@ export default function ProjectsSection({
   const [currentPage, setCurrentPage] = useState(1)
   const [isRenderReady, setIsRenderReady] = useState(false)
 
-  const {
-    data: projectsData,
-    isPending,
-    isError,
-    error
-  } = useQuery<Project[], Error>({
-    queryKey: ['projects', projectRecordType],
-    queryFn: async () => await getRecords(projectRecordType),
-    initialData: projects
-  })
-
   const getProjectsPerPage = (width: number) => {
     const screenSize = getScreenSizeLabel(width)
     switch (screenSize) {
@@ -99,12 +85,12 @@ export default function ProjectsSection({
       const indexOfLastProject = currentPage * projectsPerPage
       const indexOfFirstProject = indexOfLastProject - projectsPerPage
       setCurrentProjects(
-        projectsData.slice(indexOfFirstProject, indexOfLastProject)
+        projects.slice(indexOfFirstProject, indexOfLastProject)
       )
-      setTotalPage(Math.ceil(projectsData.length / projectsPerPage))
+      setTotalPage(Math.ceil(projects.length / projectsPerPage))
       setIsRenderReady(true)
     }
-  }, [currentPage, projectsPerPage, projectsData])
+  }, [currentPage, projectsPerPage, projects])
 
   useEffect(() => {
     console.log('totalPage : ', totalPage)

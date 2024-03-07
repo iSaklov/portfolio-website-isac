@@ -1,17 +1,11 @@
-import { getRecord } from '@/database/getRecord'
-import { projectRecordType } from '@/database/airtable'
 import { Project } from '@/interfaces/Project'
 import IndicatorLighthouse from '@/components/common/indicatorLigthhouse/Default'
 
 export default async function ProjectLighthouse({
-  // lighthouse
-  projectId
+  lighthouse
 }: {
-  // lighthouse: Project['lighthouse']
-  projectId: string
+  lighthouse: Project['lighthouse']
 }) {
-  const { lighthouse }: Project = await getRecord(projectId, projectRecordType)
-
   return (
     <div className='container mx-auto my-10 px-4'>
       <div className='flex flex-wrap justify-center gap-8'>

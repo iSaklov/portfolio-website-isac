@@ -1,35 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import { useQuery } from '@tanstack/react-query'
 import { Carousel } from 'flowbite-react'
 import { Project } from '@/interfaces/Project'
-import { getRecord } from '@/database/getRecord'
-import { projectRecordType } from '@/database/airtable'
 import CustomControl from '@/components/common/CustomControl'
 
 export default function ProjectCarousel({
-  // images
-  projectId,
-  project
+  images
 }: {
-  // images: Project['images']
-  projectId: string
-  project: Project
+  images: Project['images']
 }) {
-  const {
-    data: projectData,
-    isPending,
-    isError,
-    error
-  } = useQuery<Project, Error>({
-    queryKey: ['project', projectId, projectRecordType],
-    queryFn: async () => await getRecord(projectId, projectRecordType),
-    initialData: project
-  })
-
-  const { images } = projectData
-
   return (
     <div className='z-10 my-10 h-[384px] md:h-[448px] lg:h-[512px] xl:h-[576px] 2xl:h-[640px]'>
       <Carousel

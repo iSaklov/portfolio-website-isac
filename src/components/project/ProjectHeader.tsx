@@ -1,33 +1,18 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
 import { Project } from '@/interfaces/Project'
-import { getRecord } from '@/database/getRecord'
-import { projectRecordType } from '@/database/airtable'
 
 export default function ProjectHeader({
-  // id,
-  project,
+  name,
+  date,
+  city,
   children
 }: {
-  // id: string
-  project: Project
+  name: Project['name']
+  date: Project['date']
+  city: Project['city']
   children: React.ReactNode
 }) {
-  // const {
-  //   data: projectData,
-  //   isPending,
-  //   isError,
-  //   error
-  // } = useQuery<Project, Error>({
-  //   queryKey: ['project', id, projectRecordType],
-  //   queryFn: async () => await getRecord(id, projectRecordType),
-  //   initialData: project
-  // })
-
-  // const { name, date, city } = projectData
-  const { name, date, city } = project
-
   return (
     <header>
       <h1 className='font-serif text-[2.125rem] lowercase tracking-tight md:text-5xl lg:text-[3.125rem]'>

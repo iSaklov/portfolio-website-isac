@@ -11,11 +11,11 @@ import { getDynamicBlurDataUrl } from '@/utils/getDynamicBlurDataUrl'
 // Authenticate
 Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN
+  apiKey: process.env.AIRTABLE_API_TOKEN
 })
 
 // Initialize a base
-const base = Airtable.base(process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID)
+const base = Airtable.base(process.env.AIRTABLE_BASE_ID)
 
 export type RecordDataType = ProjectData | TechData
 

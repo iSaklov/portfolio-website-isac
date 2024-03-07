@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { getRecords } from '@/database/getRecords'
 import { projectRecordType } from '@/database/airtable'
 import { Project } from '@/interfaces/Project'
-// import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import Main from '@/components/layout/Main'
 import ProjectsNav from '@/components/project/ProjectsNav'
 
